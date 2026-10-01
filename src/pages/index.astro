@@ -26,37 +26,51 @@ import '../styles/global.css';
 
     <main class="pt-16 bg-[#FAFAFA]">
         
-        <!-- 1. HERO ARCHITECTURE -->
-        <section class="relative w-full min-h-[90vh] md:min-h-[85vh] overflow-hidden flex flex-col justify-center border-b-[0.5px] border-[#1C1C1E]">
-            <div class="absolute inset-0 bg-[url('/new-ak/assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp')] bg-cover bg-center"></div>
-            <!-- Gradient contrast zone -->
-            <div class="absolute inset-0 bg-gradient-to-r from-[#1C1C1E] via-[#1C1C1E]/90 to-transparent w-[90%] md:w-[75%]"></div>
+        
+        <!-- 1. HERO ARCHITECTURE (FULL BLEED REPLICA) -->
+        <section class="relative w-full h-[100svh] overflow-hidden flex flex-col justify-center">
+            <!-- Full Bleed Image -->
+            <div class="absolute inset-0 bg-[url('/new-ak/assets/hero-poster.webp')] bg-cover bg-center md:bg-[center_top_-20%]"></div>
             
-            <div class="relative z-10 p-8 md:p-16 lg:px-24 max-w-4xl flex flex-col gap-6 my-8">
-                <div class="font-sans text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#FAFAFA]/70">Home Buyer Concierge</div>
-                <h1 class="font-serif text-[3rem] md:text-[4rem] text-[#FAFAFA] leading-[1.1]">
+            <!-- Radial / Linear Gradient Overlays for Text Contrast -->
+            <div class="absolute inset-0 bg-[#1C1C1E]/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#1C1C1E] via-[#1C1C1E]/80 to-transparent w-full md:w-[65%]"></div>
+            
+            <!-- Content Container -->
+            <div class="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24 flex flex-col gap-6 mt-16">
+                
+                <div class="font-sans text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#BE7555] flex items-center gap-3">
+                    <span class="w-8 h-[1px] bg-[#BE7555]"></span>
+                    HOME BUYER CONCIERGE
+                </div>
+                
+                <h1 class="font-serif text-[3rem] md:text-[4.5rem] lg:text-[5rem] text-[#FAFAFA] leading-[1.05] max-w-3xl">
                     Anyone can give options.<br/>
                     We help you buy <span class="text-[#BE7555]">the right home.</span>
                 </h1>
-                <p class="font-sans text-[1rem] md:text-[1.15rem] text-[#FAFAFA]/80 leading-relaxed max-w-lg mt-2">
+                
+                <p class="font-sans text-[1rem] md:text-[1.2rem] text-[#FAFAFA]/90 leading-relaxed max-w-xl mt-2">
                     Independent home buying advisory to evaluate the opportunity, uncover the risks, and negotiate on your behalf.
                 </p>
                 
-                <div class="flex gap-12 mt-6 border-t-[0.5px] border-white/20 pt-8">
+                <div class="flex flex-wrap gap-8 md:gap-16 mt-6 pt-8">
                     <div>
-                        <div class="font-sans text-[1.75rem] text-[#FAFAFA] mb-1">69</div>
-                        <div class="font-sans text-[0.8rem] text-[#FAFAFA]/60">Due Diligence Checks</div>
+                        <div class="font-sans text-[2rem] md:text-[2.5rem] text-[#FAFAFA] mb-1 leading-none">69</div>
+                        <div class="font-sans text-[0.85rem] text-[#FAFAFA]/60 font-semibold tracking-wide">Due Diligence Checks</div>
                     </div>
+                    <div class="w-[1px] bg-white/20 h-12 hidden md:block mt-2"></div>
                     <div>
-                        <div class="font-sans text-[1.75rem] text-[#FAFAFA] mb-1">₹0</div>
-                        <div class="font-sans text-[0.8rem] text-[#FAFAFA]/60">Buyer Advisory Fee</div>
+                        <div class="font-sans text-[2rem] md:text-[2.5rem] text-[#FAFAFA] mb-1 leading-none">₹0</div>
+                        <div class="font-sans text-[0.85rem] text-[#FAFAFA]/60 font-semibold tracking-wide">Buyer Advisory Fee</div>
                     </div>
                 </div>
                 
-                <div class="mt-6">
-                    <button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-8 py-4 rounded-sm font-sans text-[0.9rem] font-semibold transition-colors flex items-center gap-3 w-fit">
-                        Schedule Advisory Call 
-                        <svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="square" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                <div class="mt-8">
+                    <button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-8 py-4 rounded-sm font-sans text-[0.9rem] font-bold uppercase tracking-[0.05em] transition-colors flex items-center gap-3 w-fit shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 duration-200">
+                        Book Advisory Call 
+                        <span class="bg-white/20 p-1.5 rounded-full ml-2">
+                            <svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 16 16" width="14"><line x1="4.5" x2="11.5" y1="11.5" y2="4.5"></line><polyline points="6.5 4.5 11.5 4.5 11.5 9.5"></polyline></svg>
+                        </span>
                     </button>
                 </div>
             </div>
