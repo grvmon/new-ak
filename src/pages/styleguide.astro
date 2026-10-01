@@ -48,14 +48,88 @@ import OtpForm from '../components/ui/OtpForm.tsx';
 
     <div class="ak-container py-16 flex flex-col lg:flex-row gap-16">
       <nav class="hidden lg:block w-64 shrink-0 font-sans sticky top-24 self-start h-[calc(100vh-8rem)] overflow-auto border-r-[0.5px] border-[#55555a26] pr-8">
+        
+        <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary-copper mb-2">Foundations</div>
+        <a href="#governance-meta" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Governance</a>
+        <a href="#brand" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Colors</a>
+        <a href="#voice" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Lexicon & Tone</a>
+
         <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary-copper mt-6 mb-2">Visual Language</div>
+        <a href="#identity" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Identity & Logo</a>
         <a href="#typography" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Typography</a>
-        <a href="#components" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Components</a>
-        <a href="#data" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Data & Tools</a>
-        <a href="#patterns" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Patterns</a>
+        
+        <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary-copper mt-6 mb-2">Components</div>
+        <a href="#components" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Actions & Inputs</a>
+        
+        <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary-copper mt-6 mb-2">Data & Tools</div>
+        <a href="#data" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Tables & Tools</a>
+        
+        <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-primary-copper mt-6 mb-2">Patterns</div>
+        <a href="#patterns" class="block py-1 text-[0.85rem] text-neutral-grey hover:text-primary-copper transition-colors">Templates & Patterns</a>
       </nav>
 
       <main class="flex-1 min-w-0">
+
+        <!-- 0. GOVERNANCE -->
+        <section id="governance-meta" class="mb-24 pb-16 hairline-b">
+          <h2>0. Governance & Versioning</h2>
+          <p class="font-sans text-[1rem] text-neutral-grey max-w-3xl mb-12 leading-relaxed">
+            <strong>Version:</strong> 2.0.0 (Apple-Grade Architectural Release)<br/>
+            <strong>Owner:</strong> Acre&amp;Key Design Authority<br/>
+            <strong>Changelog:</strong> Pivot from Warm Ivory to Titanium Frost, shift from Cormorant to Marcellus, implementation of strict 7.0:1 AAA contrast and 4px micro-edge geometry.
+          </p>
+        </section>
+
+        <!-- 1-3. FOUNDATIONS -->
+        <section id="brand" class="mb-24 pb-16 hairline-b">
+          <h2>1. Master Foundations & Colors</h2>
+          <div class="mt-8 grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div class="rounded-sm overflow-hidden border-[0.5px] border-[#55555a26] bg-white">
+              <div class="h-32 w-full bg-canvas-dark"></div>
+              <div class="p-4">
+                <div class="font-sans font-bold text-[0.95rem] text-canvas-dark mb-1">Obsidian Black</div>
+                <div class="font-sans text-[0.8rem] text-neutral-grey tracking-wide">#1C1C1E</div>
+              </div>
+            </div>
+            <div class="rounded-sm overflow-hidden border-[0.5px] border-[#55555a26] bg-white">
+              <div class="h-32 w-full bg-canvas-light border-b-[0.5px] border-[#55555a26]"></div>
+              <div class="p-4">
+                <div class="font-sans font-bold text-[0.95rem] text-canvas-dark mb-1">Titanium Frost</div>
+                <div class="font-sans text-[0.8rem] text-neutral-grey tracking-wide">#FAFAFA</div>
+              </div>
+            </div>
+            <div class="rounded-sm overflow-hidden border-[0.5px] border-[#55555a26] bg-white">
+              <div class="h-32 w-full bg-primary-copper"></div>
+              <div class="p-4">
+                <div class="font-sans font-bold text-[0.95rem] text-canvas-dark mb-1">Text Copper</div>
+                <div class="font-sans text-[0.8rem] text-neutral-grey tracking-wide">#804526</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="voice" class="mb-24 pb-16 hairline-b">
+          <h2>2. Clinical Lexicon & Tone</h2>
+          <p class="font-sans text-[1rem] text-neutral-grey max-w-3xl mb-8 leading-relaxed">HNI buyers ignore generic marketing jargon. We operate as independent, data-driven advisors.</p>
+          <table class="w-full text-left ak-table border-collapse">
+            <thead>
+              <tr class="border-b-[0.5px] border-[#55555a26]">
+                <th class="py-4 font-sans text-[0.85rem] font-bold text-neutral-grey">Banned Marketing Fluff</th>
+                <th class="py-4 font-sans text-[0.85rem] font-bold text-neutral-grey">Approved Clinical Terminology</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-neutral-grey line-through">"Buy Now" / "Submit"</td>
+                <td class="text-primary-copper font-bold">"Request Advisory Call"</td>
+              </tr>
+              <tr>
+                <td class="text-neutral-grey line-through">"Luxury" / "Premium"</td>
+                <td class="text-primary-copper font-bold">"Institutional-Grade"</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
         <!-- 4. IDENTITY & LOGO -->
         <section id="identity" class="mb-24 pb-16 hairline-b">
