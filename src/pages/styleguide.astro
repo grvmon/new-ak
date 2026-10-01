@@ -11,12 +11,14 @@ import ProcessCard from '../components/ui/ProcessCard.astro';
 import ChecklistCard from '../components/ui/ChecklistCard.astro';
 import TeamProfile from '../components/ui/TeamProfile.astro';
 import VideoOverlay from '../components/ui/VideoOverlay.astro';
+import PersonaCard from '../components/ui/PersonaCard.astro';
 
 import Accordion from '../components/ui/Accordion.tsx';
 import Tabs from '../components/ui/Tabs.tsx';
 import Calculator from '../components/ui/Calculator.tsx';
 import Gallery from '../components/ui/Gallery.tsx';
 import Modal from '../components/ui/Modal.tsx';
+import OtpForm from '../components/ui/OtpForm.tsx';
 ---
 
 <html lang="en">
@@ -55,6 +57,31 @@ import Modal from '../components/ui/Modal.tsx';
 
       <main class="flex-1 min-w-0">
 
+        <!-- 4. IDENTITY & LOGO -->
+        <section id="identity" class="mb-24 pb-16 hairline-b">
+          <h2>Identity & Logo Architecture</h2>
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-[#FAFAFA] p-12 flex flex-col items-center justify-center border-[0.5px] border-[#55555a26]">
+              <div class="overline-kicker text-neutral-grey mb-4 text-[0.65rem]">Titanium Frost Environment</div>
+              <div class="font-serif text-3xl tracking-tight text-[#1C1C1E]">acre<span class="font-sans font-light">&amp;</span>key</div>
+            </div>
+            <div class="bg-[#1C1C1E] p-12 flex flex-col items-center justify-center border-[0.5px] border-white/10">
+              <div class="overline-kicker text-white/50 mb-4 text-[0.65rem]">Obsidian Environment</div>
+              <div class="font-serif text-3xl tracking-tight text-white">acre<span class="font-sans font-light">&amp;</span>key</div>
+            </div>
+            <div class="bg-[#804526] p-12 flex flex-col items-center justify-center">
+              <div class="overline-kicker text-white/50 mb-4 text-[0.65rem]">Primary Copper Environment</div>
+              <div class="font-serif text-3xl tracking-tight text-white">acre<span class="font-sans font-light">&amp;</span>key</div>
+            </div>
+            <div class="relative p-12 flex flex-col items-center justify-center overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover img-filtered" />
+              <div class="absolute inset-0 bg-[#1C1C1E]/60 backdrop-blur-[2px]"></div>
+              <div class="overline-kicker text-white/50 mb-4 text-[0.65rem] relative z-10">Cinematic Image Overlay</div>
+              <div class="font-serif text-3xl tracking-tight text-white relative z-10">acre<span class="font-sans font-light">&amp;</span>key</div>
+            </div>
+          </div>
+        </section>
+
         <!-- 5. TYPOGRAPHY -->
         <section id="typography" class="mb-24 pb-16 hairline-b">
           <h2>Typography & Hierarchy</h2>
@@ -80,11 +107,11 @@ import Modal from '../components/ui/Modal.tsx';
           
           <div class="space-y-12 mt-8">
             <Card class="max-w-lg">
-              <h3 class="font-sans text-lg mb-6">Concierge Advisory Form</h3>
+              <h3 class="font-sans text-lg mb-6">Standard Capture Form</h3>
               <form class="space-y-6">
                 <div>
                   <label class="block text-[0.85rem] font-bold mb-2">Full Legal Name</label>
-                  <input type="text" class="w-full" placeholder="John Doe" />
+                  <input type="text" class="w-full border-b-[0.5px] border-[#55555a4d] pb-3 focus:outline-none focus:border-primary-copper transition-colors text-[0.95rem] bg-transparent" placeholder="John Doe" />
                 </div>
                 <div class="flex gap-6 items-center">
                   <label class="flex items-center gap-3 cursor-pointer">
@@ -99,6 +126,30 @@ import Modal from '../components/ui/Modal.tsx';
                 <Button variant="primary" class="w-full mt-4">Request Advisory Call</Button>
               </form>
             </Card>
+
+            <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Concierge Advisory Form (OTP)</div>
+              <OtpForm client:load />
+            </div>
+
+            <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Menu States (Dark & Light)</div>
+              <div class="bg-[#1C1C1E] p-8 flex space-x-8 mb-4">
+                <a href="#" class="font-sans text-[0.85rem] font-bold text-white uppercase tracking-[0.05em] hover:text-[#e5b899] transition-colors">Framework</a>
+                <a href="#" class="font-sans text-[0.85rem] font-bold text-white uppercase tracking-[0.05em] hover:text-[#e5b899] transition-colors">Advisory</a>
+              </div>
+              <div class="bg-[#FAFAFA] p-8 flex space-x-8 border-[0.5px] border-[#55555a26]">
+                <a href="#" class="font-sans text-[0.85rem] font-bold text-[#55555A] uppercase tracking-[0.05em] hover:text-[#804526] transition-colors">Dossiers</a>
+                <a href="#" class="font-sans text-[0.85rem] font-bold text-[#55555A] uppercase tracking-[0.05em] hover:text-[#804526] transition-colors">About Us</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Cinematic Modal</div>
+              <Modal client:load title="Floorplan Access" triggerText="Authenticate & View">
+                <p>Please confirm your credentials to view the highly detailed architectural layouts.</p>
+              </Modal>
+            </div>
 
             <div>
               <div class="overline-kicker text-neutral-grey mb-4">React Accordion (ARIA)</div>
@@ -139,6 +190,45 @@ import Modal from '../components/ui/Modal.tsx';
             </div>
             
             <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Financial Table</div>
+              <table class="w-full text-left ak-table border-collapse">
+                <thead>
+                  <tr class="border-b-[0.5px] border-[#55555a26]">
+                    <th class="py-4 font-sans text-[0.85rem] font-bold text-neutral-grey">Typology</th>
+                    <th class="py-4 font-sans text-[0.85rem] font-bold text-neutral-grey">Carpet Area</th>
+                    <th class="py-4 font-sans text-[0.85rem] font-bold text-neutral-grey text-right">Institutional Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>3 BHK + Staff</td>
+                    <td>2,204 Sq.Ft.</td>
+                    <td class="text-right">₹ 3.14 Cr</td>
+                  </tr>
+                  <tr>
+                    <td>4 BHK Signature</td>
+                    <td>3,150 Sq.Ft.</td>
+                    <td class="text-right">₹ 4.85 Cr</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Architectural Lists</div>
+              <ul class="space-y-3 font-sans text-[0.95rem] text-neutral-grey">
+                <li class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-1 text-canvas-dark shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Title deeds verified against RERA database.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-1 text-canvas-dark shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Masterplan audited for hyper-density risk metrics.</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
               <div class="overline-kicker text-neutral-grey mb-4">Breadcrumbs</div>
               <Breadcrumbs crumbs={[{label: 'Home', href: '/'}, {label: 'Advisory', href: '/advisory'}]} current="Prestige Evergreen" />
             </div>
@@ -151,6 +241,31 @@ import Modal from '../components/ui/Modal.tsx';
           <h2>Templates & Patterns</h2>
           
           <div class="space-y-12 mt-8">
+            
+            <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Hero Architecture Blueprint</div>
+              <div class="grid grid-cols-1 md:grid-cols-2 bg-canvas-dark text-white rounded-sm overflow-hidden">
+                <div class="p-12 flex flex-col justify-center">
+                  <div class="overline-kicker text-white/50 mb-4">Pre-Launch Advisory</div>
+                  <h3 class="font-serif text-3xl mb-4 leading-tight">Institutional-Grade Assets in Whitefield.</h3>
+                  <p class="font-sans text-[0.95rem] text-white/80 leading-relaxed mb-8">Access proprietary risk-assessment frameworks before allocating capital to under-construction developments.</p>
+                  <Button variant="primary" class="self-start">Get Buyer Analysis</Button>
+                </div>
+                <div class="h-[400px]">
+                  <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover img-filtered" />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="overline-kicker text-neutral-grey mb-4">Buyer Persona (Anchored Portrait)</div>
+              <PersonaCard number="01." title="The Busy Executive" imageSrc="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800">
+                <p>You know what you want. You just don't have the time to find it.</p>
+                <p>For founders, CXOs and senior professionals seeking a better home across Whitefield, Indiranagar and ORR, without the endless sales conversations.</p>
+                <p>We handle the search and diligence. You focus on the decision.</p>
+              </PersonaCard>
+            </div>
+
             <div>
               <div class="overline-kicker text-neutral-grey mb-4">The Asset Dossier Card</div>
               <DossierCard 
