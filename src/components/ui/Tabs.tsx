@@ -1,4 +1,4 @@
-import React, { useState, useRef, KeyboardEvent } from 'react';
+import React, { useState, useRef } from 'react';
 
 interface TabItem {
   id: string;
@@ -16,7 +16,7 @@ export default function Tabs({ items, defaultTabId, className = '' }: TabsProps)
   const [activeTab, setActiveTab] = useState(defaultTabId || items[0]?.id);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     let newIndex = index;
     if (e.key === 'ArrowRight') {
       newIndex = index === items.length - 1 ? 0 : index + 1;
