@@ -2362,6 +2362,31 @@ import '../styles/global.css';
 </div>
 </div>
 </div>
+<div class="border-t-[0.5px] border-[#55555a26] pt-12 mt-12 mb-12">
+<h3 class="font-serif text-[1.5rem] text-[#1C1C1E] mb-2">Pagination</h3>
+<p class="font-sans text-[0.95rem] text-[#55555A] leading-relaxed mb-8 max-w-3xl">Minimalist progression logic for blogs and property listing pages.</p>
+<div class="bg-[#FAFAFA] border-[0.5px] border-[#55555a26] p-12 rounded-sm flex items-center justify-start">
+<nav aria-label="Pagination" class="flex items-center gap-6">
+<!-- Previous Button -->
+<button aria-label="Previous page" class="w-10 h-10 bg-white border-[0.5px] border-[#55555a26] rounded-[4px] flex items-center justify-center text-[#55555A] hover:border-[#1C1C1E] hover:text-[#1C1C1E] transition-colors">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="square" stroke-width="1.5" viewbox="0 0 24 24" width="14"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+</button>
+<!-- Page Numbers -->
+<div class="flex items-center gap-6 font-sans text-[0.95rem]">
+<a aria-current="page" class="font-bold text-[#1C1C1E]" href="#">1</a>
+<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#">2</a>
+<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#">3</a>
+<span class="text-[#55555A]">...</span>
+<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#">8</a>
+</div>
+<!-- Next Button -->
+<button aria-label="Next page" class="w-10 h-10 bg-white border-[0.5px] border-[#55555a26] rounded-[4px] flex items-center justify-center text-[#55555A] hover:border-[#1C1C1E] hover:text-[#1C1C1E] transition-colors">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="square" stroke-width="1.5" viewbox="0 0 24 24" width="14"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+</button>
+</nav>
+</div>
+</div>
+
 <tr>
 <td class="py-4 px-4 font-bold text-[#1C1C1E]">Accordions (Dossier Specs)</td>
 <td class="py-4 px-4">Collapsing dense technical specs and FAQs.</td>
@@ -2633,7 +2658,6 @@ import '../styles/global.css';
 </div>
 </div>
 <!-- Loading & Success -->
-
 <div class="border-t-[0.5px] border-[#55555a26] pt-12">
 <h3 class="font-serif text-[1.25rem] text-[#1C1C1E] mb-2">Alerts &amp; Tooltips</h3>
 <p class="text-[0.95rem] text-[#55555A] leading-relaxed mb-8 max-w-3xl">Success messages and tooltips must avoid standard green/red blocks. We use architectural boxes with sharp copper anchor lines.</p>
@@ -2661,7 +2685,6 @@ import '../styles/global.css';
 </div>
 </div>
 </div>
-
 <!-- The Principle -->
 <div class="bg-[#1C1C1E] p-12 rounded-sm mt-12 flex flex-col font-sans">
 <div class="text-[12px] font-bold tracking-[0.15em] uppercase text-[#BE7555] mb-4">The Principle</div>
