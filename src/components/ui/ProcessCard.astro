@@ -1,0 +1,25 @@
+---
+// src/components/ui/ProcessCard.astro
+interface Props {
+  step: string;
+  title: string;
+  class?: string;
+}
+
+const { step, title, class: className = '' } = Astro.props;
+---
+
+<div class={`section-frost p-8 rounded-sm border-[0.5px] border-[#55555a26] flex gap-6 ${className}`}>
+  <!-- Serif Numeral -->
+  <div class="font-serif text-3xl text-primary-copper leading-none pt-1">
+    {step}
+  </div>
+  
+  <!-- Sans-Serif Data Block -->
+  <div>
+    <h3 class="font-sans font-bold text-canvas-dark text-[1.1rem] mb-2">{title}</h3>
+    <div class="font-sans text-[0.95rem] text-neutral-grey leading-relaxed">
+      <slot />
+    </div>
+  </div>
+</div>

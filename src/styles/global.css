@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Acre&Key Master Design System (Version 2.0.0) */
+@theme {
+  /* Brand Colors */
+  --color-canvas-light: #FAFAFA; /* Titanium Frost */
+  --color-canvas-white: #FFFFFF; /* Alternating Canvas */
+  --color-canvas-dark: #1C1C1E; /* Obsidian Black */
+  
+  --color-primary-copper: #804526; /* Text Copper AAA */
+  --color-primary-peach: #e5b899; /* Highlight Peach */
+  
+  --color-neutral-grey: #55555A;
+
+  /* Typography */
+  --font-serif: "Marcellus", serif;
+  --font-sans: "Manrope", sans-serif;
+  
+  /* Fluid Typography Tokens */
+  --text-fluid-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-fluid-h2: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --text-fluid-h3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --text-fluid-lead: 1.1rem;
+  --text-fluid-base: 0.95rem;
+  --text-fluid-micro: 0.75rem;
+
+  /* Geometry & Spacing */
+  --radius-sm: 4px;
+  
+  /* Z-Index Hierarchy */
+  --z-modal: 1000;
+  --z-header: 900;
+  --z-dropdown: 800;
+  --z-tooltip: 700;
+  --z-base: 1;
+}
+
+/* Base HTML Layer */
+@layer base {
+  html {
+    @apply antialiased scroll-smooth;
+    background-color: var(--color-canvas-light);
+    color: var(--color-canvas-dark);
+  }
+  
+  /* Strict Fluid Typography Automation */
+  h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--text-fluid-h1);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-canvas-dark);
+  }
+  
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--text-fluid-h2);
+    line-height: 1.2;
+    color: var(--color-canvas-dark);
+  }
+
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: var(--text-fluid-h3);
+    line-height: 1.2;
+    color: var(--color-canvas-dark);
+  }
+
+  p, span, a, li, label, div {
+    font-family: var(--font-sans);
+  }
+  
+  /* Strict 4px Geometry */
+  * {
+    --tw-border-radius: 4px;
+  }
+
+  /* Focus & Accessibility States */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary-copper);
+    outline-offset: 2px;
+  }
+  
+  input, select, textarea {
+    @apply bg-transparent border-b-[0.5px] border-[#55555a26] rounded-none px-0 py-3 font-sans text-canvas-dark transition-colors duration-400 focus:outline-none focus:border-primary-copper focus:ring-0;
+    font-size: var(--text-fluid-base);
+  }
+
+  /* Custom Checkbox (Anti-Pill 4px Rule) */
+  input[type="checkbox"] {
+    @apply appearance-none w-4 h-4 border border-[#55555a4d] rounded-sm bg-white cursor-pointer transition-colors duration-200 relative;
+  }
+  input[type="checkbox"]:checked {
+    @apply bg-canvas-dark border-canvas-dark;
+  }
+  input[type="checkbox"]:checked::after {
+    content: "";
+    @apply absolute left-1 top-0.5 w-1.5 h-2 border-r-2 border-b-2 border-white transform rotate-45;
+  }
+
+  /* Custom Radio (Sharp Circular Selection) */
+  input[type="radio"] {
+    @apply appearance-none w-4 h-4 border border-[#55555a4d] rounded-full bg-white cursor-pointer transition-all duration-200 relative;
+  }
+  input[type="radio"]:checked {
+    @apply border-primary-copper;
+  }
+  input[type="radio"]:checked::after {
+    content: "";
+    @apply absolute inset-1 bg-primary-copper rounded-full;
+  }
+
+  /* Custom Range Sliders */
+  input[type="range"] {
+    @apply appearance-none w-full h-[2px] bg-[#55555a33] outline-none rounded-[2px] my-4 cursor-pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 rounded-sm bg-primary-copper transition-transform duration-200 hover:scale-125;
+  }
+  input[type="range"]::-moz-range-thumb {
+    @apply w-4 h-4 rounded-sm bg-primary-copper border-none transition-transform duration-200 hover:scale-125;
+  }
+}
+
+/* Institutional Grade Components */
+@layer components {
+
+  .ak-container {
+    @apply max-w-[1280px] mx-auto px-6 lg:px-12;
+  }
+
+  .section-frost { @apply bg-canvas-light text-canvas-dark; }
+  .section-white { @apply bg-white text-canvas-dark border-y-[0.5px] border-[#55555a15]; }
+  .section-obsidian { @apply bg-canvas-dark text-white; }
+
+  /* Dual Anchored Gradient System */
+  .anchored-gradient-dual {
+    @apply absolute inset-0 pointer-events-none;
+    background: 
+      linear-gradient(to bottom, rgba(28, 28, 30, 0.7) 0%, transparent 20%),
+      linear-gradient(to top, rgba(28, 28, 30, 0.95) 0%, rgba(28, 28, 30, 0.4) 40%, transparent 100%);
+  }
+
+  .ak-table { @apply w-full text-left font-sans border-collapse; }
+  .ak-table th { 
+    @apply py-6 border-b-[0.5px] border-[#55555a26] font-normal uppercase tracking-[0.12em] text-neutral-grey; 
+    font-size: var(--text-fluid-micro);
+  }
+  .ak-table td { 
+    @apply py-6 border-b-[0.5px] border-[#55555a26] text-canvas-dark; 
+    font-size: var(--text-fluid-base);
+  }
+
+  /* Typography Overline Kicker */
+  .overline-kicker {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: 0.15em;
+  }
+
+  /* Acre&Key Motion Physics */
+  .ak-pan-container { @apply overflow-hidden rounded-sm; }
+  .ak-image-pan { @apply w-full h-full object-cover transition-transform duration-[800ms] ease-[cubic-bezier(0.25,1,0.5,1)]; }
+  .ak-pan-container:hover .ak-image-pan { transform: scale(1.03); }
+
+  .img-filtered { filter: saturate(0.85) contrast(1.05); }
+
+  .ak-shimmer {
+    background: linear-gradient(to right, rgba(85, 85, 90, 0.05) 4%, rgba(85, 85, 90, 0.12) 25%, rgba(85, 85, 90, 0.05) 36%);
+    background-size: 800px 100%;
+    animation: akShimmer 2s infinite linear;
+  }
+}
+
+@keyframes akShimmer {
+  0% { background-position: -800px 0; }
+  100% { background-position: 800px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* CMS Typography Overrides (Prose) */
+.prose {
+  --tw-prose-body: var(--color-neutral-grey);
+  --tw-prose-headings: var(--color-canvas-dark);
+  --tw-prose-links: var(--color-primary-copper);
+}
+.prose h1 { font-size: var(--text-fluid-h1); }
+.prose h2 { font-size: var(--text-fluid-h2); }
+.prose h3 { font-size: var(--text-fluid-h3); }
+.prose p, .prose ul, .prose ol {
+  font-size: var(--text-fluid-lead);
+  line-height: 1.7;
+}
+.prose a {
+  @apply text-primary-copper underline underline-offset-4 decoration-primary-copper/30 decoration-1 transition-all duration-400 hover:decoration-primary-copper;
+}

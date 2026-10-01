@@ -1,0 +1,27 @@
+---
+// src/components/ui/TeamProfile.astro
+interface Props {
+  name: string;
+  role: string;
+  imageSrc: string;
+  class?: string;
+}
+
+const { name, role, imageSrc, class: className = '' } = Astro.props;
+---
+
+<div class={`bg-white border-[0.5px] border-[#55555a26] rounded-sm overflow-hidden flex flex-col sm:flex-row shadow-none ${className}`}>
+  <!-- Headshot passed through cinematic desaturation -->
+  <div class="w-full sm:w-48 shrink-0 relative">
+    <div class="absolute inset-0 bg-canvas-dark/5 mix-blend-multiply z-10 pointer-events-none"></div>
+    <img src={imageSrc} alt={name} class="w-full h-full object-cover aspect-square sm:aspect-auto img-filtered" />
+  </div>
+  
+  <div class="p-6 sm:p-8 flex flex-col justify-center">
+    <h3 class="font-serif text-2xl text-canvas-dark mb-1">{name}</h3>
+    <div class="font-sans text-[0.75rem] uppercase tracking-widest text-primary-copper font-bold mb-4">{role}</div>
+    <p class="font-sans text-[0.95rem] text-neutral-grey leading-relaxed m-0 max-w-lg">
+      <slot />
+    </p>
+  </div>
+</div>

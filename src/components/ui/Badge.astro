@@ -1,0 +1,22 @@
+---
+// src/components/ui/Badge.astro
+interface Props {
+  variant?: 'dark' | 'copper';
+  class?: string;
+}
+
+const { variant = 'dark', class: className = '' } = Astro.props;
+
+const baseClasses = 'inline-flex items-center px-2 py-0.5 rounded-sm border-[0.5px] font-sans text-[0.7rem] font-bold uppercase tracking-[0.03em]';
+
+const variants = {
+  copper: 'bg-[#80452614] border-primary-copper/20 text-primary-copper',
+  dark: 'bg-black/85 border-transparent text-white',
+};
+
+const classes = `${baseClasses} ${variants[variant]} ${className}`;
+---
+
+<span class={classes}>
+  <slot />
+</span>

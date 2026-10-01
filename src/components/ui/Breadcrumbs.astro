@@ -1,0 +1,24 @@
+---
+// src/components/ui/Breadcrumbs.astro
+interface Crumb {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+  current: string;
+}
+
+const { crumbs, current } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="font-sans text-[0.85rem] text-neutral-grey mb-8 flex flex-wrap items-center gap-2">
+  {crumbs.map((crumb) => (
+    <>
+      <a href={crumb.href} class="hover:text-primary-copper transition-colors">{crumb.label}</a>
+      <span class="opacity-50">/</span>
+    </>
+  ))}
+  <span class="text-canvas-dark font-bold">{current}</span>
+</nav>

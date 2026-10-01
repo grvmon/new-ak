@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import { DocumentRenderer } from '@keystatic/core/renderer';
+import '../styles/global.css';
+
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => ({
+    params: { slug: page.id },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{page.data.title} - Acre&Key</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+  </head>
+  
+  <body class="min-h-screen flex flex-col bg-canvas-light text-canvas-dark">
+    
+    <!-- Institutional Header -->
+    <header class="sticky top-0 z-header cinematic-blur-nav border-b-[0.5px] border-[#55555a26]">
+      <div class="ak-container py-4 flex justify-between items-center">
+        <a href="/" class="font-serif text-2xl tracking-tight text-canvas-dark">acre&key</a>
+        <nav class="hidden md:flex space-x-8">
+          <a href="#" class="font-sans text-[0.85rem] uppercase tracking-[0.05em] font-bold text-neutral-grey hover:text-primary-copper transition-colors">Advisory</a>
+          <a href="/styleguide" class="font-sans text-[0.85rem] uppercase tracking-[0.05em] font-bold text-neutral-grey hover:text-primary-copper transition-colors">Master System</a>
+        </nav>
+        <Button variant="primary" class="text-xs px-4 py-2">Request Callback</Button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-grow w-full">
+      
+      <!-- Architectural Page Header -->
+      <div class="section-obsidian pt-16 pb-32 text-center px-8 relative">
+        <div class="ak-container relative z-10">
+          <h1 class="text-white mb-4">{page.data.title}</h1>
+          <p class="font-sans text-white/70 max-w-2xl mx-auto" style="font-size: var(--text-fluid-lead)">
+            Institutional-grade diligence and analysis.
+          </p>
+        </div>
+        <!-- Decorative Fade -->
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-canvas-light to-transparent"></div>
+      </div>
+
+      <!-- Content Container -->
+      <div class="ak-container -mt-16 mb-24 relative z-10">
+        <Card class="max-w-4xl mx-auto" padding="large">
+          <!-- Rich Text Formatting -->
+          <div class="prose max-w-none">
+            <DocumentRenderer document={page.data.content} />
+          </div>
+        </Card>
+      </div>
+
+    </main>
+
+    <!-- Global Footer Architecture -->
+    <footer class="section-obsidian py-16 mt-auto">
+      <div class="ak-container">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="md:col-span-2">
+            <h2 class="font-serif text-2xl tracking-tight text-white mb-4">acre&key</h2>
+            <p class="font-sans text-[0.95rem] text-white/70 max-w-sm">Institutional-grade real estate advisory for the institutional investor. Data-driven allocation.</p>
+          </div>
+          <div>
+            <h3 class="font-sans text-[0.75rem] uppercase tracking-widest text-white/50 mb-4">Assets</h3>
+            <ul class="space-y-2 font-sans text-[0.95rem]">
+              <li><a href="#" class="text-white hover:text-primary-peach transition-colors">Prestige Evergreen</a></li>
+              <li><a href="#" class="text-white hover:text-primary-peach transition-colors">Sattva Songbird</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-sans text-[0.75rem] uppercase tracking-widest text-white/50 mb-4">Legal</h3>
+            <ul class="space-y-2 font-sans text-[0.95rem]">
+              <li><a href="#" class="text-white hover:text-primary-peach transition-colors">Privacy Protocol</a></li>
+              <li><a href="#" class="text-white hover:text-primary-peach transition-colors">RERA Disclaimers</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

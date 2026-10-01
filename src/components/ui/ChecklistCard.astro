@@ -1,0 +1,25 @@
+---
+// src/components/ui/ChecklistCard.astro
+import Badge from './Badge.astro';
+
+interface Props {
+  badgeText: string;
+  title: string;
+  class?: string;
+}
+
+const { badgeText, title, class: className = '' } = Astro.props;
+---
+
+<div class={`bg-white rounded-sm border-[0.5px] border-[#55555a26] p-8 relative ${className}`}>
+  <!-- Strict 4px Micro-Edge Badge overlapping the top border -->
+  <div class="absolute -top-3 left-6">
+    <Badge variant="copper" class="bg-white">{badgeText}</Badge>
+  </div>
+
+  <h3 class="font-sans font-bold text-canvas-dark text-[1.1rem] mb-4 mt-2">{title}</h3>
+  
+  <ul class="space-y-3 font-sans text-[0.95rem] text-neutral-grey">
+    <slot />
+  </ul>
+</div>

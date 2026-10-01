@@ -1,0 +1,47 @@
+---
+// src/components/ui/Pagination.astro
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string; // e.g., '/blog/page/'
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+---
+
+<nav aria-label="Pagination" class="flex items-center gap-4 font-sans text-[0.95rem] text-neutral-grey my-12">
+  {currentPage > 1 ? (
+    <a href={`${baseUrl}${currentPage - 1}`} aria-label="Previous page" class="hover:text-primary-copper transition-colors">&larr;</a>
+  ) : (
+    <span class="opacity-30 cursor-not-allowed">&larr;</span>
+  )}
+
+  <!-- Minimalist logic for display: 1 2 3 ... 8 -->
+  <div class="flex items-center gap-3">
+    {Array.from({ length: Math.min(3, totalPages) }).map((_, i) => {
+      const pageNum = i + 1;
+      return pageNum === currentPage ? (
+        <span aria-current="page" class="font-bold text-canvas-dark">{pageNum}</span>
+      ) : (
+        <a href={`${baseUrl}${pageNum}`} class="hover:text-primary-copper transition-colors">{pageNum}</a>
+      );
+    })}
+
+    {totalPages > 3 && (
+      <>
+        <span>...</span>
+        {currentPage === totalPages ? (
+          <span aria-current="page" class="font-bold text-canvas-dark">{totalPages}</span>
+        ) : (
+          <a href={`${baseUrl}${totalPages}`} class="hover:text-primary-copper transition-colors">{totalPages}</a>
+        )}
+      </>
+    )}
+  </div>
+
+  {currentPage < totalPages ? (
+    <a href={`${baseUrl}${currentPage + 1}`} aria-label="Next page" class="hover:text-primary-copper transition-colors">&rarr;</a>
+  ) : (
+    <span class="opacity-30 cursor-not-allowed">&rarr;</span>
+  )}
+</nav>

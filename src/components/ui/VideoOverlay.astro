@@ -1,0 +1,33 @@
+---
+// src/components/ui/VideoOverlay.astro
+interface Props {
+  thumbnailSrc: string;
+  title?: string;
+  class?: string;
+}
+
+const { thumbnailSrc, title, class: className = '' } = Astro.props;
+---
+
+<div class={`relative w-full aspect-video rounded-sm overflow-hidden group cursor-pointer ${className}`}>
+  <!-- Thumbnail with cinematic filter -->
+  <img src={thumbnailSrc} alt={title || 'Video Thumbnail'} class="w-full h-full object-cover img-filtered transition-transform duration-[800ms] group-hover:scale-105" />
+  
+  <!-- Deep cinematic overlay -->
+  <div class="absolute inset-0 bg-[#0a0a0b]/40 backdrop-blur-[2px] group-hover:bg-[#0a0a0b]/60 group-hover:backdrop-blur-[4px] transition-all duration-400"></div>
+
+  <!-- Minimalist Play Button -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="w-16 h-16 rounded-full border-[0.5px] border-white/30 flex items-center justify-center bg-white/10 backdrop-blur-md transition-transform duration-400 group-hover:scale-110 group-hover:bg-white/20 group-hover:border-white/50">
+      <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-2">
+        <path d="M19 10.2679C20.3333 11.0377 20.3333 12.9622 19 13.732L3.25 22.8253C1.91666 23.5951 0.249999 22.6329 0.249999 21.0933L0.25 2.90673C0.25 1.36713 1.91667 0.404882 3.25 1.17468L19 10.2679Z" fill="white"/>
+      </svg>
+    </div>
+  </div>
+
+  {title && (
+    <div class="absolute bottom-6 left-6 right-6">
+      <h3 class="font-sans text-white text-[1.1rem] font-bold">{title}</h3>
+    </div>
+  )}
+</div>
