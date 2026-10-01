@@ -27,7 +27,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:
-            node-version: 20
+            node-version: 22
             # If your project is not in the root, specify the path here
             # path: . 
 
