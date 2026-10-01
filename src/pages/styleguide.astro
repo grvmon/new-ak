@@ -3214,282 +3214,115 @@ import '../styles/global.css';
 </div>
 </section><section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]" id="29-qa">
 <h2 class="font-serif text-2xl font-normal text-[#1C1C1E] mb-2">29. QA &amp; Governance</h2>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Used for buyer personas or deep-dive features. This component executes the Anchored Gradient rule on a portrait aspect ratio, pulling the user into a cinematic story.</p>
+<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">A design system is only as strong as the governance enforcing it. This is the final launch checklist and the absolute criteria for pushing code to production. Nothing goes live without clearing this matrix.</p>
+<div class="space-y-16 font-sans">
+<!-- Governance & Approvals -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-[#FAFAFA] p-8 border-[0.5px] border-[#55555a26] rounded-sm">
+<h3 class="font-serif text-[1.25rem] text-[#1C1C1E] mb-4">System Governance</h3>
+<p class="text-[0.85rem] text-[#55555A] mb-6 leading-relaxed">Who approves changes, and when can a new component be added?</p>
+<ul class="text-[0.85rem] text-[#1C1C1E] space-y-4">
+<li class="flex items-start gap-3 border-b-[0.5px] border-[#55555a26] pb-3">
+<span class="text-[#2C4C3B] font-bold mt-0.5">✓</span>
 <div>
-<!-- Persona Card Component -->
-<div>
-<!-- Background Image (Using placeholder, ideally executive shot) -->
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/evergreen/prestige_evergreen_hero_pool_evening.webp"/>
-<!-- The Anchored Gradient -->
-<div>
-<!-- Kicker -->
-<div>
-                            01. The Busy Executive
-                        </div>
-<!-- Heading -->
-<div class="text-xl font-serif">
-                            You know what you want. You just don't have the time to find it.
-                        </div>
-<!-- Body -->
-<p>
-                            For founders, CXOs and senior professionals seeking a better home across Whitefield, Indiranagar and ORR, without the endless sales conversations.
-                        </p>
-<!-- Footer Note -->
-<div>
-                            We handle the search and diligence. You focus on the decision.
-                        </div>
-</div>
-</div>
-</div>
-<div>
-<h3>Advisory Calculator Module</h3>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Calculators must avoid bubbly SaaS slider thumbs. We enforce 4px radius thumbs, 2px hairline tracks, and massive Marcellus display fonts for the final financial output.</p>
-<div>
-<h4>Yield &amp; EMI Calculator</h4>
-<p>Analyze asset fundamentals and projected leverage.</p>
-<!-- Slider 1 -->
-<div>
-<div>
-<label>Down Payment</label>
-<span>20% (₹ 62L)</span>
-</div>
-<input class="appearance-none w-full h-[2px] bg-[#55555a33] outline-none rounded-sm my-4 cursor-pointer" max="100" min="10" type="range" value="20"/>
-<div>
-<span>10%</span>
-<span>100%</span>
-</div>
-</div>
-<!-- Output -->
-<div class="bg-[#FAFAFA]">
-<div>
-<div>Projected Monthly EMI</div>
-<div>₹ 2.14L</div>
-</div>
-<a href="#" onmouseout="this.style.borderColor='var(--text-copper-aaa)'" onmouseover="this.style.borderColor='transparent'">View Schedule</a>
-</div>
-</div>
-</div><section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
-<h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">Editorial Data Cards (Checklists)</h3>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Used for feature lists or diligence breakdowns. <strong>Crucial Rule:</strong> The overlapping badge must strictly use the 4px micro-edge geometry. Circular pill badges are banned in the HNI architecture.</p>
-<div>
-<!-- Data Card Component -->
-<div>
-<!-- Header Image -->
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp"/>
-</div>
-<!-- Overlapping Badge (4px Geometry, NO CIRCLES) -->
-<div>
-                        01.
-                    </div>
-<!-- Main Content -->
-<div>
-<div class="text-xl font-serif">Location</div>
-<p>Connectivity, Security &amp; Demand</p>
-<!-- List Items -->
-<ul>
-<li>
-<!-- Minimal Check Icon -->
-<div>
-<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
-<span>Employment &amp; IT corridor connectivity</span>
+<strong class="block mb-1">Component Admission</strong>
+                                A new component may only be added if the existing component library cannot solve the architectural requirement natively. Do not invent UI when an existing tokenized structure suffices.
+                            </div>
 </li>
-<li>
+<li class="flex items-start gap-3">
+<span class="text-[#2C4C3B] font-bold mt-0.5">✓</span>
 <div>
-<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
-<span>Metro line progress &amp; road widening realities</span>
-</li>
-<li>
-<div>
-<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
-</div>
-<span>Ground-water security &amp; social infra data</span>
+<strong class="block mb-1">The Approval Protocol</strong>
+                                Code cannot be merged by a single developer. Visual deviations from this styleguide require approval from the Lead Designer. Functional deviations require approval from the Technical Director.
+                            </div>
 </li>
 </ul>
 </div>
-<!-- Footer Block -->
-<div>
-<div>
-                            Questions We Answer
-                        </div>
-<p>
-                            Is long-term demand <span>sustainable?</span>
-</p>
-<p>
-                            Is infrastructure <span>keeping pace?</span>
-</p>
-</div>
-</div>
-</div>
-</section><section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
-<h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">Editorial Process Cards (Methodology)</h3>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Used for step-by-step methodologies. This card Blends Serif numerals with Sans-Serif data blocks, utilizing internal Titanium Frost containers and strict 4px tags (banning standard pill shapes).</p>
-<div>
-<!-- Process Card Component -->
-<div>
-<!-- Header -->
-<div>
-<div>01</div>
-<div class="text-xl font-serif">Clarify</div>
-</div>
-<!-- Hairline Divider -->
-<div></div>
-<!-- Lead Text -->
-<p>
-                        Mandate calibration &amp; comprehensive requirement definition.
-                    </p>
-<!-- Inner Blocks container -->
-<div>
-<!-- Inner Block 1 -->
-<div>
-<div>01</div>
-<div>
-<h4>Requirement Mapping</h4>
-<p>
-                                    Family lifestyle, commute radii (ORR/Silk Board) &amp; non-negotiables
-                                </p>
-</div>
-</div>
-<!-- Inner Block 2 -->
-<div>
-<div>02</div>
-<div>
-<h4>Micro-Market Universe</h4>
-<p>
-                                    Filtering out [X]% noise across Whitefield, North Bangalore &amp; Central
-                                </p>
-</div>
-</div>
-</div>
-<!-- Dotted Divider -->
-<div></div>
-<!-- Deliverable Tag (Enforcing 4px rule, no pills) -->
-<div>
-                        Deliverable: Buyer Mandate Brief
+<div class="bg-white p-8 border-[0.5px] border-[#55555a26] rounded-sm">
+<h3 class="font-serif text-[1.25rem] text-[#1C1C1E] mb-4">The Master Instruction</h3>
+<p class="text-[0.85rem] text-[#55555A] mb-4 leading-relaxed">All AI-assisted development and human auditing must adhere strictly to the following mandate:</p>
+<div class="bg-[#1C1C1E] p-4 rounded-sm border-l-[4px] border-[#BE7555] font-serif text-[1rem] text-[#FAFAFA] italic leading-[1.6]">
+                        "Do not redesign or introduce a new visual direction. Audit against the existing acre&amp;key design DNA and make the minimum changes required to make the system complete, consistent, unambiguous and production-ready."
                     </div>
 </div>
 </div>
-</section><section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
-<h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">Executive Team Profiles</h3>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Used for horizontal leadership grids. <strong>Crucial Correction:</strong> Shadows are minimized to retain a flat, editorial aesthetic. and replaced them with our structural 0.5px hairline. All headshots must be passed through the cinematic desaturation filter.</p>
-<div>
-<div class="text-xl font-serif">Meet The Team</div>
-<div>
-<!-- Team Card 1 -->
-<div>
-<!-- Circular Avatar (Exception to geometry for human faces, but with strict ring) -->
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/Nitin_Kocchar.webp"/>
+<!-- The Final Launch Checklist -->
+<div class="border-t-[0.5px] border-[#55555a26] pt-12">
+<h3 class="font-serif text-[1.25rem] text-[#1C1C1E] mb-6">The Pre-Flight Matrix (Final Checklist)</h3>
+<p class="text-[0.95rem] text-[#55555A] leading-relaxed mb-8 max-w-3xl">Before deploying any page to production, the engineering and QA teams must mathematically verify the following items.</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Visual & Structural -->
+<div class="bg-white border-[0.5px] border-[#55555a26] rounded-sm overflow-hidden">
+<div class="bg-[#FAFAFA] px-6 py-3 border-b-[0.5px] border-[#55555a26]">
+<span class="font-bold text-[0.75rem] tracking-[0.1em] uppercase text-[#1C1C1E]">Visual &amp; Structural QA</span>
 </div>
-<div>
-<div>
-<h4>Nitin Kochhar</h4>
-<a href="#">
-<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
-</a>
+<ul class="divide-y-[0.5px] divide-[#55555a26] text-[0.85rem]">
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Brand:</strong> Is the logo Josefin Sans, completely untampered with, and separated from brand typography?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Typography:</strong> Are all H1s Marcellus, and all Body/Data texts Manrope?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Color:</strong> Is Copper restricted strictly to accents and primary CTAs?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Spacing:</strong> Is everything scaled perfectly on the strict 4px geometry?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Responsive:</strong> Do all properties stack perfectly to mobile without hiding data?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">UX:</strong> Are all buttons functioning as Advisory Intake (vs broker "Buy Now")?</div>
+</li>
+</ul>
 </div>
-<div>Investments · Decision Framework</div>
-<p>
-                                Strategy consultant and equity investment advisor turned real estate investment advisor.
-                            </p>
+<!-- Tech & Compliance -->
+<div class="bg-white border-[0.5px] border-[#55555a26] rounded-sm overflow-hidden">
+<div class="bg-[#FAFAFA] px-6 py-3 border-b-[0.5px] border-[#55555a26]">
+<span class="font-bold text-[0.75rem] tracking-[0.1em] uppercase text-[#1C1C1E]">Technical &amp; Compliance QA</span>
 </div>
-</div>
-<!-- Team Card 2 -->
-<div>
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/Gaurav_Mongia.webp"/>
-</div>
-<div>
-<div>
-<h4>Gaurav Mongia</h4>
-<a href="#">
-<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
-</a>
-</div>
-<div>Marketing · Product · Tech</div>
-<p>
-                                Decade-long real estate &amp; digital marketing experience, bridging buyers with clarity.
-                            </p>
-</div>
-</div>
-<!-- Team Card 3 -->
-<div>
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/Arvind_Patidar.webp"/>
-</div>
-<div>
-<div>
-<h4>Arvind Patidar</h4>
-<a href="#">
-<svg fill="currentColor" height="10" viewbox="0 0 24 24" width="10"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
-</a>
-</div>
-<div>Operations · CEX · Tech</div>
-<p>
-                                Deep real estate operations expertise, obsessed with buyer-first process excellence.
-                            </p>
-</div>
-</div>
-</div>
-</div>
-</section><section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
-<h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">Cinematic Gallery Player</h3>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Used for showcasing property renders and imagery. <strong>Crucial Correction:</strong> The raw text over the image violates AAA contrast. We must inject dual Anchored Gradients (top and bottom) to protect the typography and controls, while enforcing 4px geometries on the navigation arrows and thumbnail strips.</p>
-<div>
-<!-- Main Image -->
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp"/>
-<!-- Top Anchored Gradient (Protects Title & Arrows) -->
-<div></div>
-<!-- Bottom Anchored Gradient (Protects Thumbnails & View Gallery text) -->
-<div></div>
-<!-- Top Header Overlay -->
-<div>
-<!-- Title & Pagination -->
-<div>
-<div>
-                            Prestige Raintree Park · Evergreen
-                        </div>
-<div>
-<span>01</span>
-<span>/</span>
-<span>05</span>
-</div>
-<div></div>
-</div>
-<!-- Navigation Arrows (Strict 4px Geometry) -->
-<div>
-<button>
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="square" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M15 18l-6-6 6-6"></path></svg>
-</button>
-<button>
-<svg fill="none" height="16" stroke="currentColor" stroke-linecap="square" stroke-width="2" viewbox="0 0 24 24" width="16"><path d="M9 18l6-6-6-6"></path></svg>
-</button>
-</div>
-</div>
-<!-- Bottom Footer Overlay -->
-<div>
-<!-- Thumbnail Strip -->
-<div>
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp"/>
-</div>
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp"/>
-</div>
-<div>
-<img class="contrast-[1.05] saturate-[1.1] brightness-[1.05]" src="/assets/evergreen/prestige_evergreen_hero_pool_evening.webp"/>
-</div>
-</div>
-<!-- View Gallery Text -->
-<div>
-                        View gallery
-                        <svg fill="none" height="18" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="18"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+<ul class="divide-y-[0.5px] divide-[#55555a26] text-[0.85rem]">
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Accessibility (7AAA):</strong> Do all text overlays sit securely in localized Obsidian gradients scoring 7.0:1?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">SEO:</strong> Are metadata tags perfectly generated per asset route?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Performance:</strong> Are massive architectural renders loaded through <code class="bg-black/5 px-1 rounded-sm">next/image</code>?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">RERA &amp; DPDP:</strong> Are all registration numbers visible? Is WhatsApp consent explicitly decoupled?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Data &amp; Content:</strong> Are all numerical projections cited? Is marketing fluff removed?</div>
+</li>
+<li class="px-6 py-4 flex items-start gap-4 hover:bg-black/5 transition-colors">
+<input checked="" class="mt-1 accent-[#1C1C1E]" disabled="" type="checkbox"/>
+<div><strong class="text-[#1C1C1E]">Analytics:</strong> Are lead-capture events firing cleanly into the secure backend?</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
-</section></section></div>
+<div class="bg-[#1C1C1E] p-12 rounded-sm mt-12 flex flex-col font-sans">
+<div class="text-[12px] font-bold tracking-[0.15em] uppercase text-[#BE7555] mb-4">The Principle</div>
+<div class="font-serif text-[32px] text-[#FAFAFA] font-normal max-w-4xl leading-[1.3]">Excellence is not an accident. It is the result of relentless governance. Do not ship until the matrix is cleared.</div>
+</div>
+</div>
+</section></div>
 <div class="mt-16 bg-[#1C1C1E] p-10 border-[0.5px] border-[#55555a26] rounded-sm text-white">
 <h4 class="font-serif text-[1.25rem] text-[#FAFAFA] mb-2">Text on Obsidian Black</h4>
 <p class="text-[0.95rem] text-[#FAFAFA]/70 leading-relaxed mb-8 max-w-2xl font-sans">Obsidian Black is an editorial canvas, not a surface on which every text element should be rendered at maximum contrast. The hierarchy must come primarily from typeface, size, weight, spacing, and position. Color is reserved for emphasis.</p>
