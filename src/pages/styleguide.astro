@@ -1010,7 +1010,6 @@ import '../styles/global.css';
 </tbody>
 </table>
 </div>
-
 <div class="mt-24 pt-16 border-t-[0.5px] border-[#55555a26] space-y-16 font-sans">
 <div class="mb-12">
 <h3 class="font-serif text-3xl text-[#1C1C1E] mb-4">Text on Surfaces</h3>
@@ -1776,28 +1775,56 @@ import '../styles/global.css';
 <a href="#">Ghost Link UI</a>
 </div>
 </section><div>
-<h3>Navigation &amp; Menu States</h3>
-<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">Menu items must feel like editorial indexes. No bulky background hovers or pill shapes. We rely on crisp typography, generous spacing, and a subtle 400ms color transition to indicate interactivity.</p>
+<h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">Global Navigation (Light &amp; Dark)</h3>
+<p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">The global header must feel like an editorial index. It relies on crisp Manrope typography, generous spacing, the Josefin Sans wordmark, and a clinical Copper CTA. No bulky background hovers.</p>
+<div class="space-y-12">
+<!-- Light Menu -->
 <div>
-<!-- Light Canvas Menu -->
-<div>
-<div>Titanium Frost (Light) Menu</div>
-<nav aria-label="Light Demo Navigation" class="">
-<a aria-current="page" class="active" href="#">Framework</a>
-<a href="#">Advisory</a>
-<a href="#">Dossiers</a>
-<a href="#">About Us</a>
+<div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-[#804526] mb-4">Titanium Frost (Light) Navigation</div>
+<div class="bg-[#FAFAFA] border-[0.5px] border-[#55555a26] rounded-sm flex items-center justify-between px-8 py-4">
+<!-- Logo -->
+<div class="font-josefin text-2xl text-[#1C1C1E] tracking-tighter cursor-pointer">
+                        acre&amp;key
+                    </div>
+<!-- Links -->
+<nav class="hidden md:flex items-center gap-8 font-sans text-[0.85rem] font-semibold text-[#55555A]">
+<a class="text-[#1C1C1E] transition-colors" href="#">Advisory</a>
+<a class="hover:text-[#1C1C1E] transition-colors" href="#">Dossiers</a>
+<a class="hover:text-[#1C1C1E] transition-colors" href="#">Framework</a>
+<a class="hover:text-[#1C1C1E] transition-colors" href="#">About Us</a>
 </nav>
+<!-- CTA -->
+<div class="flex items-center gap-6">
+<a class="hidden lg:block font-sans text-[0.8rem] font-bold uppercase tracking-[0.1em] text-[#1C1C1E] hover:text-[#804526] transition-colors" href="#">Sign In</a>
+<button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-5 py-2.5 rounded-sm font-sans text-[0.8rem] font-semibold transition-colors">
+                            Request consultation
+                        </button>
 </div>
-<!-- Dark Canvas Menu -->
+</div>
+</div>
+<!-- Dark Menu -->
 <div>
-<div>Obsidian (Dark) Menu</div>
-<nav aria-label="Dark Demo Navigation" class="">
-<a aria-current="page" class="active" href="#">Framework</a>
-<a href="#">Advisory</a>
-<a href="#">Dossiers</a>
-<a href="#">About Us</a>
+<div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-[#804526] mb-4">Obsidian Black (Dark) Navigation</div>
+<div class="bg-[#1C1C1E] border-[0.5px] border-[#55555a26] rounded-sm flex items-center justify-between px-8 py-4">
+<!-- Logo -->
+<div class="font-josefin text-2xl text-[#FAFAFA] tracking-tighter cursor-pointer">
+                        acre&amp;key
+                    </div>
+<!-- Links -->
+<nav class="hidden md:flex items-center gap-8 font-sans text-[0.85rem] font-semibold text-[#FAFAFA]/70">
+<a class="text-[#FAFAFA] transition-colors" href="#">Advisory</a>
+<a class="hover:text-[#FAFAFA] transition-colors" href="#">Dossiers</a>
+<a class="hover:text-[#FAFAFA] transition-colors" href="#">Framework</a>
+<a class="hover:text-[#FAFAFA] transition-colors" href="#">About Us</a>
 </nav>
+<!-- CTA -->
+<div class="flex items-center gap-6">
+<a class="hidden lg:block font-sans text-[0.8rem] font-bold uppercase tracking-[0.1em] text-[#FAFAFA]/90 hover:text-[#BE7555] transition-colors" href="#">Sign In</a>
+<button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-5 py-2.5 rounded-sm font-sans text-[0.8rem] font-semibold transition-colors">
+                            Request consultation
+                        </button>
+</div>
+</div>
 </div>
 </div>
 </div><section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
