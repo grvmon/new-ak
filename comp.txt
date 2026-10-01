@@ -1,0 +1,964 @@
+<section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]" id="12-components">
+ <h2 class="font-serif text-2xl font-normal text-[#1C1C1E] mb-2">
+  12. Component Library
+ </h2>
+ <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+  HNI clients do not fill out "squeeze pages." Our forms must feel like secure, private banking applications. No bubbly inputs. We use strict 0.5px borders, 4px radiuses, and crisp typography.
+ </p>
+ <div>
+  <label>
+   Full Legal Name
+  </label>
+  <input placeholder="e.g. Jonathan Doe" type="text"/>
+  <label>
+   Advisory Requirement
+  </label>
+  <select 12"="" fill="none" height="8" viewbox="0 0 12 8" xmlns="http://www.w3.org/2000/svg">
+   <path d="M1 1.5L6 6.5L11 1.5" stroke="%231C1C1E" stroke-linecap="square" stroke-width="1.5">
+   </path>
+   '); background-repeat:no-repeat; background-position:right 1rem center; padding-right:3rem;"&gt;
+   <option>
+    Portfolio Restructuring
+   </option>
+   <option>
+    Asset Acquisition
+   </option>
+  </select>
+ </div>
+ <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-16 mb-4">
+  Architectural Map (Google Maps)
+ </h3>
+ <p class="font-sans text-[0.95rem] text-[#55555A] mb-8 leading-relaxed">
+  Map embeds must be completely desaturated via CSS filters to maintain the editorial aesthetic. No bright primary colors.
+ </p>
+ <div class="w-full h-[400px] border-[0.5px] border-[#55555a26] bg-[#FAFAFA] rounded-sm overflow-hidden grayscale contrast-[1.05] relative flex items-center justify-center">
+  <!-- Simulated Map -->
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#1C1C1E 1px, transparent 1px); background-size: 20px 20px;">
+  </div>
+  <div class="z-10 flex flex-col items-center gap-2">
+   <svg fill="none" height="24" stroke="var(--obsidian-black)" stroke-width="2" viewbox="0 0 24 24" width="24">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z">
+    </path>
+    <circle cx="12" cy="10" r="3">
+    </circle>
+   </svg>
+   <span class="font-sans text-[0.75rem] font-bold tracking-[0.1em] uppercase text-[#1C1C1E] bg-white px-3 py-1 border-[0.5px] border-[#55555a26]">
+    Project Site
+   </span>
+  </div>
+ </div>
+ <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-16 mb-4">
+  Diligence Endorsements (Testimonials)
+ </h3>
+ <p class="font-sans text-[0.95rem] text-[#55555A] mb-8 leading-relaxed">
+  Reject generic bubbly quote cards. Endorsements are formatted as editorial citations with hairline borders and strict typography.
+ </p>
+ <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="p-8 border-[0.5px] border-[#55555a26] bg-white rounded-sm">
+   <svg class="mb-6" fill="none" height="20" stroke="var(--primary-copper)" stroke-width="1.5" viewbox="0 0 24 24" width="20">
+    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z">
+    </path>
+    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.99c1.031 0 1.01 0 1.01 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z">
+    </path>
+   </svg>
+   <p class="font-serif text-[1.1rem] leading-relaxed text-[#1C1C1E] mb-8">
+    "The level of transparency in their diligence report completely redefined my understanding of the asset. No fluff, just pure architectural facts."
+   </p>
+   <div class="font-sans text-[0.75rem] uppercase tracking-[0.15em] text-[#55555A]">
+    <strong class="text-[#1C1C1E]">
+     Director,
+    </strong>
+    Tier-1 Bank
+   </div>
+  </div>
+ </div>
+ <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-16 mb-4">
+  Titles &amp; Section Separators
+ </h3>
+ <p class="font-sans text-[0.95rem] text-[#55555A] mb-8 leading-relaxed">
+  Sections are separated strictly by a 0.5px neutral hairline. The title must be anchored flush-left.
+ </p>
+ <div class="w-full border-t-[0.5px] border-[#55555a26] pt-12 mt-12">
+  <div class="font-sans text-[0.75rem] font-bold tracking-[0.15em] uppercase text-[#804526] mb-4">
+   02. The Architecture
+  </div>
+  <h4 class="font-serif text-2xl font-normal text-[#1C1C1E]">
+   Structural Layouts
+  </h4>
+ </div>
+ <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-16 mb-4">
+  Minimalist Social Icons
+ </h3>
+ <p class="font-sans text-[0.95rem] text-[#55555A] mb-8 leading-relaxed">
+  No generic blue Facebook logos. Social links use our strict 2px uncoated SVG strokes.
+ </p>
+ <div class="flex gap-6">
+  <a class="text-[#55555A] hover:text-[#804526] transition-colors" href="#">
+   <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
+    </path>
+   </svg>
+  </a>
+  <a class="text-[#55555A] hover:text-[#804526] transition-colors" href="#">
+   <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+    <rect height="20" rx="5" ry="5" width="20" x="2" y="2">
+    </rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z">
+    </path>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5">
+    </line>
+   </svg>
+  </a>
+  <a class="text-[#55555A] hover:text-[#804526] transition-colors" href="#">
+   <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+    </path>
+    <rect height="12" width="4" x="2" y="9">
+    </rect>
+    <circle cx="4" cy="4" r="2">
+    </circle>
+   </svg>
+  </a>
+ </div>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Clinical Badges &amp; Tags (The Anti-Pill Rule)
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Standard web design uses rounded "pill" tags (
+   <code>
+    border-radius: 4px
+   </code>
+   ). We strictly reject this. All tags (RERA, Status, Scores) must use our rigid
+   <code>
+    4px
+   </code>
+   geometry to maintain an architectural, blueprint-like aesthetic.
+  </p>
+  <div>
+   <span>
+    Under Construction
+   </span>
+   <span>
+    RERA Verified
+   </span>
+   <span>
+    Score: [X.XX]/5
+   </span>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Cinematic Modals &amp; Overlays
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Pop-ups should not feel like marketing interruptions. Modal backdrops must use a heavy cinematic blur (
+   <code>
+    backdrop-filter: blur(8px)
+   </code>
+   ) with a deep, desaturated overlay (
+   <code>
+    rgba(10,10,10,0.85)
+   </code>
+   ) to completely focus the user's attention.
+  </p>
+  <div>
+   <!-- Modal Backdrop Overlay -->
+   <div>
+    <!-- Modal Card -->
+    <div>
+     <div class="text-xl font-serif">
+      Floorplan Access
+     </div>
+     <p>
+      Please confirm your credentials to view the highly detailed architectural layouts.
+     </p>
+     <button class="bg-gradient-to-r from-[#be7555] to-[#9f5334] text-white border-none rounded-sm px-6 py-3 font-sans text-[0.85rem] font-normal cursor-pointer transition-opacity duration-300 hover:opacity-90">
+      Authenticate &amp; View
+     </button>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Text-on-Image Legibility
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Placing raw text directly over a photograph severely compromises legibility. We enforce a strict "Anchored Gradient" rule. Whenever text sits on an image, a deep navy gradient (fading from 95% opacity to 0% at the 60% mark) must anchor the text from the bottom or top, targeting a 7.0:1 AAA contrast ratio.
+  </p>
+  <div>
+   <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_pool_evening.webp"/>
+   <!-- The HNI Gradient Overlay -->
+   <div>
+    <div class="text-xl font-serif">
+     Protected Legibility
+    </div>
+    <p>
+     Text is anchored  by the navy gradient, ignoring the chaotic image behind it.
+    </p>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   The "Editorial Card" Standard
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Data cards should never use default CSS box-shadows. Shadows look like generic web templates. Our cards use strict 0.5px hairlines, generous internal padding (min 1.5rem), and rely entirely on typography sizing to establish hierarchy.
+  </p>
+  <div>
+   <div>
+    <div class="text-xl font-serif">
+     Township Data
+    </div>
+    <!-- Referencing Section 7 Badges -->
+    <span>
+     Verified
+    </span>
+   </div>
+   <div>
+    <div>
+     <span>
+      Total Area
+     </span>
+     <span>
+      24 Acres
+     </span>
+    </div>
+    <div>
+     <span>
+      Typology
+     </span>
+     <span>
+      3 &amp; 4 BHK Advisory
+     </span>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Inline Link Behavior
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Default web links (blue text, thick underlines) destroy the luxury reading experience. All inline references in body text must use our AAA copper with a heavily offset, semi-transparent underline that solidifies entirely upon a cinematic 400ms hover.
+  </p>
+  <p>
+   Before allocating capital to this asset, we strongly recommend reviewing our comprehensive
+   <a href="#">
+    69-point diligence report
+   </a>
+   . The report contains proprietary data regarding the builder's delivery history and
+   <a href="#">
+    legal land titles
+   </a>
+   .
+  </p>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Accordions &amp; Toggles
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   No floating boxes. Items are separated by strictly 0.5px hairlines. The expansion icon is a minimalist SVG.
+  </p>
+  <div class="ds-accordion-group">
+   <!-- Item 1 -->
+   <div class="ds-accordion-item">
+    <button aria-expanded="true" class="w-full bg-transparent border-none py-6 cursor-pointer flex justify-between items-center text-left hover:text-[#804526]">
+     <h4>
+      What is the legal land title status?
+     </h4>
+     <span class="ds-accordion-icon">
+      -
+     </span>
+    </button>
+    <div class="hidden pb-8">
+     <p>
+      The land title has been verified across 40 years of records. It possesses an A-Khata certification with zero encumbrances from the BDA. A comprehensive legal dossier is available in the diligence report.
+     </p>
+    </div>
+   </div>
+   <!-- Item 2 -->
+   <div class="ds-accordion-item">
+    <button aria-expanded="false" class="w-full bg-transparent border-none py-6 cursor-pointer flex justify-between items-center text-left hover:text-[#804526]">
+     <h4>
+      What are the township infrastructure details?
+     </h4>
+     <span class="ds-accordion-icon">
+      +
+     </span>
+    </button>
+    <div class="hidden pb-8">
+     <p>
+      The township features a 12-lane internal road network, dedicated dual-power substations, and a centralized water filtration plant capable of supporting 5,000 residents sustainably.
+     </p>
+    </div>
+   </div>
+  </div>
+ </section>
+ <div>
+  <h3>
+   Concierge Advisory Form (Phone + OTP)
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Replaces standard contact forms with a secure, private-banking style authentication flow.
+  </p>
+  <div>
+   <!-- Step 1: Phone -->
+   <div>
+    <label>
+     Step 1: Secure Entry
+    </label>
+    <div>
+     <div class="bg-[#FAFAFA]">
+      +91
+     </div>
+     <input placeholder="Enter mobile number" type="tel"/>
+    </div>
+   </div>
+   <!-- Step 2: OTP -->
+   <div>
+    <div>
+     <label>
+      Step 2: Verification
+     </label>
+     <span>
+      Resend Code
+     </span>
+    </div>
+    <div>
+     <input maxlength="1" type="text" value="4"/>
+     <input maxlength="1" type="text" value="0"/>
+     <input maxlength="1" placeholder="-" type="text"/>
+     <input maxlength="1" placeholder="-" type="text"/>
+    </div>
+   </div>
+   <!-- CTA -->
+   <button onmouseout="this.style.opacity='1'" onmouseover="this.style.opacity='0.9'">
+    Request Advisory Call
+   </button>
+  </div>
+ </div>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Button Hierarchy
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Buttons must never be fully rounded pills. Primary uses the copper gradient. Secondary uses a 0.5px hairline outline. Ghost buttons are pure text with an offset underline.
+  </p>
+  <div>
+   <button>
+    Primary Action
+   </button>
+   <button>
+    Secondary Outline
+   </button>
+   <a href="#">
+    Ghost Link UI
+   </a>
+  </div>
+ </section>
+ <div>
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Global Navigation (Light &amp; Dark)
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   The global header must feel like an editorial index. It relies on crisp Manrope typography, generous spacing, the Josefin Sans wordmark, and a clinical Copper CTA. No bulky background hovers.
+  </p>
+  <div class="space-y-12">
+   <!-- Light Menu -->
+   <div>
+    <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-[#804526] mb-4">
+     Titanium Frost (Light) Navigation
+    </div>
+    <div class="bg-[#FAFAFA] border-[0.5px] border-[#55555a26] rounded-sm flex items-center justify-between px-8 py-4">
+     <!-- Logo -->
+     <div class="font-josefin text-2xl text-[#1C1C1E] tracking-tighter cursor-pointer">
+      acre&amp;key
+     </div>
+     <!-- Links -->
+     <nav class="hidden md:flex items-center gap-8 font-sans text-[0.85rem] font-semibold text-[#55555A]">
+      <a class="text-[#1C1C1E] transition-colors" href="#">
+       Advisory
+      </a>
+      <a class="hover:text-[#1C1C1E] transition-colors" href="#">
+       Dossiers
+      </a>
+      <a class="hover:text-[#1C1C1E] transition-colors" href="#">
+       Framework
+      </a>
+      <a class="hover:text-[#1C1C1E] transition-colors" href="#">
+       About Us
+      </a>
+     </nav>
+     <!-- CTA -->
+     <div class="flex items-center gap-6">
+      <a class="hidden lg:block font-sans text-[0.8rem] font-bold uppercase tracking-[0.1em] text-[#1C1C1E] hover:text-[#804526] transition-colors" href="#">
+       Sign In
+      </a>
+      <button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-5 py-2.5 rounded-sm font-sans text-[0.8rem] font-semibold transition-colors">
+       Request consultation
+      </button>
+     </div>
+    </div>
+   </div>
+   <!-- Dark Menu -->
+   <div>
+    <div class="text-[0.75rem] font-bold tracking-[0.15em] uppercase text-[#804526] mb-4">
+     Obsidian Black (Dark) Navigation
+    </div>
+    <div class="bg-[#1C1C1E] border-[0.5px] border-[#55555a26] rounded-sm flex items-center justify-between px-8 py-4">
+     <!-- Logo -->
+     <div class="font-josefin text-2xl text-[#FAFAFA] tracking-tighter cursor-pointer">
+      acre&amp;key
+     </div>
+     <!-- Links -->
+     <nav class="hidden md:flex items-center gap-8 font-sans text-[0.85rem] font-semibold text-[#FAFAFA]/70">
+      <a class="text-[#FAFAFA] transition-colors" href="#">
+       Advisory
+      </a>
+      <a class="hover:text-[#FAFAFA] transition-colors" href="#">
+       Dossiers
+      </a>
+      <a class="hover:text-[#FAFAFA] transition-colors" href="#">
+       Framework
+      </a>
+      <a class="hover:text-[#FAFAFA] transition-colors" href="#">
+       About Us
+      </a>
+     </nav>
+     <!-- CTA -->
+     <div class="flex items-center gap-6">
+      <a class="hidden lg:block font-sans text-[0.8rem] font-bold uppercase tracking-[0.1em] text-[#FAFAFA]/90 hover:text-[#BE7555] transition-colors" href="#">
+       Sign In
+      </a>
+      <button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-5 py-2.5 rounded-sm font-sans text-[0.8rem] font-semibold transition-colors">
+       Request consultation
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Tabs (Top &amp; Side)
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Tabs are constructed using pure typography and hairline indicators. No chunky background boxes.
+  </p>
+  <div>
+   <!-- Top Tabs -->
+   <div>
+    <div>
+     <div>
+      Financials
+     </div>
+     <div>
+      Masterplan
+     </div>
+     <div>
+      Diligence
+     </div>
+    </div>
+    <div>
+     <p>
+      Horizontal tab content dynamically loads here.
+     </p>
+    </div>
+   </div>
+   <!-- Side Tabs -->
+   <div>
+    <div>
+     <div>
+      Overview
+     </div>
+     <div>
+      Specs
+     </div>
+     <div>
+      Gallery
+     </div>
+    </div>
+    <div>
+     <p>
+      Vertical tab content dynamically loads here.
+     </p>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Progress Bars &amp; Counters
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Avoid thick, colorful progress bars. Use ultra-thin (2px) tracks. Counters must pair massive serif numerals with tiny, tracked-out sans-serif labels.
+  </p>
+  <div>
+   <!-- Counters -->
+   <div>
+    <div>
+     <div>
+      69
+     </div>
+     <div>
+      Diligence Checks
+     </div>
+    </div>
+    <div>
+     <div>
+      14
+      <span>
+       %
+      </span>
+     </div>
+     <div>
+      Target CAGR
+     </div>
+    </div>
+   </div>
+   <!-- Progress Bars -->
+   <div>
+    <div>
+     <div>
+      <span>
+       Project Completion
+      </span>
+      <span>
+       85%
+      </span>
+     </div>
+     <div>
+      <div>
+      </div>
+     </div>
+    </div>
+    <div>
+     <div>
+      <span>
+       Inventory Sold
+      </span>
+      <span>
+       40%
+      </span>
+     </div>
+     <div>
+      <div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Lists &amp; Breadcrumbs
+  </h3>
+  <div>
+   <!-- Breadcrumbs -->
+   <div>
+    <h3>
+     Breadcrumb Path
+    </h3>
+    <div>
+     <a href="#">
+      Home
+     </a>
+     <span>
+      /
+     </span>
+     <a href="#">
+      Advisory
+     </a>
+     <span>
+      /
+     </span>
+     <span>
+      Prestige Evergreen
+     </span>
+    </div>
+   </div>
+   <!-- Custom Lists -->
+   <div>
+    <h3>
+     Architectural Lists
+    </h3>
+    <ul>
+     <li>
+      <div>
+      </div>
+      <span>
+       Title deeds verified against RERA database.
+      </span>
+     </li>
+     <li>
+      <div>
+      </div>
+      <span>
+       Masterplan audited for hyper-density risk metrics.
+      </span>
+     </li>
+     <li>
+      <div>
+      </div>
+      <span>
+       Comparative pricing analysis completed.
+      </span>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Hero Architecture Blueprint
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   The standard V2 entrance. Split layout: Editorial typography on the left, cinematically filtered architectural photography on the right.
+  </p>
+  <div>
+   <div>
+    <div>
+     Pre-Launch Advisory
+    </div>
+    <div aria-level="1" class="font-serif text-3xl md:text-5xl font-normal mb-4 tracking-[-0.02em]" role="heading">
+     Institutional-Grade Assets in Whitefield.
+    </div>
+    <p>
+     Access proprietary risk-assessment frameworks before allocating capital to under-construction developments.
+    </p>
+    <div>
+     <button class="bg-gradient-to-r from-[#be7555] to-[#9f5334] text-white border-none rounded-sm px-6 py-3 font-sans text-[0.85rem] font-normal cursor-pointer transition-opacity duration-300 hover:opacity-90">
+      Get Buyer Analysis
+     </button>
+    </div>
+   </div>
+   <div>
+    <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp"/>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Forms: Checkboxes &amp; Radios
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Native browser checkboxes look cheap. We use custom SVGs and pure CSS to ensure strict 4px geometry on checkboxes and sharp circular selections for radios.
+  </p>
+  <div>
+   <!-- Checkbox Custom -->
+   <div>
+    <h4>
+     Diligence Selection
+    </h4>
+    <label class="ds-checkbox-label">
+     <input checked="" class="ds-checkbox-input" type="checkbox"/>
+     <div class="ds-checkbox-box">
+     </div>
+     Request Legal Dossier
+    </label>
+    <label class="ds-checkbox-label">
+     <input class="ds-checkbox-input" type="checkbox"/>
+     <div class="ds-checkbox-box">
+     </div>
+     Request Pricing Analytics
+    </label>
+   </div>
+   <div>
+    <h4>
+     Timeline Horizon
+    </h4>
+    <label class="ds-checkbox-label">
+     <input checked="" class="ds-checkbox-input ds-radio-input" name="horizon" type="radio"/>
+     <div class="ds-radio-box">
+     </div>
+     Ready to Move
+    </label>
+    <label class="ds-checkbox-label">
+     <input class="ds-checkbox-input ds-radio-input" name="horizon" type="radio"/>
+     <div class="ds-radio-box">
+     </div>
+     Under Construction (2-3 Yrs)
+    </label>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Alerts &amp; Tooltips
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Success messages and tooltips must avoid standard green/red blocks. We use architectural boxes with sharp copper anchor lines.
+  </p>
+  <div>
+   <!-- Alert Box -->
+   <div>
+    <div>
+     <div>
+      i
+     </div>
+     <div>
+      <h4>
+       Report Dispatched
+      </h4>
+      <p>
+       The 69-point buyer analysis has been securely emailed to your registered address.
+      </p>
+     </div>
+    </div>
+   </div>
+   <!-- Tooltip Mockup -->
+   <div>
+    <div>
+     Hover for Definition
+     <div>
+      A highly specific definition of a complex real estate term.
+      <div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Pagination
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Minimalist progression logic for blogs and property listing pages.
+  </p>
+  <div>
+   <button>
+    ←
+   </button>
+   <div>
+    1
+   </div>
+   <button>
+    2
+   </button>
+   <button>
+    3
+   </button>
+   <span>
+    ...
+   </span>
+   <button>
+    8
+   </button>
+   <button>
+    →
+   </button>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Gallery &amp; Masonry Grids
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Galleries use strict 4px corners and uniform grid gaps. No complex overlapping or rotating images. Pure architectural discipline.
+  </p>
+  <div>
+   <div>
+    <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_pool_evening.webp"/>
+   </div>
+   <div>
+    <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp"/>
+   </div>
+   <div>
+    <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_clubhouse_courtyard_aerial.webp"/>
+   </div>
+   <div>
+    <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp"/>
+    <div>
+     <span>
+      View All 24 Media
+     </span>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Global Header &amp; Navigation
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   The primary structural navigation. It must stick to the top with a 16px blur backdrop and a single 0.5px hairline separating it from the content.
+  </p>
+  <div>
+   <!-- Logo -->
+   <div>
+    acre&amp;key
+   </div>
+   <!-- Links -->
+   <div>
+    <a href="#">
+     Advisory
+    </a>
+    <a href="#">
+     Calculators
+    </a>
+    <a href="#">
+     Journal
+    </a>
+   </div>
+   <!-- CTA -->
+   <button class="bg-gradient-to-r from-[#be7555] to-[#9f5334] text-white border-none rounded-sm px-6 py-3 font-sans text-[0.85rem] font-normal cursor-pointer transition-opacity duration-300 hover:opacity-90">
+    Request Callback
+   </button>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Video &amp; Media Players
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Standard YouTube or Vimeo embeds ruin immersion with heavy branding. All videos must sit behind our custom cinematic overlay with a minimalist play button.
+  </p>
+  <div>
+   <img class="contrast-[1.05] saturate-[0.85]" src="/assets/evergreen/prestige_evergreen_hero_clubhouse_courtyard_aerial.webp"/>
+   <!-- Video Overlay -->
+   <div>
+    <!-- Minimal Play Button -->
+    <div>
+     <div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Loading &amp; Shimmer States
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   Spinning wheels are unacceptable. When calculators or APIs load data, use structural shimmer skeletons that mimic the exact geometry of the incoming content.
+  </p>
+  <div>
+   <div class="ds-shimmer">
+   </div>
+   <div class="ds-shimmer">
+   </div>
+   <div class="ds-shimmer">
+   </div>
+   <div class="ds-shimmer">
+   </div>
+  </div>
+ </section>
+ <section class="scroll-mt-16 mb-24 pb-16 border-b-[0.5px] border-[#55555a26]">
+  <h3 class="font-serif text-[1.25rem] font-bold text-[#1C1C1E] mt-12 mb-4">
+   Global Footer Architecture
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   The footer acts as the anchor. It uses the deep navy background. Links are strictly organized in grid columns without bulky separators.
+  </p>
+  <div>
+   <div>
+    <div>
+     acre&amp;key
+    </div>
+    <p>
+     Institutional-grade real estate advisory for the institutional investor. Data-driven allocation.
+    </p>
+   </div>
+   <div>
+    <h4>
+     Assets
+    </h4>
+    <div>
+     <a href="#">
+      Prestige Evergreen
+     </a>
+     <a href="#">
+      Sattva Songbird
+     </a>
+     <a href="#">
+      Brigade Belvedere
+     </a>
+    </div>
+   </div>
+   <div>
+    <h4>
+     Legal
+    </h4>
+    <div>
+     <a href="#">
+      Privacy Protocol
+     </a>
+     <a href="#">
+      RERA Disclaimers
+     </a>
+     <a href="#">
+      Terms of Advisory
+     </a>
+    </div>
+   </div>
+  </div>
+ </section>
+ <div>
+  <h3>
+   The Asset Dossier Card (Property Listing)
+  </h3>
+  <p class="font-sans text-[1rem] text-[#55555A] max-w-3xl mb-12 leading-relaxed">
+   The core architectural block of the platform. Features a 16:9 cinematic render (with a 95% Obsidian anchored gradient), strict 4px RERA badges, and a Ghost Copper CTA.
+  </p>
+  <div class="ak-asset-card">
+   <!-- Image Area -->
+   <div class="overflow-hidden rounded-sm group relative">
+    <img alt="Property Exterior" class="contrast-[1.05] saturate-[0.85] w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105" src="/assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp"/>
+    <!-- Rule 11: Text-on-Image Anchored Gradient -->
+    <div>
+    </div>
+    <!-- Anti-Pill Badge -->
+    <div>
+     A-Grade Asset
+    </div>
+    <!-- Anchored Typography -->
+    <div>
+     <h4>
+      Prestige Evergreen
+     </h4>
+     <div>
+      <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z">
+       </path>
+       <circle cx="12" cy="10" r="3">
+       </circle>
+      </svg>
+      Whitefield, Bengaluru
+     </div>
+    </div>
+   </div>
+   <!-- Content Area -->
+   <div>
+    <!-- Data Grid -->
+    <div>
+     <div>
+      <div>
+       Typology
+      </div>
+      <div>
+       3 &amp; 4 BHK
+      </div>
+     </div>
+     <div>
+      <div>
+       Starting Price
+      </div>
+      <div>
+       ₹ 3.14 Cr
+      </div>
+     </div>
+    </div>
+    <!-- CTA -->
+    <a class="block text-center p-4 border-[0.5px] border-[#804526] rounded-sm font-sans text-[0.85rem] font-bold text-[#804526] uppercase tracking-[0.05em] transition-colors hover:bg-[#804526] hover:text-white" href="#">
+     View Asset Dossier
+    </a>
+   </div>
+  </div>
+ </div>
+</section>
+

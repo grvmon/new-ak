@@ -1,0 +1,393 @@
+--- SECTIONS & CORE RULES ---
+
+# 00. Governance
+- do not override
+- Shifted visual foundation from Warm Ivory to Titanium Frost
+- Replaced Cormorant with Marcellus
+- Introduced defined accessibility contrast requirements
+- Standardized 4px micro-edge geometry
+- Consolidated design tokens and foundational components
+- Token Ownership
+- Component Governance
+- Check whether an existing component can solve the requirement.
+- Extend the existing component where appropriate.
+- Create a new component only when the existing system cannot reasonably support the use case.
+- Document the reason for introducing the new component.
+- Approval Process
+- Global CSS
+- Design tokens
+
+# 01. Brand Foundation
+- clarity, diligence, and disciplined decision-making
+- Privacy
+- Independent thinking
+- Rigorous evaluation
+- Efficient decision-making
+
+# 02. Verbal Identity
+- Currency & Pricing
+- Rule:Always use the Indian Rupee symbol with spaces. Use 'Cr' and 'L' for abbreviations. Always incl
+- Bad: 3.1Cr, Rs 3.10 Cr, 3,10,00,000
+- Good: ₹ 3.10 Cr
+- Area & Measurements
+- Rule:Use Title Case for abbreviations with periods. Always use commas for numbers over 999.
+- Bad: 3150 sqft, 3,150 Sqft
+- Good: 3,150 Sq.Ft.
+- Headlines & Body
+- Rule:Headlines strictly use Sentence case. Never use exclamation marks.
+- Bad: Secure Your Asset Today!
+- Good: Schedule a clinical analysis.
+
+# 03. Logo & Identity
+- precision, restraint, and authority
+- Logo Typeface
+- Remain in Josefin Sans
+- Remain the same weight as the surrounding wordmark
+- Remain the same color as the complete wordmark
+- Never be independently colorized
+- Never be bolded or italicized
+- Never be enlarged or reduced independently
+- Never be replaced with another style
+- Clear Space
+- Minimum Size
+- Digital:120px minimum width
+- Digital:
+
+# 04. Color
+- cool architectural neutrals, controlled copper accents, and muted semantic states.
+- Obsidian Black
+- • Dark backgrounds
+- • Primary dark sections
+- • Navigation & Footer
+- • High-contrast surfaces
+- Titanium Frost
+- • Main page backgrounds
+- • Content surfaces
+- • Editorial layouts
+- • Light-mode interfaces
+- Copper
+- • Primary CTAs
+- • Interactive elements
+- • Key highlights
+
+# 05. Typography
+- Marcellus
+- Manrope
+- Usage:
+- Usage:
+- Usage:
+- Usage:
+- Usage:
+- Comprehensive Type Scale
+- Text on Surfaces
+- Dark Unit Rules
+- Primary headings must remain Titanium Frost.
+- Copper is an accent, not the default body-text color.
+- Do not use multiple accent colors inside one dark unit.
+- Do not use gradients to create text hierarchy.
+- Do not use low-contrast grey for important information.
+
+# 06. Grid & Layout
+- precision, proportion, whitespace, and alignment
+- 4px spacing unit
+- Maximum Width
+- Outer Margins
+- 4pxMicro alignment
+- 8pxTight relationships
+- 16pxComponent spacing
+- 24pxComponent groups / cards
+- 32pxMajor internal separation
+- 48pxContent group separation
+- 64pxMajor layout separation
+- 96pxSection separation
+- 128pxMajor editorial / hero separation
+- Permitted Centering
+- Selected hero compositions
+
+# 07. Responsive System
+- Mobile is not a compromise; it is a dedicated context.
+- Stacking & Visibility
+- Single-Column CollapseOn mobile, all 2, 3, or 4-column grids must cleanly stack into a single column
+- Single-Column Collapse
+- Information ParityNever "hide" critical data (pricing, risk factors, specs) on mobile just to save s
+- Information Parity
+- Order ReversalWhen collapsing split layouts (Image + Text), the Image should generally stackabovethe
+- Order Reversal
+- Touch & Interaction
+- 44x44px MinimumAll interactive elements (buttons, links, toggles) must have a minimum physical tap t
+- 44x44px Minimum
+- Full-Width CTAsPrimary CTA buttons should becomew-fullon mobile, anchoring to the bottom of the card
+- Full-Width CTAs
+- No Hover RelianceHover states do not exist on touch devices. Any information revealed on hover (tool
+- No Hover Reliance
+
+# 08. Photography & Art Direction
+- Extreme Luxury and Brilliance
+- Lighting & Grading
+- Brilliant Natural LightShoot at golden hour or high-noon for brilliant, expansive lighting. Do not c
+- Brilliant Natural Light
+- Vibrant but RefinedNo grayscale. Images must be slightly bumped in brightness and saturation (bright
+- Vibrant but Refined
+- Color TemperatureLean slightly warm (golden/copper undertones) rather than cold/blue to match our Co
+- Color Temperature
+- Subject Matter Rules
+- The 7AAA Contrast Paradox
+- anchored gradient zones
+- 1.The subject matter stays brilliantly lit.
+- 2.We do not put a heavy black overlay over the *entire* image.
+- 3.Typography sits safely in the gradient pocket, scoring >7.0:1 contrast.
+- Zero Tolerance — Banned Styles
+
+# 09. Graphic Language
+- Hairlines & DividersWe rely heavily on the0.5pxhairline. Dividers are not decorative; they create ex
+- Hairlines & Dividers
+- Geometry & RadiusGeometry is strict. We use a global4pxmicro-edge radius. Never use pill shapes, sof
+- Geometry & Radius
+- Exposed GridsIt is acceptable, and often encouraged, to expose the underlying grid. This reinforces 
+- Exposed Grids
+- Crosshairs & Registration MarksSubtle 0.5px crosshairs at the corners of imagery or hero sections re
+- Crosshairs & Registration Marks
+- Coordinate TagsUsing exact lat/long coordinates or timestamps as microcopy in empty corners adds to 
+- Coordinate Tags
+
+# 10. Iconography
+- Iconography Rules
+- Stroke & Weightstrictly1.5pxstroke width globally. Never mix solid and outline icons.
+- Stroke & Weight
+- Grid & SizeBuilt on a strict 24x24px grid. Standard usage is 16px, 20px, or 24px.
+- Grid & Size
+- CornersSharp or1pxmicro-radius to match the sharp geometry of the typography. No bubbly edges.
+- Corners
+- Color & StateDefault:#55555A(Titanium context) or#FAFAFA/70(Obsidian context)Hover/Active: Shift to 
+- Color & State
+- Default:#55555A(Titanium context) or#FAFAFA/70(Obsidian context)
+- Hover/Active: Shift to pure#1C1C1Eor#BE7555for primary actions
+- Disabled:opacity-40
+
+# 11. Motion
+- Timing & Easing Tokens
+- Banned Behaviors
+- Interactive Reference Specimens
+- Geometry & Motion Physics
+- Hover to Reveal
+- Hover Pan Demo
+- Modal Physics
+
+# 12. Component Library
+- Master Component Inventory
+- Lists & Breadcrumbs
+- Title deeds verified against RERA database.
+- Masterplan audited for hyper-density risk metrics.
+- Comparative pricing analysis completed.
+- Pagination
+- Editorial Data Cards (Checklists)
+- Crucial Rule:
+- Location
+- Employment & IT corridor connectivity
+- Metro line progress & road widening realities
+- Ground-water security & social infra data
+- sustainable?
+- keeping pace?
+- Global Footer Architecture
+
+# 13. Forms & Advisory UX
+- Input Primitives
+- Architecture0.5pxborders.4pxradius. Generous 48px height minimum.
+- Architecture
+- Focus StateInputs do not glow blue. Focus relies on a strict 1.5px Obsidian (#1C1C1E) border.
+- Focus State
+- TypographyLabels are0.75rem uppercase tracking-widestto feel like documentation. Input text is large
+- Typography
+- Qualification & Selection
+- Consent & Compliance
+- No TricksConsent to be contacted on WhatsApp or Phone must be explicitly un-checked by default or cl
+- No Tricks
+- OTP VerificationThe OTP input should use a 4 or 6-box segmented grid, not a single long text field, 
+- OTP Verification
+- Alerts & Tooltips
+- Report Dispatched
+
+# 14. Property Design System
+- Asset Dossier
+- The Dossier Architecture
+- ✕"Unparalleled Luxury Living"
+- ✕"Book Now & Save"
+- ✕Hiding prices behind "Call for Price"
+- Mandatory Page Sequence
+- Hero & Executive Summary
+- Financials & Pricing
+- Location & Infrastructure
+- Masterplan & Typology
+- Floorplans & Efficiency
+- Diligence & Risks
+- Market Comparables
+- Advisory CTA
+- Asset Dossier Component Specifications
+
+# 15. Data Visualization
+- Number Formatting
+- Tabular NumeralsWhen displaying tables, charts, or financial grids, usetabular-numsso that decimal p
+- Tabular Numerals
+- Currency (INR)Always use the ₹ symbol. Use Crores (Cr) and Lakhs (L) for large figures.✓ ₹ 3.14 Cr✕ 
+- Currency (INR)
+- Percentages & YieldAlways show one decimal place for accuracy (e.g.,7.4%, not just7%).
+- Percentages & Yield
+- Sources & Dates
+- Institutional KPI Architecture
+- Analytical Tables
+- Text aligns left. Numbers align right.
+
+# 16. Maps & Location
+- Base Map Architecture
+- Color PaletteAll base maps must be desaturated. Landmass is#FAFAFAor#F5F5F5. Water bodies are#1C1C1E
+- Color Palette
+- Road NetworkHighways and arterials are rendered as strict 0.5px or 1px hairlines (Titanium or Obsidi
+- Road Network
+- Yellow or orange Google default highways are strictly prohibited.
+- Micro-Market BoundariesDrawn with a 0.5px Copper or Obsidian stroke with a maximum 5% opacity fill. 
+- Micro-Market Boundaries
+- Pins & Markers
+- Distance & Travel Time Axioms
+- Distance:4.2 km via Outer Ring Road
+- Drive Time:14 mins (Off-Peak)
+- Drive Time:35 mins (Peak Traffic)
+- Metro Access:450m walking distance
+- Minutes away from everything!
+
+# 17. Social Media
+- 17.01 Master Social Tokens
+- Display / HeadlineMarcellus 400
+- Body / SubcopyManrope 400/500
+- Kicker / OverlineManrope 700
+- Data / CTAManrope 600/700
+- 17.02 Safe-Area System
+- 17.13 Master Size Matrix
+- 17.12 Master Template Library
+- 17.14 Social QA
+- ✕No gold, champagne, or fake luxury aesthetics.
+- ✕No exclamation marks or fake urgency ("Act Now!").
+- ✓One idea per slide/frame. If it reads like a webpage, it's too dense.
+- ✓Every meaningful visual must have structural alt-text.
+
+# 18. Paid Advertising
+- The Four-Question Rule
+- What is this?
+- Who is it for?
+- Why does it matter?
+- What should I do next?
+- Correct vs. Incorrect Tone
+- 18.21 Color Application Samples
+- 18.22 Paid Master Size Matrix
+- 18.23 Creative Naming Convention
+- AK_META_4x5_BENGALURU_CLARITY_V01
+- AK_GDN_1x1_BUYER-FIRST_V01
+- AK_YT_16x9_BUY-WITH-CLARITY_V03
+- final-final-v3-new.jpg
+- latest-ad.png
+
+# 19. Video Identity
+
+# 20. Editorial System
+
+# 21. Reports & Dossiers
+- The Intelligence Suite
+- Buyer Analysis (Intake)Mapping family lifestyle, commute radii, and absolute non-negotiables.
+- Buyer Analysis (Intake)
+- Property DossierThe comprehensive teardown of a specific asset (Floorplans, loading %, specs).
+- Property Dossier
+- Diligence ReportLegal, infrastructural, and RERA compliance risks (Groundwater, titles).
+- Diligence Report
+- Pricing & Market ReportDeep micro-market yield analysis, CAGR projections, and macro inventory track
+- Pricing & Market Report
+- Comparison MatrixSide-by-side tabular teardowns of shortlisted assets against specific buyer criteri
+- Comparison Matrix
+- Print Typography Rule
+- H1 (Cover): Marcellus 42pt
+- H2 (Section): Marcellus 24pt
+- Body Text: Manrope 10pt (1.5 line height)
+
+# 22. SEO Design System
+
+# 23. Accessibility Architecture
+- Core Modalities
+- Semantic HTML FirstDivs and Spans are not buttons. Use native<button>,<nav>, and<dialog>elements. AR
+- Semantic HTML First
+- Focus ManagementNever use `outline: none` without a fallback.Focus states use a strict 2px Obsidian 
+- Focus Management
+- Never use `outline: none` without a fallback.
+- Contrast (7AAA Rule)Primary text (Titanium Frost on Obsidian, or Obsidian on White) must mathematica
+- Contrast (7AAA Rule)
+- Touch TargetsThe absolute minimum hit area on mobile devices is44x44px. No exceptions for pagination
+- Touch Targets
+- Motion & Media
+- prefers-reduced-motion: All cinematic fade-ins must instantly resolve to opacity 100%.
+- Alt-text is mandatory on all asset imagery, describing architectural intent (e.g., "South-facing bal
+- Video embeds must natively support closed captions.
+- Component QC: Common Failures & Final State
+
+# 24. Trust & Compliance
+- Regulatory Integrity
+- RERA MandateThe exact RERA registration number must sit immediately beneath the primary property tit
+- RERA Mandate
+- DPDP Act PrivacyUnder India's Digital Personal Data Protection Act, consent must be granular. "I agr
+- DPDP Act Privacy
+- Builder Renders vs RealityAny image provided by a developer that is not an actual photograph must be
+- Builder Renders vs Reality
+- Data Traceability Rules
+- Component Spec: The Investment Disclaimer
+
+# 25. Developer Design Tokens
+- Colors
+- bg-obsidian#1C1C1E
+- bg-titanium#FAFAFA
+- bg-copper#BE7555
+- text-neutral#55555A
+- border-hairline#55555a26
+- Typography
+- font-serifMarcellus
+- font-sansManrope
+- font-logoJosefin Sans
+- text-h1clamp(2.5, 4vw, 3.5)
+- Spacing
+- p-14px
+- p-416px
+- p-832px
+
+# 26. Next.js / Frontend Architecture
+- Core Architecture
+- Tailwind CSS (Tokens)
+- Atomic Components
+- Next/Image
+- Performance & SEO
+- Server Components (RSC)
+- Next/Font
+- Metadata API
+- Component Spec: Next.js App Router Structure
+- Frontend Discipline
+- Mobile-First:Write the baseline mobile Tailwind classes first, then applymd:andlg:mutations.
+- Mobile-First:
+- Information Parity:Never usehidden md:blockto hide data just to save space on mobile. Reformat the l
+- Information Parity:
+- Focus-Visible:Bind focus rings securely usingfocus-visible:ring-2to avoid mouse-click rings.
+
+# 27. CMS Architecture
+
+# 28. Page Templates
+- Hero Architecture Blueprint
+
+# 29. QA & Governance
+- System Governance
+- ✓Component AdmissionA new component may only be added if the existing component library cannot solve
+- Component Admission
+- ✓The Approval ProtocolCode cannot be merged by a single developer. Visual deviations from this style
+- The Approval Protocol
+- The Master Instruction
+- The Pre-Flight Matrix (Final Checklist)
+- Brand:Is the logo Josefin Sans, completely untampered with, and separated from brand typography?
+- Brand:
+- Typography:Are all H1s Marcellus, and all Body/Data texts Manrope?
+- Typography:
+- Color:Is Copper restricted strictly to accents and primary CTAs?
+- Color:
+- Spacing:Is everything scaled perfectly on the strict 4px geometry?
+- Spacing:

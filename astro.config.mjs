@@ -8,7 +8,7 @@ const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
 
 export default defineConfig({
   site: isGithubActions ? 'https://grvmon.github.io' : 'http://localhost:4324',
-  base: isGithubActions ? '/new-ak' : '',
+  base: '/new-ak',
   output: 'static',
   // Omit Keystatic on GitHub Pages so it doesn't inject SSR API routes
   integrations: isGithubActions ? [react()] : [react(), keystatic()],
