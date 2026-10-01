@@ -1,0 +1,2088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acre&Key Master Design System</title>
+    <!-- We load the main CSS to ensure our tokens are active -->
+    <link rel="stylesheet" href="../website.css">
+    
+    <style>
+        /* === SYSTEM OVERRIDES FOR THE BIBLE === */
+
+        /* SIDEBAR LAYOUT */
+        .ds-layout {
+            display: flex;
+            flex-direction: column;
+        }
+        .ds-nav {
+            display: none; /* hidden on mobile by default, or converted to drawer */
+        }
+        .ds-main-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        @media (min-width: 1024px) {
+            .ds-layout {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .ds-nav {
+                display: block;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow: auto;
+                padding: 2rem 1.5rem;
+                border-right: 0.5px solid var(--divider);
+                font-family: 'Manrope', sans-serif;
+                width: 250px;
+                flex-shrink: 0;
+            }
+        }
+        
+        .ds-nav a {
+            display: block;
+            padding: 0.4rem 0;
+            color: var(--neutral-grey);
+            text-decoration: none;
+            font-size:0.85rem;
+            transition: color 0.2s;
+        }
+        .ds-nav a[aria-current="true"] {
+            color: var(--text-copper-aaa);
+            font-weight: 700;
+        }
+        .ds-nav a:hover, .ds-nav a:focus-visible {
+            color: var(--text-copper-aaa);
+        }
+        .ds-nav-group {
+            margin: 1.5rem 0 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-copper-aaa);
+        }
+        section[id] {
+            scroll-margin-top: 2rem;
+        }
+
+
+        
+        /* MENU DEMO CLASSES */
+        .ds-menu-light a {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--neutral-grey);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+        .ds-menu-light a.active {
+            color: var(--obsidian-black);
+        }
+        .ds-menu-light a:hover, .ds-menu-light a:focus-visible {
+            color: var(--text-copper-aaa);
+        }
+
+        .ds-menu-dark a {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+        .ds-menu-dark a.active {
+            color: #FFFFFF;
+        }
+        .ds-menu-dark a:hover, .ds-menu-dark a:focus-visible {
+            color: var(--highlight-peach);
+        }
+
+        
+        /* === ACRE&KEY MOTION PHYSICS === */
+        
+        /* 1. Cinematic Reveal */
+        @keyframes akRevealUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .demo-reveal:hover .ak-reveal-up {
+            animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* 2. Data Cascade */
+        .demo-cascade:hover .ak-stagger-1 { animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.0s forwards; }
+        .demo-cascade:hover .ak-stagger-2 { animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards; }
+        .demo-cascade:hover .ak-stagger-3 { animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; }
+        .ak-reveal-up, .ak-stagger-1, .ak-stagger-2, .ak-stagger-3 { opacity: 0; }
+
+        /* 3. Architectural Pan */
+        .ak-pan-container {
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .ak-image-pan {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ak-pan-container:hover .ak-image-pan {
+            transform: scale(1.03);
+        }
+
+        /* 4. Focus Blur (Modal Backdrop Demo) */
+        .demo-blur-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 11, 0);
+            backdrop-filter: blur(0px);
+            transition: all 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .demo-blur-modal {
+            background: #FFF;
+            padding: 2rem;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            
+        }
+        .demo-blur-container:hover .demo-blur-backdrop {
+            background: rgba(10, 10, 11, 0.75);
+            backdrop-filter: blur(8px);
+        }
+        .demo-blur-container:hover .demo-blur-modal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+        /* === INTERACTIVE COMPONENTS CSS === */
+        .ds-top-tab {
+            font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding-bottom:1rem; border-bottom:2px solid transparent; margin-bottom:-1px; cursor:pointer; transition:color 0.2s, border-color 0.2s;
+        }
+        .ds-top-tab[aria-selected="true"] {
+            color:var(--text-copper-aaa); border-bottom:2px solid var(--text-copper-aaa);
+        }
+        
+        .ds-side-tab {
+            font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding:1rem 1.5rem; border-right:2px solid transparent; cursor:pointer; transition:color 0.2s, border-color 0.2s; margin-right:-1px;
+        }
+        .ds-side-tab[aria-selected="true"] {
+            color:var(--text-copper-aaa); border-right:2px solid var(--text-copper-aaa);
+        }
+        
+        .ds-tab-panel {
+            display: none;
+            opacity: 0;
+        }
+        .ds-tab-panel[data-active="true"] {
+            display: flex;
+            animation: akRevealUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        
+        .ds-accordion-trigger {
+            width:100%; background:none; border:none; padding: 1.5rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align:left;
+        }
+        .ds-accordion-content {
+            display: none; padding-bottom: 2rem;
+            animation: akRevealUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .ds-accordion-trigger[aria-expanded="true"] + .ds-accordion-content {
+            display: block;
+        }
+
+        
+        /* === ASSET CARD & CALCULATOR CSS === */
+        .ak-btn-ghost {
+            display: block; text-align: center; padding: 1rem; border: 0.5px solid var(--text-copper-aaa); border-radius: 4px; font-family: 'Manrope', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-copper-aaa); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.4s ease; background: transparent; cursor: pointer;
+        }
+        .ak-btn-ghost:hover, .ak-btn-ghost:focus-visible {
+            background: var(--text-copper-aaa); color: #FFF;
+        }
+        
+        .ak-range-slider {
+            -webkit-appearance: none; width: 100%; height: 2px; background: rgba(85, 85, 90, 0.2); outline: none; border-radius: 2px; margin: 1rem 0;
+        }
+        .ak-range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 4px; background: var(--text-copper-aaa); cursor: pointer; transition: transform 0.2s ease;
+        }
+        .ak-range-slider::-moz-range-thumb {
+            width: 16px; height: 16px; border-radius: 4px; background: var(--text-copper-aaa); cursor: pointer; border: none; transition: transform 0.2s ease;
+        }
+        .ak-range-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .ak-range-slider::-moz-range-thumb:hover { transform: scale(1.2); }
+
+        /* STATES & ACCESSIBILITY GLOBALS */
+        :focus-visible {
+            outline: 2px solid var(--text-copper-aaa);
+            outline-offset: 2px;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--text-copper-aaa) !important;
+        }
+        .ds-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, rgba(85, 85, 90,0.05) 4%, rgba(85, 85, 90,0.12) 25%, rgba(85, 85, 90,0.05) 36%);
+            background-size: 800px 100%;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        /* INLINE LINK FALLBACK */
+        .ds-inline-link {
+            color: var(--text-copper-aaa);
+            text-decoration: underline;
+            text-decoration-color: rgba(128,69,38,0.3);
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            transition: all 0.4s ease;
+        }
+        .ds-inline-link:hover, .ds-inline-link:focus-visible {
+            text-decoration-color: rgba(128,69,38,1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y proximity;
+        }
+        body {
+            background-color: var(--titanium-frost);
+            color: var(--obsidian-black);
+            margin: 0;
+            padding: 0;
+        }
+
+        .ds-bible-header {
+            background-color: var(--obsidian-black);
+            color: var(--titanium-frost);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .ds-bible-header h1 {
+            font-family: 'Marcellus', serif;
+            font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+            font-weight: 400;
+            margin: 0 0 1rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .ds-bible-header p {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.15rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) { .ds-container { padding: 2rem 1.5rem 4rem !important; } }
+        .ds-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem 8rem;
+        }
+
+        .ds-section {
+            scroll-margin-top: 4rem;
+            
+            margin-bottom: 6rem;
+            padding-bottom: 4rem;
+            border-bottom: 0.5px solid rgba(85, 85, 90, 0.15); /* Hairline */
+        }
+
+        .ds-section-title {
+            font-family: 'Marcellus', serif;
+            font-size: clamp(1.2rem, 1rem + 0.5vw, 1.5rem);
+            font-weight: 400;
+            color: var(--obsidian-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .ds-section-desc {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1rem;
+            color: var(--neutral-grey);
+            max-width: 800px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        /* Swatches */
+        .ds-swatch-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+
+        .ds-swatch {
+            border-radius: 4px; /* Strict 4px geometry */
+            overflow: hidden;
+            border: 0.5px solid rgba(85, 85, 90, 0.1);
+            background: #FFF;
+        }
+
+        .ds-swatch-color {
+            height: 120px;
+            width: 100%;
+        }
+
+        .ds-swatch-meta {
+            padding: 1.25rem;
+        }
+
+        .ds-swatch-name {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size:0.95rem;
+            color: var(--obsidian-black);
+            margin-bottom: 0.25rem;
+        }
+
+        .ds-swatch-hex {
+            font-family: 'Manrope', sans-serif;
+            font-size:0.8rem;
+            color: var(--neutral-grey);
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .ds-swatch-badge {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-copper-aaa);
+            background: rgba(128, 69, 38, 0.08);
+            border: 0.5px solid rgba(128, 69, 38, 0.2);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            display: inline-block;
+            letter-spacing: 0.03em;
+            font-weight: 600;
+        }
+
+        .ds-swatch-color {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 0.75rem 1rem;
+        }
+
+        .ds-swatch-role {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .ds-swatch-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (min-width: 1280px) {
+            .ds-swatch-grid { grid-template-columns: repeat(6, 1fr); }
+        }
+
+        /* Lexicon Table */
+        .ds-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .ds-table th, .ds-table td {
+            text-align: left;
+            padding: 1.5rem 1rem; border-bottom: 0.5px solid rgba(85, 85, 90, 0.15);
+        }
+
+        .ds-table th {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--neutral-grey);
+        }
+
+        .ds-table td {
+            font-size: 0.95rem;
+            color: var(--obsidian-black);
+        }
+
+        .ds-banned {
+            color: var(--neutral-grey);
+            text-decoration: line-through;
+            font-weight: 400;
+        }
+
+        .ds-approved {
+            color: var(--text-copper-aaa);
+            font-weight: 700;
+        }
+
+        /* Typography */
+        .ds-type-row {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 0.5px dashed rgba(85, 85, 90, 0.1);
+        }
+
+        .ds-type-meta {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-copper-aaa);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Motion & Components */
+        .ds-card-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .ds-card {
+            background: #FFF;
+            border-radius: 4px;
+            border: 0.5px solid rgba(85, 85, 90, 0.15);
+            padding: 2rem;
+            transition: all 0.4s ease; /* Cinematic Fade */
+            cursor: pointer;
+        }
+
+        .ds-card:hover {
+            /* Cinematic Flat Interaction: NO Box Shadow lifting. Just dimming the inner elements slightly */
+            background: #FAFAFA;
+            border-color: rgba(85, 85, 90, 0.3);
+        }
+
+        .ds-card-title {
+            font-family: 'Marcellus', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--obsidian-black);
+            margin: 0 0 1rem 0;
+        }
+
+        .ds-card-btn {
+            background: var(--cta-gradient);
+            color: #FFF;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .ds-card-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Photography */
+        .ds-photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .ds-photo-wrapper {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 0.5px solid rgba(85, 85, 90, 0.15);
+        }
+
+        .ds-photo-wrapper img {
+            width: 100%;
+            display: block;
+        }
+
+        /* The strict art direction filter */
+        .img-filtered {
+            filter: saturate(0.85) contrast(1.05);
+        }
+
+        .ds-photo-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(10, 10, 11, 0.85);
+            color: #FFF;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            letter-spacing: 0.12em;
+        }
+    </style>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Manrope:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="ds-bible-header">
+        <div class="h1-demo" role="heading" aria-level="1">The Master Design System</div>
+        <p>Institutional-Grade Design System. Uncompromising architecture for Acre&amp;Key.</p>
+    </header>
+
+    
+    <div class="ds-layout">
+        <nav class="ds-nav" aria-label="Design system">
+            <p class="ds-nav-group">Foundations</p>
+            <a href="#governance-meta">0. Governance & Versioning</a>
+            <a href="#brand">1. Master Foundations</a>
+            <a href="#voice">2. Lexicon & Tone</a>
+            <a href="#color">3. Color Palette</a>
+            
+            <p class="ds-nav-group">Visual Language</p>
+            <a href="#identity">4. Identity & Logo</a>
+            <a href="#type">5. Typography Hierarchy</a>
+            <a href="#layout">6. Layout & Spacing</a>
+            <a href="#motion">7. Motion & Geometry</a>
+            <a href="#imagery">8. Art Direction</a>
+            <a href="meta-ads-campaign.html" target="_blank" style="font-size: 0.8rem; color: var(--text-copper-aaa); font-weight: 600;">↳ Meta Ads Campaign (4:5)</a>
+            <a href="meta-posts-4-5.html" target="_blank" style="font-size: 0.8rem; color: var(--text-copper-aaa); font-weight: 600;">↳ Meta Posts (4:5) Styleguide</a>
+            <a href="linkedin-ads-moodboard.html" target="_blank" style="font-size: 0.8rem; color: var(--text-copper-aaa); font-weight: 600;">↳ LinkedIn Styleguide</a>
+            <a href="linkedin-team-welcome.html" target="_blank" style="font-size: 0.8rem; color: var(--text-copper-aaa); font-weight: 600;">↳ Team Welcome Post</a>
+            
+            <p class="ds-nav-group">Components</p>
+            <a href="#components">9. Actions & Inputs</a>
+            <a href="#data">10. Data & Tools</a>
+            
+            <p class="ds-nav-group">Patterns</p>
+            <a href="#patterns">11. Templates & Patterns</a>
+            
+            <p class="ds-nav-group">Standards</p>
+            <a href="#accessibility">12. Accessibility</a>
+            <a href="#trust">13. Trust & Compliance</a>
+            <a href="#governance">14. Governance & Contribution</a>
+        </nav>
+        
+        <div class="ds-main-content">
+<div class="ds-container">
+
+        <!-- GOVERNANCE & VERSIONING -->
+        <section class="ds-section" id="governance-meta">
+            <h2 class="ds-section-title">0. Governance & Versioning</h2>
+            <p class="ds-section-desc"><strong>Version:</strong> 2.0.0 (Apple-Grade Architectural Release)<br>
+            <strong>Owner:</strong> Acre&Key Design Authority<br>
+            <strong>Changelog:</strong> Pivot from Warm Ivory to Titanium Frost, shift from Cormorant to Marcellus, implementation of strict 7.0:1 AAA contrast and 4px micro-edge geometry.</p>
+        </section>
+
+        <!-- P0 FOUNDATIONS -->
+        <section class="ds-section" id="brand">
+            <h2 class="ds-section-title">1. Master Foundations (P0)</h2>
+            <p class="ds-section-desc">The absolute root parameters that govern the entire design system.</p>
+            
+            <div style="background:var(--titanium-frost); padding:2rem; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; margin-bottom:2rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">Token Map & Contrast Matrix</h3>
+                <table style="width:100%; border-collapse:collapse; font-family:'Manrope',sans-serif; font-size:0.85rem; text-align:left;">
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.2);">
+                        <th style="padding:0.75rem 0;">Role</th>
+                        <th>Token Name</th>
+                        <th>Hex/Value</th>
+                        <th>Contrast (vs Canvas)</th>
+                    </tr>
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <td style="padding:0.75rem 0;">Canvas Light</td><td><code>--titanium-frost</code></td><td>#FAFAFA</td><td>N/A</td>
+                    </tr>
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <td style="padding:0.75rem 0;">Canvas Dark (Anchor)</td><td><code>--obsidian-black</code></td><td>#1C1C1E</td><td>18.9:1 (AAA)</td>
+                    </tr>
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <td style="padding:0.75rem 0;">Primary Accent</td><td><code>--text-copper-aaa</code></td><td>#804526</td><td>7.2:1 (AAA)</td>
+                    </tr>
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <td style="padding:0.75rem 0;">Highlight Accent</td><td><code>--highlight-peach</code></td><td>#e5b899</td><td>10.9:1 (On Obsidian)</td>
+                    </tr>
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <td style="padding:0.75rem 0;">Secondary Text</td><td><code>--neutral-grey</code></td><td>#55555A</td><td>7.1:1 (AAA)</td>
+                    </tr>
+                    <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <td style="padding:0.75rem 0;">Hairline Divider</td><td><code>--divider</code></td><td>rgba(85, 85, 90, 0.15)</td><td>Structural</td>
+                    </tr>
+                </table>
+            </div>
+            
+            
+        </section>
+
+
+        <!-- SECTION 1: ETHOS & LEXICON -->
+        <section class="ds-section" id="voice">
+            <h2 class="ds-section-title">2. Clinical Lexicon & Tone</h2>
+            <p class="ds-section-desc">HNI buyers ignore generic marketing jargon. We operate as independent, data-driven advisors. Never use terms that imply urgency or generic "luxury".</p>
+            
+            <table class="ds-table">
+                <thead>
+                    <tr>
+                        <th>Banned Marketing Fluff</th>
+                        <th>Approved Clinical Terminology</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ds-banned">"Buy Now" / "Submit"</td>
+                        <td class="ds-approved">"Request Advisory Call" / "Get Buyer Analysis"</td>
+                    </tr>
+                    <tr>
+                        <td class="ds-banned">"Luxury" / "Premium"</td>
+                        <td class="ds-approved">"Institutional-Grade" / "A-Grade"</td>
+                    </tr>
+                    <tr>
+                        <td class="ds-banned">"Features" / "Amenities"</td>
+                        <td class="ds-approved">"Asset Fundamentals" / "Township Infrastructure"</td>
+                    </tr>
+                    <tr>
+                        <td class="ds-banned">"Best" / "Perfect"</td>
+                        <td class="ds-approved">"Objective Evaluation" / "Data-Driven"</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 2: COLORS -->
+        <section class="ds-section" id="color">
+            <h2 class="ds-section-title">3. WCAG AAA Color Palette</h2>
+            <p class="ds-section-desc">A strict 5-variable system. Contrast ratios are tracked.</p>
+            
+            <div class="ds-swatch-grid">
+                <div class="ds-swatch">
+                    <div class="ds-swatch-color" style="background: var(--obsidian-black);"></div>
+                    <div class="ds-swatch-meta">
+                        <div class="ds-swatch-name">Obsidian Black (Anchor)</div>
+                        <div class="ds-swatch-hex">#1C1C1E</div>
+                    </div>
+                </div>
+                <div class="ds-swatch">
+                    <div class="ds-swatch-color" style="background: var(--titanium-frost);"></div>
+                    <div class="ds-swatch-meta">
+                        <div class="ds-swatch-name">Titanium Frost (Canvas)</div>
+                        <div class="ds-swatch-hex">#FAFAFA</div>
+                    </div>
+                </div>
+                <div class="ds-swatch">
+                    <div class="ds-swatch-color" style="background: linear-gradient(135deg, #be7555 0%, #9f5334 100%);"></div>
+                    <div class="ds-swatch-meta">
+                        <div class="ds-swatch-name">Primary Copper (CTA)</div>
+                        <div class="ds-swatch-hex">#be7555 → #9f5334</div>
+                    </div>
+                </div>
+                <div class="ds-swatch">
+                    <div class="ds-swatch-color" style="background: var(--text-copper-aaa);"></div>
+                    <div class="ds-swatch-meta">
+                        <div class="ds-swatch-name">Text Copper (AAA)</div>
+                        <div class="ds-swatch-hex">#804526 (7.2:1 Ratio)</div>
+                    </div>
+                </div>
+                <div class="ds-swatch">
+                    <div class="ds-swatch-color" style="background: var(--neutral-grey);"></div>
+                    <div class="ds-swatch-meta">
+                        <div class="ds-swatch-name">Muted Slate (Body)</div>
+                        <div class="ds-swatch-hex">#55555A</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TYPOGRAPHY -->
+        
+            <div style="margin-top:4rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus', serif; font-size: 1.15rem; margin:0 0 1rem 0;">5.5 Iconography Guidelines</h3>
+                <p class="ds-section-desc" style="margin-bottom:2rem;">Icons must be purely functional. We exclusively use un-filled line icons with a strict <code>2px</code> stroke in Obsidian Black or Neutral Grey. <strong>Usage Rule:</strong> Use only when they add analytical clarity.</p>
+                
+                <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:3rem; display:flex; gap:3rem; align-items:center;">
+                    
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian-black)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Asset</span>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian-black)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="20" x2="12" y2="10"></line>
+                            <line x1="18" y1="20" x2="18" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="16"></line>
+                        </svg>
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Data</span>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian-black)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Verified</span>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--obsidian-black)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Dossier</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+        <section class="ds-section" id="layout">
+            <h2 class="ds-section-title">4. Layout & Spacing</h2>
+            <p class="ds-section-desc">Fibonacci grids and 1280px max-width container structures.</p>
+            <div style="background:var(--titanium-frost); padding:2rem; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; margin-bottom:2rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">Spatial & Layout Variables</h3>
+                <ul style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); line-height:1.6; margin:0; padding-left:1.2rem;">
+                    <li><strong>Fibonacci Scale:</strong> Margins and paddings follow a Fibonacci rhythm (1, 1, 2, 3, 5, 8).</li>
+                    <li><strong>Section Spacing:</strong> Desktop: <code>110px</code> | Mobile: <code>60px</code></li>
+                    <li><strong>Container Max Width:</strong> <code>1280px</code> (Aligning to Rule of Thirds grid points)</li>
+                    <li><strong>Blur Scale:</strong> Nav/Glassmorphism uses <code>16px</code> blur. Modals use <code>8px</code> blur.</li>
+                    <li><strong>Z-Index:</strong> Modals (1000) > Header (900) > Dropdowns (800) > Tooltips (700) > Base Content (1)</li>
+                </ul>
+            </div>
+            <div style="margin-top:4rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">Section Theming (Alternating Backgrounds)</h3>
+                <p class="ds-section-desc" style="margin-bottom:2rem;">To create visual pacing on long-scroll pages without relying on harsh drop shadows, we use <strong>Banded Sections</strong>. The page background must strictly alternate between these three environments to delineate different content blocks.</p>
+                
+                <div style="border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; overflow:hidden;">
+                    
+                    <!-- Band 1: Titanium Frost -->
+                    <div style="background:var(--titanium-frost); padding:3rem; border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Base Canvas</div>
+                        <h4 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus', serif; font-size: 0.95rem; margin:0 0 0.5rem 0; color:var(--obsidian-black);">Titanium Frost</h4>
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:0;">The default background for the majority of the page. Creates a soft, premium foundation.</p>
+                    </div>
+
+                    <!-- Band 2: Pure White -->
+                    <div style="background:#FFFFFF; padding:3rem; border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">Alternating Canvas</div>
+                        <h4 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus', serif; font-size: 0.95rem; margin:0 0 0.5rem 0; color:var(--obsidian-black);">Pure White</h4>
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:0;">Used for the very next section to create subtle, shadow-free separation from the Frost canvas above it.</p>
+                    </div>
+
+                    <!-- Band 3: Obsidian Breakout -->
+                    <div style="background:var(--obsidian-black); padding:3rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--highlight-peach); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.5rem;">High-Impact Breakout</div>
+                        <h4 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus', serif; font-size: 0.95rem; margin:0 0 0.5rem 0; color:#FFFFFF;">Obsidian Black</h4>
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.7); margin:0;">Used sparingly to break the flow. Reserved for footers, lead-generation forms, and massive value propositions.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+        <section class="ds-section" id="motion">
+            <h2 class="ds-section-title">7. Geometry & Motion Physics</h2>
+            <p class="ds-section-desc">Strictly <code>4px</code> border radiuses and <code>0.5px</code> hairlines. All movement runs on <strong>Acre&amp;Key Motion Physics</strong>: a suite of cinematic, gravity-weighted CSS animations that avoid cheap "bouncy" effects in favor of slow, deliberate reveals.</p>
+            <div style="margin-top: 4rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem;">
+                <!-- Pillar 1: Cinematic Reveal -->
+                <div class="demo-reveal" style="cursor:crosshair;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">1. Cinematic Reveal</div>
+                    <div style="background:var(--titanium-frost); height: 250px; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); display:flex; align-items:center; justify-content:center; padding:2rem;">
+                        <div class="ak-reveal-up" style="background:#FFF; width:100%; padding:2rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); text-align:center;">
+                            <div style="font-family:'Marcellus',serif; font-size: 0.95rem; color:var(--obsidian-black);">Hover to Reveal</div>
+                            <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin-top:0.5rem;">0.6s cubic-bezier</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pillar 2: Data Cascade -->
+                <div class="demo-cascade" style="cursor:crosshair;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">2. Data Cascade</div>
+                    <div style="background:var(--titanium-frost); height: 250px; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); padding:2rem; display:flex; flex-direction:column; gap:0.5rem; justify-content:center;">
+                        <div class="ak-stagger-1" style="background:#FFF; width:100%; padding:1rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey);">Data Row 1 (0.0s delay)</div>
+                        <div class="ak-stagger-2" style="background:#FFF; width:100%; padding:1rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey);">Data Row 2 (0.1s delay)</div>
+                        <div class="ak-stagger-3" style="background:#FFF; width:100%; padding:1rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey);">Data Row 3 (0.2s delay)</div>
+                    </div>
+                </div>
+                <!-- Pillar 3: Architectural Pan -->
+                <div>
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">3. Architectural Pan</div>
+                    <div class="ak-pan-container" style="height: 250px; border:0.5px solid rgba(85, 85, 90, 0.15); cursor:crosshair; border-radius:4px;">
+                        <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" class="ak-image-pan img-filtered" style="width:100%; height:100%; object-fit:cover;" alt="Hover Pan Demo">
+                    </div>
+                </div>
+                <!-- Pillar 4: Focus Blur -->
+                <div class="demo-blur-container" style="cursor:crosshair;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">4. Focus Blur (Modal)</div>
+                    <div style="position:relative; background:var(--titanium-frost); height: 250px; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                        <div style="font-family:'Marcellus',serif; font-size: 1.15rem; color:var(--neutral-grey); opacity:0.5;">Page Content</div>
+                        <div class="demo-blur-backdrop">
+                            <div class="demo-blur-modal">
+                                <div style="font-family:'Marcellus',serif; font-size: 0.95rem; color:var(--obsidian-black); margin-bottom:0.5rem;">Advisory Modal</div>
+                                <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey);">Hover triggers blur.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ds-card-demo">
+                <div class="ds-card">
+                    <h3 class="ds-card-title">Cinematic UI Card</h3>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); margin-bottom:1.5rem; line-height:1.5;">Hover over this card. Notice it does not physically lift up. The background simply dims smoothly via a 0.4s transition. The borders are 0.5px hairlines.</p>
+                    <button class="ds-card-btn">Request Advisory Call</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ART DIRECTION -->
+        <section class="ds-section" id="imagery">
+            <h2 class="ds-section-title">8. Photographic Art Direction</h2>
+            <p class="ds-section-desc">Builder 3D renders natively look cheap and hyper-saturated. We enforce a global <code>filter: saturate(0.85) contrast(1.05);</code> to establish a cohesive, moody, high-end editorial grade.</p>
+            <div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="meta-ads-campaign.html" target="_blank" style="font-size: 0.8rem; color: var(--text-copper-aaa); font-weight: 600;">↳ Meta Ads Campaign (4:5)</a>
+            <a href="meta-posts-4-5.html" target="_blank" class="ak-btn-primary" style="display:inline-flex; align-items:center; gap:0.5rem;">
+                    View Meta Posts (4:5) (4 Frames)
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="linkedin-ads-moodboard.html" target="_blank" class="ak-btn-secondary" style="display:inline-flex; align-items:center; gap:0.5rem; background:transparent; border:1px solid var(--text-copper-aaa); color:var(--text-copper-aaa);">
+                    View LinkedIn Feed
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="linkedin-team-welcome.html" target="_blank" class="ak-btn-secondary" style="display:inline-flex; align-items:center; gap:0.5rem; background:transparent; border:1px solid var(--text-copper-aaa); color:var(--text-copper-aaa);">
+                    Team Welcome Post
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="linkedin-cover.html" target="_blank" class="ak-btn-secondary" style="display:inline-flex; align-items:center; gap:0.5rem; background:transparent; border:1px solid var(--text-copper-aaa); color:var(--text-copper-aaa);">
+                    LinkedIn Cover
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+            </div>
+            
+            <div class="ds-photo-grid">
+                <!-- Raw Image -->
+                <div class="ds-photo-wrapper">
+                    <div class="ds-photo-label">Raw Builder Render (Banned)</div>
+                    <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" alt="Raw Image" style="filter: none;">
+                </div>
+                
+                <!-- Filtered Image -->
+                <div class="ds-photo-wrapper">
+                    <div class="ds-photo-label" style="background:var(--text-copper-aaa);">Cinematic Desaturation (Approved)</div>
+                    <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" alt="Filtered Image" class="img-filtered">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: FORMS & INPUTS -->
+        <section class="ds-section" id="components">
+            <h2 class="ds-section-title">9. Components & Inputs</h2>
+            <p class="ds-section-desc">HNI clients do not fill out "squeeze pages." Our forms must feel like secure, private banking applications. No bubbly inputs. We use strict 0.5px borders, 4px radiuses, and crisp typography.</p>
+            
+            <div style="max-width: 400px; background: #FFF; padding: 2rem; border-radius: 4px; border: 0.5px solid rgba(85, 85, 90, 0.15);">
+                <label style="display:block; font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--obsidian-black); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing: 0.12em;">Full Legal Name</label>
+                <input type="text" placeholder="e.g. Jonathan Doe" style="width:100%; box-sizing:border-box; padding:0.75rem 1rem; font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black); background:var(--titanium-frost); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px;  transition:all 0.4s ease; margin-bottom: 1.5rem;"  >
+                
+                <label style="display:block; font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--obsidian-black); margin-bottom:0.5rem; text-transform:uppercase; letter-spacing: 0.12em;">Advisory Requirement</label>
+                <select style="width:100%; box-sizing:border-box; padding:0.75rem 1rem; font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black); background:var(--titanium-frost); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px;  appearance:none; background-image:url('data:image/svg+xml;utf8,<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1.5L6 6.5L11 1.5" stroke="%231C1C1E" stroke-width="1.5" stroke-linecap="square"/></svg>'); background-repeat:no-repeat; background-position:right 1rem center; padding-right:3rem;">
+                    <option>Portfolio Restructuring</option>
+                    <option>Asset Acquisition</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- SECTION 7: BADGES & TAGS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Clinical Badges & Tags (The Anti-Pill Rule)</h2>
+            <p class="ds-section-desc">Standard web design uses rounded "pill" tags (<code>border-radius: 4px</code>). We strictly reject this. All tags (RERA, Status, Scores) must use our rigid <code>4px</code> geometry to maintain an architectural, blueprint-like aesthetic.</p>
+            
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--obsidian-black); background:rgba(10, 10, 11, 0.06); padding:0.4rem 0.8rem; border-radius:4px; border:0.5px solid rgba(10, 10, 11, 0.1); letter-spacing: 0.12em; text-transform:uppercase;">Under Construction</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); background:rgba(128, 69, 38, 0.06); padding:0.4rem 0.8rem; border-radius:4px; border:0.5px solid rgba(128, 69, 38, 0.2); letter-spacing: 0.12em; text-transform:uppercase;">RERA Verified</span>
+                <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:#1C1C1E; background:#FFF; padding:0.4rem 0.8rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.2); letter-spacing: 0.12em; text-transform:uppercase;">Score: [X.XX]/5</span>
+            </div>
+        </section>
+
+        <!-- SECTION 8: OVERLAYS & MODALS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Cinematic Modals & Overlays</h2>
+            <p class="ds-section-desc">Pop-ups should not feel like marketing interruptions. Modal backdrops must use a heavy cinematic blur (<code>backdrop-filter: blur(8px)</code>) with a deep, desaturated overlay (<code>rgba(10,10,10,0.85)</code>) to completely focus the user's attention.</p>
+            
+            <div style="position:relative; width:100%; height:300px; border-radius:4px; overflow:hidden; background:url('assets/evergreen/prestige_evergreen_hero_pool_evening.webp') center/cover; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                <!-- Modal Backdrop Overlay -->
+                <div style="position:absolute; inset:0; background:rgba(10,10,10,0.85); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:2rem;">
+                    <!-- Modal Card -->
+                    <div style="background:#FFF; padding:2rem; border-radius:4px; width:100%; max-width:400px; ">
+                        <h3 style="font-family:'Marcellus', serif; font-size: 1.15rem; font-weight: 400; color:var(--obsidian-black); margin:0 0 1rem 0;">Floorplan Access</h3>
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); margin-bottom:1.5rem; line-height:1.5;">Please confirm your credentials to view the highly detailed architectural layouts.</p>
+                        <button class="ds-card-btn" style="width:100%;">Authenticate &amp; View</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 9: TEXT ON IMAGE -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Text-on-Image Legibility</h2>
+            <p class="ds-section-desc">Placing raw text directly over a photograph severely compromises legibility. We enforce a strict "Anchored Gradient" rule. Whenever text sits on an image, a deep navy gradient (fading from 95% opacity to 0% at the 60% mark) must anchor the text from the bottom or top, targeting a 7.0:1 AAA contrast ratio.</p>
+            
+            <div style="position:relative; border-radius:4px; overflow:hidden; height:250px; border:0.5px solid rgba(85, 85, 90, 0.15); max-width: 600px;">
+                <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <!-- The HNI Gradient Overlay -->
+                <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10, 10, 11,0.95) 0%, rgba(10, 10, 11,0) 60%); display:flex; flex-direction:column; justify-content:flex-end; padding:2rem;">
+                    <h3 style="color:#FFF; font-family:'Marcellus', serif; font-size: 1.15rem; font-weight: 400; margin:0 0 0.25rem 0;">Protected Legibility</h3>
+                    <p style="color:rgba(250, 250, 250, 0.88); font-family:'Manrope', sans-serif; font-size:0.95rem; margin:0;">Text is anchored  by the navy gradient, ignoring the chaotic image behind it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 10: EDITORIAL CARDS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">The "Editorial Card" Standard</h2>
+            <p class="ds-section-desc">Data cards should never use default CSS box-shadows. Shadows look like generic web templates. Our cards use strict 0.5px hairlines, generous internal padding (min 1.5rem), and rely entirely on typography sizing to establish hierarchy.</p>
+            
+            <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:2rem; max-width: 450px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem; border-bottom: 0.5px solid rgba(85, 85, 90, 0.1); padding-bottom: 1rem;">
+                    <h3 style="font-family:'Marcellus', serif; font-size: 1.15rem; font-weight: 400; color:var(--obsidian-black); margin:0;">Township Data</h3>
+                    <!-- Referencing Section 7 Badges -->
+                    <span style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--obsidian-black); background:var(--titanium-frost); padding:0.3rem 0.6rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.2); letter-spacing: 0.12em; text-transform:uppercase;">Verified</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap: 0.8rem;">
+                    <div style="display:flex; justify-content:space-between;">
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey);">Total Area</span>
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black); font-weight:700;">24 Acres</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey);">Typology</span>
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black); font-weight:700;">3 & 4 BHK Advisory</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 11: INLINE LINKS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Inline Link Behavior</h2>
+            <p class="ds-section-desc">Default web links (blue text, thick underlines) destroy the luxury reading experience. All inline references in body text must use our AAA copper with a heavily offset, semi-transparent underline that solidifies entirely upon a cinematic 400ms hover.</p>
+            
+            <p style="font-family:'Manrope',sans-serif; font-size: 0.95rem; color:var(--neutral-grey); line-height: 1.7; max-width:800px;">
+                Before allocating capital to this asset, we strongly recommend reviewing our comprehensive <a href="#" style="color:var(--text-copper-aaa); text-decoration:underline; text-decoration-color:rgba(128,69,38,0.3); text-underline-offset:6px; text-decoration-thickness: 1px; transition:all 0.4s ease;"  >69-point diligence report</a>. The report contains proprietary data regarding the builder's delivery history and <a href="#" style="color:var(--text-copper-aaa); text-decoration:underline; text-decoration-color:rgba(128,69,38,0.3); text-underline-offset:6px; text-decoration-thickness: 1px; transition:all 0.4s ease;"  >legal land titles</a>.
+            </p>
+        </section>
+
+        <!-- PART II: THE COMPONENT LIBRARY -->
+        <div style="margin: 8rem 0 4rem; padding-top: 4rem; border-top: 2px solid var(--obsidian-black);">
+            <div class="h1-demo" role="heading" aria-level="1" style="font-family:'Marcellus', serif; font-size:3rem; font-weight: 400; color:var(--obsidian-black); margin:0 0 1rem 0;">Part II: The Component Library</div>
+            <p style="font-family:'Manrope',sans-serif; font-size: 0.95rem; color:var(--neutral-grey); max-width:800px;">Every standard web component strictly translated into the HNI Architectural standard. Copy and paste these structures directly into production.</p>
+        </div>
+
+        <!-- ACCORDIONS & TOGGLES -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Accordions &amp; Toggles</h2>
+            <p class="ds-section-desc">No floating boxes. Items are separated by strictly 0.5px hairlines. The expansion icon is a minimalist SVG.</p>
+            
+            <div class="ds-accordion-group" style="max-width: 800px;">
+                <!-- Item 1 -->
+                <div class="ds-accordion-item" style="border-bottom: 0.5px solid rgba(85, 85, 90, 0.15);">
+                    <button class="ds-accordion-trigger" aria-expanded="true">
+                        <h4 style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--obsidian-black); margin:0;">What is the legal land title status?</h4>
+                        <span class="ds-accordion-icon" style="font-family:'Manrope',sans-serif; font-size: 1.15rem; font-weight:300; color:var(--text-copper-aaa);">-</span>
+                    </button>
+                    <div class="ds-accordion-content">
+                        <p style="font-family:'Manrope',sans-serif; font-size:1rem; color:var(--neutral-grey); line-height:1.7; margin:0;">The land title has been verified across 40 years of records. It possesses an A-Khata certification with zero encumbrances from the BDA. A comprehensive legal dossier is available in the diligence report.</p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="ds-accordion-item" style="border-bottom: 0.5px solid rgba(85, 85, 90, 0.15);">
+                    <button class="ds-accordion-trigger" aria-expanded="false">
+                        <h4 style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--obsidian-black); margin:0;">What are the township infrastructure details?</h4>
+                        <span class="ds-accordion-icon" style="font-family:'Manrope',sans-serif; font-size: 1.15rem; font-weight:300; color:var(--text-copper-aaa);">+</span>
+                    </button>
+                    <div class="ds-accordion-content">
+                        <p style="font-family:'Manrope',sans-serif; font-size:1rem; color:var(--neutral-grey); line-height:1.7; margin:0;">The township features a 12-lane internal road network, dedicated dual-power substations, and a centralized water filtration plant capable of supporting 5,000 residents sustainably.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+            <div style="margin-top: 4rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">Concierge Advisory Form (Phone + OTP)</h3>
+                <p class="ds-section-desc" style="margin-bottom:2rem;">Replaces standard contact forms with a secure, private-banking style authentication flow.</p>
+                
+                <div style="border: 0.5px solid rgba(85, 85, 90, 0.15); border-radius: 4px; background: #FFF; padding: 3rem; max-width: 480px; display: flex; flex-direction: column; gap: 2.5rem;">
+                    
+                    <!-- Step 1: Phone -->
+                    <div>
+                        <label style="display: block; font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--obsidian-black); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;">Step 1: Secure Entry</label>
+                        <div style="display: flex; border: 0.5px solid rgba(85, 85, 90, 0.4); border-radius: 4px; overflow: hidden; transition: border-color 0.4s;">
+                            <div style="background: var(--titanium-frost); padding: 1rem; border-right: 0.5px solid rgba(85, 85, 90, 0.4); font-family: 'Manrope', sans-serif; font-size: 0.95rem; color: var(--obsidian-black); font-weight: 400;">+91</div>
+                            <input type="tel" placeholder="Enter mobile number" style="flex: 1; border: none; padding: 1rem; font-family: 'Manrope', sans-serif; font-size: 0.95rem; color: var(--obsidian-black); outline: none;">
+                        </div>
+                    </div>
+
+                    <!-- Step 2: OTP -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <label style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--obsidian-black); text-transform: uppercase; letter-spacing: 0.1em;">Step 2: Verification</label>
+                            <span style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text-copper-aaa); cursor: pointer;">Resend Code</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: space-between;">
+                            <input type="text" maxlength="1" value="4" style="width: 4rem; height: 4rem; text-align: center; font-family: 'Manrope', sans-serif; font-size: 1.15rem; font-weight: 400; color: var(--obsidian-black); border: 0.5px solid var(--text-copper-aaa); border-radius: 4px; outline: none; background: #FFF;">
+                            <input type="text" maxlength="1" value="0" style="width: 4rem; height: 4rem; text-align: center; font-family: 'Manrope', sans-serif; font-size: 1.15rem; font-weight: 400; color: var(--obsidian-black); border: 0.5px solid var(--text-copper-aaa); border-radius: 4px; outline: none; background: #FFF;">
+                            <input type="text" maxlength="1" placeholder="-" style="width: 4rem; height: 4rem; text-align: center; font-family: 'Manrope', sans-serif; font-size: 1.15rem; font-weight: 400; color: var(--obsidian-black); border: 0.5px solid rgba(85, 85, 90, 0.4); border-radius: 4px; outline: none; background: #FFF;">
+                            <input type="text" maxlength="1" placeholder="-" style="width: 4rem; height: 4rem; text-align: center; font-family: 'Manrope', sans-serif; font-size: 1.15rem; font-weight: 400; color: var(--obsidian-black); border: 0.5px solid rgba(85, 85, 90, 0.4); border-radius: 4px; outline: none; background: #FFF;">
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <button style="width: 100%; padding: 1.25rem; background: var(--cta-gradient); color: #FFF; border: none; border-radius: 4px; font-family: 'Manrope', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: opacity 0.4s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Request Advisory Call</button>
+                </div>
+            </div>
+
+        <!-- BUTTONS & LINKS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Button Hierarchy</h2>
+            <p class="ds-section-desc">Buttons must never be fully rounded pills. Primary uses the copper gradient. Secondary uses a 0.5px hairline outline. Ghost buttons are pure text with an offset underline.</p>
+            
+            <div style="display: flex; gap: 2rem; align-items: center;">
+                <button style="background:var(--cta-gradient); color:#FFF; border:none; border-radius:4px; padding:0.85rem 1.75rem; font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; transition: opacity 0.4s ease;">Primary Action</button>
+                
+                <button style="background:transparent; color:var(--obsidian-black); border:0.5px solid rgba(85, 85, 90, 0.3); border-radius:4px; padding:0.85rem 1.75rem; font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; transition: all 0.4s ease;"  >Secondary Outline</button>
+
+                <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.05em; text-decoration:underline; text-decoration-color:rgba(128,69,38,0.3); text-underline-offset:6px; transition:all 0.4s ease;">Ghost Link UI</a>
+            </div>
+        </section>
+
+        
+            <div style="margin-top: 4rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">Navigation & Menu States</h3>
+                <p class="ds-section-desc" style="margin-bottom:2rem;">Menu items must feel like editorial indexes. No bulky background hovers or pill shapes. We rely on crisp typography, generous spacing, and a subtle 400ms color transition to indicate interactivity.</p>
+                
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
+                    
+                    <!-- Light Canvas Menu -->
+                    <div style="background:var(--titanium-frost); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px; padding:3rem; display:flex; flex-direction:column; gap:2rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em;">Titanium Frost (Light) Menu</div>
+                        
+                        <nav class="ds-menu-light" style="display:flex; gap:2rem; align-items:center;" aria-label="Light Demo Navigation">
+                            <a href="#" class="active" aria-current="page">Framework</a>
+                            <a href="#">Advisory</a>
+                            <a href="#">Dossiers</a>
+                            <a href="#">About Us</a>
+                        </nav>
+                    </div>
+
+                    <!-- Dark Canvas Menu -->
+                    <div style="background:var(--obsidian-black); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px; padding:3rem; display:flex; flex-direction:column; gap:2rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--highlight-peach); text-transform:uppercase; letter-spacing:0.1em;">Obsidian (Dark) Menu</div>
+                        
+                        <nav class="ds-menu-dark" style="display:flex; gap:2rem; align-items:center;" aria-label="Dark Demo Navigation">
+                            <a href="#" class="active" aria-current="page">Framework</a>
+                            <a href="#">Advisory</a>
+                            <a href="#">Dossiers</a>
+                            <a href="#">About Us</a>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- TABS (TOP & SIDE) -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Tabs (Top &amp; Side)</h2>
+            <p class="ds-section-desc">Tabs are constructed using pure typography and hairline indicators. No chunky background boxes.</p>
+            
+            <div style="display:flex; gap:4rem; margin-top:2rem;">
+                <!-- Top Tabs -->
+                <div style="flex:1;">
+                    <div style="display:flex; border-bottom:0.5px solid rgba(85, 85, 90, 0.2); gap:2rem; margin-bottom:2rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.05em; padding-bottom:1rem; border-bottom:2px solid var(--text-copper-aaa); margin-bottom:-1px; cursor:pointer;">Financials</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding-bottom:1rem; border-bottom:2px solid transparent; margin-bottom:-1px; cursor:pointer; transition:color 0.2s;">Masterplan</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding-bottom:1rem; border-bottom:2px solid transparent; margin-bottom:-1px; cursor:pointer; transition:color 0.2s;">Diligence</div>
+                    </div>
+                    <div style="background:#FFF; padding:2rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15); min-height:150px; display:flex; align-items:center;">
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); margin:0;">Horizontal tab content dynamically loads here.</p>
+                    </div>
+                </div>
+                <!-- Side Tabs -->
+                <div style="flex:1; display:flex;">
+                    <div style="display:flex; flex-direction:column; border-right:0.5px solid rgba(85, 85, 90, 0.2); min-width:140px;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.05em; padding:1rem 1.5rem; border-right:2px solid var(--text-copper-aaa); margin-right:-1px; cursor:pointer;">Overview</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding:1rem 1.5rem; cursor:pointer; transition:color 0.2s;">Specs</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding:1rem 1.5rem; cursor:pointer; transition:color 0.2s;">Gallery</div>
+                    </div>
+                    <div style="flex:1; background:#FFF; padding:2rem; border-radius:0 4px 4px 0; min-height:150px; display:flex; align-items:center;">
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); margin:0;">Vertical tab content dynamically loads here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING TABLES -->
+        <section class="ds-section" id="data">
+            <h2 class="ds-section-title">8. Data & Tools</h2>
+            <p class="ds-section-desc">Tables must feel like high-end financial documents. Use muted slate headers, 0.5px dividers, and right-aligned numerical data.</p>
+            
+            <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; overflow:hidden;">
+                <table style="width:100%; border-collapse:collapse; font-family:'Manrope',sans-serif; text-align:left;">
+                    <thead style="background:rgba(85, 85, 90, 0.04); border-bottom:0.5px solid rgba(85, 85, 90, 0.15);">
+                        <tr>
+                            <th style="padding:1.25rem 1.5rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--neutral-grey);">Typology</th>
+                            <th style="padding:1.25rem 1.5rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--neutral-grey);">Carpet Area</th>
+                            <th style="padding:1.25rem 1.5rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--neutral-grey); text-align:right;">Institutional Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:0.5px solid rgba(85, 85, 90, 0.1);">
+                            <td style="padding:1.25rem 1.5rem; font-size:0.95rem; font-weight:700; color:var(--obsidian-black);">3 BHK + Staff</td>
+                            <td style="padding:1.25rem 1.5rem; font-size:0.95rem; color:var(--neutral-grey);">2,204 Sq.Ft.</td>
+                            <td style="padding:1.25rem 1.5rem; font-size:0.95rem; font-weight:700; color:var(--text-copper-aaa); text-align:right;">₹ 3.14 Cr</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:1.25rem 1.5rem; font-size:0.95rem; font-weight:700; color:var(--obsidian-black);">4 BHK Signature</td>
+                            <td style="padding:1.25rem 1.5rem; font-size:0.95rem; color:var(--neutral-grey);">3,150 Sq.Ft.</td>
+                            <td style="padding:1.25rem 1.5rem; font-size:0.95rem; font-weight:700; color:var(--text-copper-aaa); text-align:right;">₹ 4.85 Cr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TEAM & TESTIMONIALS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Progress Bars &amp; Counters</h2>
+            <p class="ds-section-desc">Avoid thick, colorful progress bars. Use ultra-thin (2px) tracks. Counters must pair massive serif numerals with tiny, tracked-out sans-serif labels.</p>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-top:2rem;">
+                <!-- Counters -->
+                <div style="display:flex; gap:3rem;">
+                    <div>
+                        <div style="font-family:'Marcellus', serif; font-size:2.05rem; font-weight: 400; color:var(--obsidian-black); line-height:1;">69</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-top:0.5rem;">Diligence Checks</div>
+                    </div>
+                    <div>
+                        <div style="font-family:'Marcellus', serif; font-size:2.05rem; font-weight: 400; color:var(--obsidian-black); line-height:1;">14<span style="font-size:1.25rem; color:var(--neutral-grey);">%</span></div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.1em; margin-top:0.5rem;">Target CAGR</div>
+                    </div>
+                </div>
+
+                <!-- Progress Bars -->
+                <div style="display:flex; flex-direction:column; gap:1.5rem; justify-content:center;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-family:'Manrope',sans-serif; font-size:0.85rem;">
+                            <span style="font-weight:700; color:var(--obsidian-black);">Project Completion</span>
+                            <span style="color:var(--neutral-grey);">85%</span>
+                        </div>
+                        <div style="width:100%; height:2px; background:rgba(85, 85, 90, 0.1); border-radius:4px; overflow:hidden;">
+                            <div style="width:85%; height:100%; background:var(--text-copper-aaa);"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-family:'Manrope',sans-serif; font-size:0.85rem;">
+                            <span style="font-weight:700; color:var(--obsidian-black);">Inventory Sold</span>
+                            <span style="color:var(--neutral-grey);">40%</span>
+                        </div>
+                        <div style="width:100%; height:2px; background:rgba(85, 85, 90, 0.1); border-radius:4px; overflow:hidden;">
+                            <div style="width:40%; height:100%; background:var(--text-copper-aaa);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LISTS & BREADCRUMBS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Lists &amp; Breadcrumbs</h2>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-top:2rem;">
+                <!-- Breadcrumbs -->
+                <div>
+                    <h3 style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1.5rem;">Breadcrumb Path</h3>
+                    
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); display:flex; gap:0.5rem; align-items:center;">
+                        <a href="#" style="color:var(--neutral-grey); text-decoration:none; transition:color 0.2s;">Home</a>
+                        <span style="color:rgba(85, 85, 90, 0.3);">/</span>
+                        <a href="#" style="color:var(--neutral-grey); text-decoration:none; transition:color 0.2s;">Advisory</a>
+                        <span style="color:rgba(85, 85, 90, 0.3);">/</span>
+                        <span style="color:var(--obsidian-black); font-weight:700;">Prestige Evergreen</span>
+                    </div>
+                </div>
+
+                <!-- Custom Lists -->
+                <div>
+                    <h3 style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1.5rem;">Architectural Lists</h3>
+                    
+                    <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1rem; font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black);">
+                        <li style="display:flex; gap:1rem; align-items:flex-start;">
+                            <div style="width:6px; height:6px; background:var(--text-copper-aaa); margin-top:0.4rem; flex-shrink:0;"></div>
+                            <span style="line-height:1.6;">Title deeds verified against RERA database.</span>
+                        </li>
+                        <li style="display:flex; gap:1rem; align-items:flex-start;">
+                            <div style="width:6px; height:6px; background:var(--text-copper-aaa); margin-top:0.4rem; flex-shrink:0;"></div>
+                            <span style="line-height:1.6;">Masterplan audited for hyper-density risk metrics.</span>
+                        </li>
+                        <li style="display:flex; gap:1rem; align-items:flex-start;">
+                            <div style="width:6px; height:6px; background:var(--text-copper-aaa); margin-top:0.4rem; flex-shrink:0;"></div>
+                            <span style="line-height:1.6;">Comparative pricing analysis completed.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- HERO ARCHITECTURE -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Hero Architecture Blueprint</h2>
+            <p class="ds-section-desc">The standard V2 entrance. Split layout: Editorial typography on the left, cinematically filtered architectural photography on the right.</p>
+            
+            <div style="display:flex; flex-wrap:wrap; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; overflow:hidden; background:#FFF;">
+                <div style="flex:1; min-width:300px; padding:4rem; display:flex; flex-direction:column; justify-content:center;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1rem;">Pre-Launch Advisory</div>
+                    <div class="h1-demo" role="heading" aria-level="1" style="font-family:'Marcellus', serif; font-size:clamp(1.2rem, 1rem + 0.5vw, 1.5rem); font-weight: 400; color:var(--obsidian-black); line-height:1.1; margin:0 0 1.5rem 0;">Institutional-Grade Assets in Whitefield.</div>
+                    <p style="font-family:'Manrope',sans-serif; font-size:1rem; color:var(--neutral-grey); line-height:1.7; margin:0 0 2rem 0; max-width:400px;">Access proprietary risk-assessment frameworks before allocating capital to under-construction developments.</p>
+                    <div><button class="ds-card-btn">Get Buyer Analysis</button></div>
+                </div>
+                <div style="flex:1; min-width:300px; background:var(--obsidian-black); position:relative;">
+                    <img src="assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOM CHECKBOXES & RADIOS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Forms: Checkboxes &amp; Radios</h2>
+            <p class="ds-section-desc">Native browser checkboxes look cheap. We use custom SVGs and pure CSS to ensure strict 4px geometry on checkboxes and sharp circular selections for radios.</p>
+            
+            <div style="display:flex; gap:4rem; padding: 2rem; background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px;">
+                <!-- Checkbox Custom -->
+                <style>
+                    .ds-checkbox-label { display: flex; align-items: center; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 0.95rem; color: var(--obsidian-black); margin-bottom: 1rem; }
+                    .ds-checkbox-input { display: none; }
+                    .ds-checkbox-box { width: 18px; height: 18px; border: 0.5px solid rgba(85, 85, 90, 0.3); border-radius: 4px; margin-right: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+                    .ds-checkbox-input:checked + .ds-checkbox-box { background: var(--text-copper-aaa); border-color: var(--text-copper-aaa); }
+                    .ds-checkbox-input:checked + .ds-checkbox-box::after { content: ''; width: 4px; height: 8px; border: solid #FFF; border-width: 0 2px 2px 0; transform: rotate(45deg); margin-bottom: 2px; }
+                    
+                    .ds-radio-box { width: 18px; height: 18px; border: 0.5px solid rgba(85, 85, 90, 0.3); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+                    .ds-radio-input:checked + .ds-radio-box { border-color: var(--text-copper-aaa); border-width: 5px; }
+                </style>
+                
+                <div>
+                    <h4 style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Diligence Selection</h4>
+                    <label class="ds-checkbox-label">
+                        <input type="checkbox" class="ds-checkbox-input" checked>
+                        <div class="ds-checkbox-box"></div>
+                        Request Legal Dossier
+                    </label>
+                    <label class="ds-checkbox-label">
+                        <input type="checkbox" class="ds-checkbox-input">
+                        <div class="ds-checkbox-box"></div>
+                        Request Pricing Analytics
+                    </label>
+                </div>
+
+                <div>
+                    <h4 style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Timeline Horizon</h4>
+                    <label class="ds-checkbox-label">
+                        <input type="radio" name="horizon" class="ds-checkbox-input ds-radio-input" checked>
+                        <div class="ds-radio-box"></div>
+                        Ready to Move
+                    </label>
+                    <label class="ds-checkbox-label">
+                        <input type="radio" name="horizon" class="ds-checkbox-input ds-radio-input">
+                        <div class="ds-radio-box"></div>
+                        Under Construction (2-3 Yrs)
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- ALERTS, TOASTS & TOOLTIPS -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Alerts &amp; Tooltips</h2>
+            <p class="ds-section-desc">Success messages and tooltips must avoid standard green/red blocks. We use architectural boxes with sharp copper anchor lines.</p>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-top:2rem;">
+                <!-- Alert Box -->
+                <div>
+                    <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-left:3px solid var(--text-copper-aaa); border-radius:4px; padding:1.5rem; display:flex; gap:1rem; align-items:flex-start;">
+                        <div style="font-family:'Manrope',sans-serif; font-weight:700; font-size: 0.95rem; color:var(--text-copper-aaa); line-height:1;">i</div>
+                        <div>
+                            <h4 style="font-family:'Manrope',sans-serif; font-size:0.95rem; font-weight:700; color:var(--obsidian-black); margin:0 0 0.25rem 0;">Report Dispatched</h4>
+                            <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:0;">The 69-point buyer analysis has been securely emailed to your registered address.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tooltip Mockup -->
+                <div style="display:flex; align-items:center; justify-content:center;">
+                    <div style="position:relative; display:inline-block; font-family:'Manrope',sans-serif; font-size:0.95rem; font-weight:700; color:var(--obsidian-black); cursor:help; border-bottom:1px dotted var(--text-copper-aaa);">
+                        Hover for Definition
+                        <div style="position:absolute; bottom:150%; left:50%; transform:translateX(-50%); background:rgba(10, 10, 11,0.95); color:#FFF; font-size:0.75rem; font-weight:400; padding:0.75rem 1rem; border-radius:4px; width:200px; text-align:center;  pointer-events:none;">
+                            A highly specific definition of a complex real estate term.
+                            <div style="position:absolute; top:100%; left:50%; transform:translateX(-50%); border-width:6px; border-style:solid; border-color:rgba(10, 10, 11,0.95) transparent transparent transparent;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGINATION -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Pagination</h2>
+            <p class="ds-section-desc">Minimalist progression logic for blogs and property listing pages.</p>
+            
+            <div style="display:flex; align-items:center; gap:0.5rem; font-family:'Manrope',sans-serif; font-size:0.95rem;">
+                <button style="background:transparent; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--neutral-grey); transition:all 0.2s ease;">&larr;</button>
+                <div style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--obsidian-black);">1</div>
+                <button style="background:transparent; border:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--neutral-grey); transition:all 0.2s ease;"  >2</button>
+                <button style="background:transparent; border:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--neutral-grey); transition:all 0.2s ease;"  >3</button>
+                <span style="color:var(--neutral-grey);">...</span>
+                <button style="background:transparent; border:none; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--neutral-grey); transition:all 0.2s ease;"  >8</button>
+                <button style="background:transparent; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; width:40px; height:40px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--neutral-grey); transition:all 0.2s ease;"  >&rarr;</button>
+            </div>
+        </section>
+
+        <!-- GALLERY & MASONRY -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Gallery &amp; Masonry Grids</h2>
+            <p class="ds-section-desc">Galleries use strict 4px corners and uniform grid gaps. No complex overlapping or rotating images. Pure architectural discipline.</p>
+            
+            <div style="display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:150px 150px; gap:1rem;">
+                <div style="grid-row:1 / 3; border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                    <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div style="border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                    <img src="assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div style="border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                    <img src="assets/evergreen/prestige_evergreen_hero_clubhouse_courtyard_aerial.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div style="grid-column:2 / 4; border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15); position:relative;">
+                    <img src="assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                    <div style="position:absolute; inset:0; background:rgba(10, 10, 11,0.85); display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                        <span style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:#FFF; text-transform:uppercase; letter-spacing:0.1em; border:0.5px solid #FFF; padding:0.5rem 1rem; border-radius:4px;">View All 24 Media</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- HEADER & NAVIGATION -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Global Header &amp; Navigation</h2>
+            <p class="ds-section-desc">The primary structural navigation. It must stick to the top with a 16px blur backdrop and a single 0.5px hairline separating it from the content.</p>
+            
+            <div style="width:100%; background:rgba(250, 250, 250, 0.9); backdrop-filter:blur(16px); border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center;">
+                <!-- Logo -->
+                <div style="font-family:'Josefin Sans', sans-serif; font-size: 1.15rem; font-weight: 400; letter-spacing:0.05em; color:var(--obsidian-black);">
+                        acre&amp;key
+                    </div>
+                
+                <!-- Links -->
+                <div style="display:flex; gap:2.5rem; align-items:center;">
+                    <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--obsidian-black); text-decoration:none; text-transform:uppercase; letter-spacing:0.1em;">Advisory</a>
+                    <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--obsidian-black); text-decoration:none; text-transform:uppercase; letter-spacing:0.1em;">Calculators</a>
+                    <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--obsidian-black); text-decoration:none; text-transform:uppercase; letter-spacing:0.1em;">Journal</a>
+                </div>
+                
+                <!-- CTA -->
+                <button class="ds-card-btn">Request Callback</button>
+            </div>
+        </section>
+
+        <!-- VIDEO ARCHITECTURE -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Video &amp; Media Players</h2>
+            <p class="ds-section-desc">Standard YouTube or Vimeo embeds ruin immersion with heavy branding. All videos must sit behind our custom cinematic overlay with a minimalist play button.</p>
+            
+            <div style="position:relative; border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15); height:300px; max-width:600px;">
+                <img src="assets/evergreen/prestige_evergreen_hero_clubhouse_courtyard_aerial.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                
+                <!-- Video Overlay -->
+                <div style="position:absolute; inset:0; background:rgba(10, 10, 11, 0.4); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.4s ease;"  >
+                    <!-- Minimal Play Button -->
+                    <div style="width:60px; height:60px; border:0.5px solid #FFF; border-radius:50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+                        <div style="width:0; height:0; border-style:solid; border-width:8px 0 8px 14px; border-color:transparent transparent transparent #FFF; margin-left:4px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOADING & SHIMMER STATES -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Loading &amp; Shimmer States</h2>
+            <p class="ds-section-desc">Spinning wheels are unacceptable. When calculators or APIs load data, use structural shimmer skeletons that mimic the exact geometry of the incoming content.</p>
+            
+
+            
+            <div style="background:#FFF; padding:2rem; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; max-width:400px;">
+                <div class="ds-shimmer" style="width:40px; height:40px; border-radius:50%; margin-bottom:1.5rem;"></div>
+                <div class="ds-shimmer" style="width:80%; height:16px; margin-bottom:0.75rem;"></div>
+                <div class="ds-shimmer" style="width:60%; height:16px; margin-bottom:1.5rem;"></div>
+                <div class="ds-shimmer" style="width:100%; height:40px;"></div>
+            </div>
+        </section>
+
+        <!-- GLOBAL FOOTER -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Global Footer Architecture</h2>
+            <p class="ds-section-desc">The footer acts as the anchor. It uses the deep navy background. Links are strictly organized in grid columns without bulky separators.</p>
+            
+            <div style="background:var(--obsidian-black); padding:4rem; border-radius:4px; display:flex; justify-content:space-between; gap:4rem;">
+                
+                <div style="flex:2;">
+                    <div style="font-family:'Josefin Sans', sans-serif; font-size:1.25rem; font-weight: 400; letter-spacing:0.05em; color:#FFF; margin-bottom:1rem;">
+                        acre&amp;key
+                    </div>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); line-height:1.7; max-width:300px;">Institutional-grade real estate advisory for the institutional investor. Data-driven allocation.</p>
+                </div>
+                
+                <div style="flex:1;">
+                    <h4 style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1.5rem;">Assets</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                        <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); text-decoration:none;">Prestige Evergreen</a>
+                        <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); text-decoration:none;">Sattva Songbird</a>
+                        <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); text-decoration:none;">Brigade Belvedere</a>
+                    </div>
+                </div>
+
+                <div style="flex:1;">
+                    <h4 style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1.5rem;">Legal</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                        <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); text-decoration:none;">Privacy Protocol</a>
+                        <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); text-decoration:none;">RERA Disclaimers</a>
+                        <a href="#" style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:rgba(255,255,255,0.72); text-decoration:none;">Terms of Advisory</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- EDITORIAL PORTRAIT CARDS -->
+        
+            <div style="margin-top: 4rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">Advisory Calculator Module</h3>
+                <p class="ds-section-desc" style="margin-bottom:2rem;">Calculators must avoid bubbly SaaS slider thumbs. We enforce 4px radius thumbs, 2px hairline tracks, and massive Marcellus display fonts for the final financial output.</p>
+                
+                <div style="border: 0.5px solid rgba(85, 85, 90, 0.15); border-radius: 4px; background: #FFF; padding: 3rem; max-width: 500px;">
+                    <h4 style="font-weight: 400; color: var(--obsidian-black); font-family: 'Marcellus', serif; font-size: 1.15rem; color: var(--obsidian-black); margin: 0 0 0.5rem 0;">Yield & EMI Calculator</h4>
+                    <p style="font-family: 'Manrope', sans-serif; font-size: 0.85rem; color: var(--neutral-grey); margin: 0 0 2.5rem 0;">Analyze asset fundamentals and projected leverage.</p>
+                    
+                    <!-- Slider 1 -->
+                    <div style="margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <label style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--obsidian-black); text-transform: uppercase; letter-spacing: 0.1em;">Down Payment</label>
+                            <span style="font-family: 'Manrope', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-copper-aaa);">20% (₹ 62L)</span>
+                        </div>
+                        <input type="range" min="10" max="100" value="20" class="ak-range-slider">
+                        <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;">
+                            <span style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; color: var(--neutral-grey);">10%</span>
+                            <span style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; color: var(--neutral-grey);">100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Output -->
+                    <div style="background: var(--titanium-frost); border: 0.5px solid rgba(85, 85, 90, 0.15); border-radius: 4px; padding: 2rem; margin-top: 2rem; display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div>
+                            <div style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--neutral-grey); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Projected Monthly EMI</div>
+                            <div style="font-family: 'Marcellus', serif; font-size: 2.5rem; color: var(--obsidian-black); line-height: 1;">₹ 2.14L</div>
+                        </div>
+                        <a href="#" style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text-copper-aaa); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1.5px solid var(--text-copper-aaa); padding-bottom: 0.2rem; transition: border-color 0.4s;" onmouseover="this.style.borderColor='transparent'" onmouseout="this.style.borderColor='var(--text-copper-aaa)'">View Schedule</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <section class="ds-section" id="patterns">
+            <h2 class="ds-section-title">11. Templates & Patterns</h2>
+            <p class="ds-section-desc">Used for buyer personas or deep-dive features. This component executes the Anchored Gradient rule on a portrait aspect ratio, pulling the user into a cinematic story.</p>
+            
+            <div style="display:flex; justify-content:center;">
+                <!-- Persona Card Component -->
+                <div style="position:relative; width:100%; max-width:400px; aspect-ratio:3/4; border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15); ">
+                    <!-- Background Image (Using placeholder, ideally executive shot) -->
+                    <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+                    
+                    <!-- The Anchored Gradient -->
+                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10, 10, 11, 0.98) 0%, rgba(10, 10, 11, 0.75) 45%, rgba(10, 10, 11, 0) 80%); display:flex; flex-direction:column; justify-content:flex-end; padding:2.5rem 2rem;">
+                        
+                        <!-- Kicker -->
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--highlight-peach); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:1rem;">
+                            01. The Busy Executive
+                        </div>
+                        
+                        <!-- Heading -->
+                        <h3 style="font-family:'Marcellus', serif; font-size:1.25rem; font-weight: 400; color:#FFF; line-height:1.2; margin:0 0 1.25rem 0;">
+                            You know what you want. You just don't have the time to find it.
+                        </h3>
+                        
+                        <!-- Body -->
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:rgba(255,255,255,0.85); line-height:1.6; margin:0 0 1.5rem 0;">
+                            For founders, CXOs and senior professionals seeking a better home across Whitefield, Indiranagar and ORR, without the endless sales conversations.
+                        </p>
+                        
+                        <!-- Footer Note -->
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.95rem; font-style:italic; color:var(--highlight-peach); line-height:1.5;">
+                            We handle the search and diligence. You focus on the decision.
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- EDITORIAL DATA CARDS (CHECKLISTS) -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Editorial Data Cards (Checklists)</h2>
+            <p class="ds-section-desc">Used for feature lists or diligence breakdowns. <strong>Crucial Rule:</strong> The overlapping badge must strictly use the 4px micro-edge geometry. Circular pill badges are banned in the HNI architecture.</p>
+            
+            <div style="display:flex; justify-content:center;">
+                <!-- Data Card Component -->
+                <div style="width:100%; max-width:380px; background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; overflow:hidden; display:flex; flex-direction:column; position:relative; ">
+                    
+                    <!-- Header Image -->
+                    <div style="height:160px; width:100%; position:relative;">
+                        <img src="assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    
+                    <!-- Overlapping Badge (4px Geometry, NO CIRCLES) -->
+                    <div style="position:absolute; top:135px; left:2rem; width:45px; height:45px; background:var(--cta-gradient); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#FFF; font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; border:2px solid #FFF;">
+                        01.
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div style="padding: 2.5rem 2rem 2rem 2rem; flex:1;">
+                        <h3 style="font-family:'Marcellus', serif; font-size:1.25rem; font-weight: 400; color:var(--obsidian-black); margin:0 0 0.25rem 0;">Location</h3>
+                        <p style="font-family:'Manrope',sans-serif; font-size:1rem; color:var(--neutral-grey); margin:0 0 1.5rem 0;">Connectivity, Security &amp; Demand</p>
+                        
+                        <!-- List Items -->
+                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1.2rem; font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black);">
+                            <li style="display:flex; gap:1rem; align-items:flex-start;">
+                                <!-- Minimal Check Icon -->
+                                <div style="color:var(--text-copper-aaa); margin-top:0.1rem; flex-shrink:0;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <span style="line-height:1.5;">Employment &amp; IT corridor connectivity</span>
+                            </li>
+                            <li style="display:flex; gap:1rem; align-items:flex-start;">
+                                <div style="color:var(--text-copper-aaa); margin-top:0.1rem; flex-shrink:0;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <span style="line-height:1.5;">Metro line progress &amp; road widening realities</span>
+                            </li>
+                            <li style="display:flex; gap:1rem; align-items:flex-start;">
+                                <div style="color:var(--text-copper-aaa); margin-top:0.1rem; flex-shrink:0;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                <span style="line-height:1.5;">Ground-water security &amp; social infra data</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Footer Block -->
+                    <div style="background:var(--titanium-frost); border-top:0.5px solid rgba(85, 85, 90, 0.15); padding:1.5rem 2rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em; margin-bottom:0.75rem;">
+                            Questions We Answer
+                        </div>
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black); margin:0 0 0.5rem 0;">
+                            Is long-term demand <span style="font-weight:700;">sustainable?</span>
+                        </p>
+                        <p style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--obsidian-black); margin:0;">
+                            Is infrastructure <span style="font-weight:700;">keeping pace?</span>
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- EDITORIAL PROCESS CARDS (METHODOLOGY) -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Editorial Process Cards (Methodology)</h2>
+            <p class="ds-section-desc">Used for step-by-step methodologies. This card Blends Serif numerals with Sans-Serif data blocks, utilizing internal Titanium Frost containers and strict 4px tags (banning standard pill shapes).</p>
+            
+            <div style="display:flex; justify-content:center;">
+                <!-- Process Card Component -->
+                <div style="width:100%; max-width:400px; background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:2.5rem 2rem;  display:flex; flex-direction:column; gap:1.5rem;">
+                    
+                    <!-- Header -->
+                    <div style="display:flex; align-items:baseline; gap:1rem;">
+                        <div style="font-family:'Marcellus', serif; font-size:1.25rem; font-weight: 400; color:var(--text-copper-aaa);">01</div>
+                        <h3 style="font-family:'Marcellus', serif; font-size:1.25rem; font-weight: 400; color:var(--obsidian-black); text-transform:uppercase; letter-spacing:0.05em; margin:0;">Clarify</h3>
+                    </div>
+                    
+                    <!-- Hairline Divider -->
+                    <div style="height:0.5px; background:rgba(85, 85, 90, 0.15); width:100%;"></div>
+                    
+                    <!-- Lead Text -->
+                    <p style="font-family:'Manrope',sans-serif; font-size: 0.95rem; color:var(--obsidian-black); margin:0; line-height:1.5;">
+                        Mandate calibration &amp; comprehensive requirement definition.
+                    </p>
+                    
+                    <!-- Inner Blocks container -->
+                    <div style="display:flex; flex-direction:column; gap:1rem;">
+                        
+                        <!-- Inner Block 1 -->
+                        <div style="background:var(--titanium-frost); border-radius:4px; padding:1.25rem 1.5rem; display:flex; gap:1rem;">
+                            <div style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--text-copper-aaa); margin-top:0.1rem;">01</div>
+                            <div>
+                                <h4 style="font-family:'Manrope',sans-serif; font-size:0.95rem; font-weight:700; color:var(--obsidian-black); margin:0 0 0.25rem 0;">Requirement Mapping</h4>
+                                <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:0; line-height:1.5;">
+                                    Family lifestyle, commute radii (ORR/Silk Board) &amp; non-negotiables
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Inner Block 2 -->
+                        <div style="background:var(--titanium-frost); border-radius:4px; padding:1.25rem 1.5rem; display:flex; gap:1rem;">
+                            <div style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--text-copper-aaa); margin-top:0.1rem;">02</div>
+                            <div>
+                                <h4 style="font-family:'Manrope',sans-serif; font-size:0.95rem; font-weight:700; color:var(--obsidian-black); margin:0 0 0.25rem 0;">Micro-Market Universe</h4>
+                                <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:0; line-height:1.5;">
+                                    Filtering out [X]% noise across Whitefield, North Bangalore &amp; Central
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Dotted Divider -->
+                    <div style="border-top:1px dashed rgba(85, 85, 90, 0.2); width:100%; margin-top:0.5rem;"></div>
+                    
+                    <!-- Deliverable Tag (Enforcing 4px rule, no pills) -->
+                    <div style="background:rgba(85, 85, 90, 0.04); border-radius:4px; padding:0.85rem; text-align:center; font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--obsidian-black);">
+                        Deliverable: Buyer Mandate Brief
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- EXECUTIVE TEAM PROFILES -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Executive Team Profiles</h2>
+            <p class="ds-section-desc">Used for horizontal leadership grids. <strong>Crucial Correction:</strong> Shadows are minimized to retain a flat, editorial aesthetic. and replaced them with our structural 0.5px hairline. All headshots must be passed through the cinematic desaturation filter.</p>
+            
+            <div style="background:var(--titanium-frost); padding:3rem; border-radius:4px; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                <h3 style="font-family:'Marcellus', serif; font-size:1.25rem; font-weight:400; color:var(--obsidian-black); margin:0 0 2rem 0;">Meet The Team</h3>
+                
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+                    
+                    <!-- Team Card 1 -->
+                    <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:1.5rem; display:flex; gap:1.25rem; align-items:center;">
+                        <!-- Circular Avatar (Exception to geometry for human faces, but with strict ring) -->
+                        <div style="width:85px; height:85px; border-radius:50%; padding:4px; border:0.5px solid rgba(85, 85, 90, 0.2); flex-shrink:0;">
+                            <img src="assets/Nitin_Kocchar.webp" class="img-filtered" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                        </div>
+                        
+                        <div style="flex:1;">
+                            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                                <h4 style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--obsidian-black); margin:0;">Nitin Kochhar</h4>
+                                <a href="#" style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:50%; color:var(--neutral-grey); text-decoration:none; transition:border-color 0.2s;"  >
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+                                </a>
+                            </div>
+                            <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); margin-bottom:0.5rem; line-height:1.3;">Investments · Decision Framework</div>
+                            <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); line-height:1.4; margin:0;">
+                                Strategy consultant and equity investment advisor turned real estate investment advisor.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Card 2 -->
+                    <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:1.5rem; display:flex; gap:1.25rem; align-items:center;">
+                        <div style="width:85px; height:85px; border-radius:50%; padding:4px; border:0.5px solid rgba(85, 85, 90, 0.2); flex-shrink:0;">
+                            <img src="assets/Gaurav_Mongia.webp" class="img-filtered" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                        </div>
+                        <div style="flex:1;">
+                            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                                <h4 style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--obsidian-black); margin:0;">Gaurav Mongia</h4>
+                                <a href="#" style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:50%; color:var(--neutral-grey); text-decoration:none; transition:border-color 0.2s;"  >
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+                                </a>
+                            </div>
+                            <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); margin-bottom:0.5rem; line-height:1.3;">Marketing · Product · Tech</div>
+                            <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); line-height:1.4; margin:0;">
+                                Decade-long real estate &amp; digital marketing experience, bridging buyers with clarity.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Card 3 -->
+                    <div style="background:#FFF; border:0.5px solid rgba(85, 85, 90, 0.15); border-radius:4px; padding:1.5rem; display:flex; gap:1.25rem; align-items:center;">
+                        <div style="width:85px; height:85px; border-radius:50%; padding:4px; border:0.5px solid rgba(85, 85, 90, 0.2); flex-shrink:0;">
+                            <img src="assets/Arvind_Patidar.webp" class="img-filtered" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+                        </div>
+                        <div style="flex:1;">
+                            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                                <h4 style="font-family:'Marcellus', serif; font-size: 0.95rem; font-weight: 400; color:var(--obsidian-black); margin:0;">Arvind Patidar</h4>
+                                <a href="#" style="display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:50%; color:var(--neutral-grey); text-decoration:none; transition:border-color 0.2s;"  >
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"></path></svg>
+                                </a>
+                            </div>
+                            <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); margin-bottom:0.5rem; line-height:1.3;">Operations · CEX · Tech</div>
+                            <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); line-height:1.4; margin:0;">
+                                Deep real estate operations expertise, obsessed with buyer-first process excellence.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- CINEMATIC PROPERTY GALLERY PLAYER -->
+        <section class="ds-section">
+            <h2 class="ds-section-title">Cinematic Gallery Player</h2>
+            <p class="ds-section-desc">Used for showcasing property renders and imagery. <strong>Crucial Correction:</strong> The raw text over the image violates AAA contrast. We must inject dual Anchored Gradients (top and bottom) to protect the typography and controls, while enforcing 4px geometries on the navigation arrows and thumbnail strips.</p>
+            
+            <div style="position:relative; width:100%; height:600px; border-radius:4px; overflow:hidden; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                
+                <!-- Main Image -->
+                <img src="assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0;">
+                
+                <!-- Top Anchored Gradient (Protects Title & Arrows) -->
+                <div style="position:absolute; top:0; left:0; width:100%; height:150px; background:linear-gradient(to bottom, rgba(10, 10, 11, 0.9) 0%, rgba(10, 10, 11, 0) 100%);"></div>
+                
+                <!-- Bottom Anchored Gradient (Protects Thumbnails & View Gallery text) -->
+                <div style="position:absolute; bottom:0; left:0; width:100%; height:150px; background:linear-gradient(to top, rgba(10, 10, 11, 0.95) 0%, rgba(10, 10, 11, 0) 100%);"></div>
+
+                <!-- Top Header Overlay -->
+                <div style="position:absolute; top:2rem; left:2rem; right:2rem; display:flex; justify-content:space-between; align-items:flex-start;">
+                    <!-- Title & Pagination -->
+                    <div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:#FFF; text-transform:uppercase; letter-spacing:0.2em; margin-bottom:1rem;">
+                            Prestige Raintree Park · Evergreen
+                        </div>
+                        <div style="font-family:'Marcellus', serif; font-size:1.25rem; color:#FFF; display:flex; gap:1rem; align-items:baseline;">
+                            <span>01</span>
+                            <span style="font-family:'Manrope',sans-serif; font-size: 1.15rem; color:rgba(255,255,255,0.5); font-weight:300;">/</span>
+                            <span style="color:rgba(255,255,255,0.7);">05</span>
+                        </div>
+                        <div style="width:40px; height:2px; background:#FFF; margin-top:0.5rem;"></div>
+                    </div>
+
+                    <!-- Navigation Arrows (Strict 4px Geometry) -->
+                    <div style="display:flex; gap:0.5rem;">
+                        <button style="width:40px; height:40px; background:rgba(10, 10, 11,0.6); border:0.5px solid rgba(255,255,255,0.3); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#FFF; cursor:pointer; backdrop-filter:blur(8px); transition:background 0.3s;"  >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M15 18l-6-6 6-6"/></svg>
+                        </button>
+                        <button style="width:40px; height:40px; background:rgba(10, 10, 11,0.6); border:0.5px solid rgba(255,255,255,0.3); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#FFF; cursor:pointer; backdrop-filter:blur(8px); transition:background 0.3s;"  >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M9 18l6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer Overlay -->
+                <div style="position:absolute; bottom:2rem; left:2rem; right:2rem; display:flex; justify-content:space-between; align-items:flex-end;">
+                    
+                    <!-- Thumbnail Strip -->
+                    <div style="display:flex; gap:0.75rem;">
+                        <div style="width:70px; height:45px; border-radius:4px; border:1.5px solid #FFF; overflow:hidden; cursor:pointer;">
+                            <img src="assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div style="width:70px; height:45px; border-radius:4px; border:1px solid transparent; overflow:hidden; opacity:0.6; cursor:pointer; transition:opacity 0.3s;"  >
+                            <img src="assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                        <div style="width:70px; height:45px; border-radius:4px; border:1px solid transparent; overflow:hidden; opacity:0.6; cursor:pointer; transition:opacity 0.3s;"  >
+                            <img src="assets/evergreen/prestige_evergreen_hero_pool_evening.webp" class="img-filtered" style="width:100%; height:100%; object-fit:cover;">
+                        </div>
+                    </div>
+
+                    <!-- View Gallery Text -->
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.95rem; font-weight:700; color:#FFF; display:flex; align-items:center; gap:0.5rem; cursor:pointer; text-shadow:0 2px 4px rgba(0,0,0,0.5);">
+                        View gallery
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- LOGO ARCHITECTURE & ADAPTABILITY -->
+        <section class="ds-section" id="identity">
+            <h2 class="ds-section-title">4. Identity & Logo Architecture</h2>
+            <p class="ds-section-desc">The typographic mark must maintain strict aesthetic authority across all environments. We enforce a <strong>Strict Monochrome Architecture</strong> (pure Obsidian Black on light canvases, pure White on dark canvases) to prevent the mark from feeling like a startup. The ampersand is never colorized.</p>
+            
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+                
+                
+                <!-- Copper Canvas (CTA) -->
+                <div style="background:var(--text-copper-aaa); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px; height:300px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:0.2em;">Primary Copper Environment</div>
+                    <div style="font-family:'Josefin Sans', sans-serif; font-size:2.05rem; font-weight: 400; letter-spacing:0.05em; color:#FFFFFF; line-height:1;">
+                        acre&amp;key
+                    </div>
+                </div>
+
+                <!-- Light Canvas (Titanium Frost) -->
+                <div style="background:var(--titanium-frost); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px; height:300px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.2em;">Titanium Frost Environment</div>
+                    <div style="font-family:'Josefin Sans', sans-serif; font-size:2.05rem; font-weight: 400; letter-spacing:0.05em; color:var(--obsidian-black); line-height:1;">
+                        acre&amp;key
+                    </div>
+                </div>
+
+                <!-- Dark Canvas (Obsidian) -->
+                <div style="background:var(--obsidian-black); border:0.5px solid rgba(85, 85, 90, 0.2); border-radius:4px; height:300px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem;">
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.2em;">Obsidian Environment</div>
+                    <div style="font-family:'Josefin Sans', sans-serif; font-size:2.05rem; font-weight: 400; letter-spacing:0.05em; color:#FFFFFF; line-height:1;">
+                        acre&amp;key
+                    </div>
+                </div>
+
+                <!-- Cinematic Image Canvas -->
+                <div style="position:relative; border-radius:4px; overflow:hidden; height:350px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.5rem; grid-column:1 / -1;">
+                    <img src="assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp" class="img-filtered" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10, 10, 11, 0.95) 0%, rgba(10, 10, 11, 0.6) 100%);"></div>
+                    
+                    <div style="position:relative; font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color: rgba(255, 255, 255, 0.7); text-transform:uppercase; letter-spacing:0.2em; z-index:2;">Cinematic Image Overlay</div>
+                    <div style="position:relative; font-family:'Josefin Sans', sans-serif; font-size:2.05rem; font-weight: 400; letter-spacing:0.05em; color:#FFFFFF; line-height:1; z-index:2; text-shadow:0 10px 30px rgba(10,10,11,0.5);">
+                        acre&amp;key
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- TYPOGRAPHY HIERARCHY -->
+        <section class="ds-section" id="type">
+            <h2 class="ds-section-title">5. Typography Hierarchy & Guidelines</h2>
+            <p class="ds-section-desc">The HNI architecture relies on a strict dual-font system. <strong>Marcellus</strong> provides editorial authority for display and headings. <strong>Manrope</strong> provides extreme technical legibility for data, kickers, and body text.</p>
+            
+            <div style="display:flex; flex-direction:column; gap:3rem; margin-top:2rem; background:var(--titanium-frost); border-radius:4px; padding:3rem; border:0.5px solid rgba(85, 85, 90, 0.15);">
+                
+                <!-- H1 Display -->
+                <div style="border-bottom:0.5px solid rgba(85, 85, 90, 0.2); padding-bottom:2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em;">Display Title (H1)</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Marcellus • 400 • LH: 1.1 • LS: -0.02em</div>
+                    </div>
+                    <div class="h1-demo" role="heading" aria-level="1" style="font-family:'Marcellus', serif; font-size:clamp(1.6rem, 1.15rem + 0.85vw, 2.05rem); font-weight:400; color:var(--obsidian-black); line-height:1.1; margin:0; letter-spacing:-0.02em;">
+                        The Architecture of Wealth
+                    </div>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:1rem 0 0 0;"><strong>Usage:</strong> Strictly reserved for Hero sections. Must use <code>clamp()</code> for fluid responsive scaling without breakpoints.</p>
+                </div>
+
+                <!-- H2 Section -->
+                <div style="border-bottom:0.5px solid rgba(85, 85, 90, 0.2); padding-bottom:2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em;">Section Heading (H2/H3)</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Marcellus • 400 • LH: 1.2 • LS: 0</div>
+                    </div>
+                    <h2 style="font-family:'Marcellus', serif; font-size:clamp(1.2rem, 1rem + 0.5vw, 1.5rem); font-weight: 400; color:var(--obsidian-black); line-height:1.2; margin:0;">
+                        Institutional Grade diligence.
+                    </h2>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:1rem 0 0 0;"><strong>Usage:</strong> Section dividers, grid headers, and primary content breaks. Never uppercase.</p>
+                </div>
+
+                <!-- Kicker / Overline -->
+                <div style="border-bottom:0.5px solid rgba(85, 85, 90, 0.2); padding-bottom:2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em;">Overline Kicker</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Manrope • 700 • Uppercase • LH: 1.2 • LS: 0.15em</div>
+                    </div>
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--obsidian-black); text-transform:uppercase; letter-spacing:0.15em; margin:0;">
+                        Micro-Market Analysis
+                    </div>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:1rem 0 0 0;"><strong>Usage:</strong> Eyebrows above headings, category tags, and data pillar labels. Provides structural metadata.</p>
+                </div>
+
+                <!-- Body / Lead -->
+                <div style="border-bottom:0.5px solid rgba(85, 85, 90, 0.2); padding-bottom:2rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em;">Body &amp; Lead Text</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Manrope • 400/500 • LH: 1.6 • LS: 0</div>
+                    </div>
+                    <p style="font-family:'Manrope',sans-serif; font-size: 0.95rem; color:var(--neutral-grey); line-height:1.6; margin:0; max-width:700px;">
+                        We filter out [X]% of the noise in the market to bring you absolute clarity. Our independent advisory evaluates the opportunity, uncovers the risks, and negotiates entirely on your behalf.
+                    </p>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:1rem 0 0 0;"><strong>Usage:</strong> All paragraph text. Use 1.1rem for lead paragraphs (like above), 0.95rem for standard card reading.</p>
+                </div>
+
+                <!-- UI / Microcopy -->
+                <div>
+                    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:1rem;">
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:700; color:var(--text-copper-aaa); text-transform:uppercase; letter-spacing:0.15em;">Data &amp; Microcopy</div>
+                        <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; color:var(--neutral-grey);">Manrope • 600/700 • LH: 1.4 • LS: 0</div>
+                    </div>
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--obsidian-black); margin:0;">
+                        Deliverable: Buyer Mandate Brief
+                    </div>
+                    <div style="font-family:'Manrope',sans-serif; font-size:0.75rem; font-weight:600; color:var(--neutral-grey); margin-top:0.25rem;">
+                        Updated [XX] hours ago
+                    </div>
+                    <p style="font-family:'Manrope',sans-serif; font-size:0.85rem; color:var(--neutral-grey); margin:1rem 0 0 0;"><strong>Usage:</strong> UI elements, footnotes, card tags, timestamps, and utility links.</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION: ACCESSIBILITY -->
+        
+            <div style="margin-top: 4rem;">
+                <h3 style="font-weight: 400; color: var(--obsidian-black); font-family:'Marcellus',serif; font-size: 1.15rem; margin:0 0 1rem 0;">The Asset Dossier Card (Property Listing)</h3>
+                <p class="ds-section-desc" style="margin-bottom:2rem;">The core architectural block of the platform. Features a 16:9 cinematic render (with a 95% Obsidian anchored gradient), strict 4px RERA badges, and a Ghost Copper CTA.</p>
+                
+                <div class="ak-asset-card" style="border: 0.5px solid rgba(85, 85, 90, 0.15); border-radius: 4px; overflow: hidden; background: #FFF; display: flex; flex-direction: column; max-width: 420px; transition: border-color 0.4s ease;">
+                    
+                    <!-- Image Area -->
+                    <div class="ak-pan-container" style="position: relative; height: 260px; overflow: hidden; border-radius: 0;">
+                        <img src="assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp" class="img-filtered ak-image-pan" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="Property Exterior">
+                        <!-- Rule 11: Text-on-Image Anchored Gradient -->
+                        <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 10, 11, 0.95) 0%, rgba(10, 10, 11, 0) 60%); pointer-events: none;"></div>
+                        
+                        <!-- Anti-Pill Badge -->
+                        <div style="position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(10, 10, 11, 0.85); backdrop-filter: blur(4px); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 4px; padding: 0.4rem 0.8rem; font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: #FFF; letter-spacing: 0.1em; text-transform: uppercase;">A-Grade Asset</div>
+                        
+                        <!-- Anchored Typography -->
+                        <div style="position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;">
+                            <h4 style="font-weight: 400; color: var(--obsidian-black); font-family: 'Marcellus', serif; font-size: 1.15rem; color: #FFF; margin: 0 0 0.4rem 0; line-height: 1.2;">Prestige Evergreen</h4>
+                            <div style="font-family: 'Manrope', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 0.5rem;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Whitefield, Bengaluru
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Area -->
+                    <div style="padding: 2rem; flex: 1; display: flex; flex-direction: column;">
+                        <!-- Data Grid -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                            <div>
+                                <div style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--neutral-grey); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem;">Typology</div>
+                                <div style="font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--obsidian-black);">3 &amp; 4 BHK</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-family: 'Manrope', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--neutral-grey); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem;">Starting Price</div>
+                                <div style="font-family: 'Manrope', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text-copper-aaa);">₹ 3.14 Cr</div>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA -->
+                        <a href="#" class="ak-btn-ghost" style="margin-top: auto;">View Asset Dossier</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <section class="ds-section" id="accessibility">
+            <h2 class="ds-section-title">12. Accessibility Standards</h2>
+            <div style="background:var(--titanium-frost); padding:2rem; border:0.5px solid var(--divider); border-radius:4px; margin-bottom:2rem;">
+                <ul style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); line-height:1.8; margin:0; padding-left:1.5rem;">
+                    <li><strong>Focus & Keyboard:</strong> All interactive elements must support standard <code>:focus-visible</code> (2px copper ring). Tab indexing must flow logically from top-left to bottom-right.</li>
+                    <li><strong>ARIA Patterns:</strong> Accordions must toggle <code>aria-expanded</code>. Tabs require <code>aria-selected</code>. Modals mandate a focus-trap and must respond to the <code>Esc</code> key to close.</li>
+                    <li><strong>Touch Equivalents:</strong> Hover-only tooltips or card-dimming effects must have a persistent or tap-equivalent display on mobile.</li>
+                    <li><strong>Contrast Rules:</strong> Text must meet WCAG 7.0:1 AAA strictly. The CTA button passes AA (3.0:1).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION: TRUST & COMPLIANCE -->
+        <section class="ds-section" id="trust">
+            <h2 class="ds-section-title">13. Trust & Compliance</h2>
+            <div style="background:var(--titanium-frost); padding:2rem; border:0.5px solid var(--divider); border-radius:4px; margin-bottom:2rem;">
+                <ul style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); line-height:1.8; margin:0; padding-left:1.5rem;">
+                    <li><strong>RERA & Disclaimers:</strong> RERA registration numbers must be pinned to the primary hero section or the sticky global footer. "Artist's impression" labels must be embedded in the bottom-right of 3D renders.</li>
+                    <li><strong>Stat Sourcing:</strong> Any numerical claim must have a source/date footnote linked directly below the component.</li>
+                    <li><strong>DPDP Consent:</strong> All lead-capture forms must include a non-pre-checked consent block explicitly authorizing WhatsApp and Call contact under DPDP norms.</li>
+                    <li><strong>Testimonial Rules:</strong> Testimonials must use a standard attribution format: [Initials/Name], [Profession/Sector], [Year], with verified consent.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECTION: GOVERNANCE -->
+        <section class="ds-section" id="governance" style="border-bottom:none; margin-bottom:0;">
+            <h2 class="ds-section-title">14. Governance & Contribution</h2>
+            <div style="background:var(--titanium-frost); padding:2rem; border:0.5px solid var(--divider); border-radius:4px; margin-bottom:2rem;">
+                <ul style="font-family:'Manrope',sans-serif; font-size:0.95rem; color:var(--neutral-grey); line-height:1.8; margin:0; padding-left:1.5rem;">
+                    <li><strong>Version:</strong> 2.0.1 (Apple-Grade Architectural Release).</li>
+                    <li><strong>CSS/Token Link:</strong> The active token root is maintained in <code>website.css</code>. Modifying variables directly in local HTML files is strictly banned.</li>
+                    <li><strong>Copy-Ready Code:</strong> The components documented in this system are structural blueprints.</li>
+                    <li><strong>Review Rules:</strong> Any new component introduced to this system must pass a dual review for (1) WCAG AAA Contrast, and (2) adherence to the 4px Micro-Edge geometry rule before being merged.</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+
+
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.ds-nav a');
+    
+    const observer = new IntersectionObserver((entries) => {
+        let visibleSection = null;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) visibleSection = entry.target;
+        });
+        
+        if (visibleSection) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === '#' + visibleSection.id) {
+                    link.setAttribute('aria-current', 'true');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }
+    }, { rootMargin: '-20% 0px -80% 0px' });
+    
+    sections.forEach(sec => observer.observe(sec));
+
+    // INTERACTIVE COMPONENTS LOGIC (TABS & ACCORDIONS)
+    
+    // 1. Accordions
+    const accordions = document.querySelectorAll('.ds-accordion-trigger');
+    accordions.forEach(acc => {
+        acc.addEventListener('click', () => {
+            const isExpanded = acc.getAttribute('aria-expanded') === 'true';
+            // Close all others (optional, but good for clean UI)
+            accordions.forEach(a => {
+                a.setAttribute('aria-expanded', 'false');
+                a.querySelector('.ds-accordion-icon').textContent = '+';
+            });
+            // Toggle clicked
+            if (!isExpanded) {
+                acc.setAttribute('aria-expanded', 'true');
+                acc.querySelector('.ds-accordion-icon').textContent = '-';
+            }
+        });
+    });
+
+    // 2. Tabs (Top and Side)
+    const tabContainers = document.querySelectorAll('.ds-tab-container');
+    tabContainers.forEach(container => {
+        const tabs = container.querySelectorAll('[role="tab"]');
+        const panels = container.querySelectorAll('.ds-tab-panel');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Deactivate all
+                tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+                panels.forEach(p => p.setAttribute('data-active', 'false'));
+                
+                // Activate clicked
+                tab.setAttribute('aria-selected', 'true');
+                const targetId = tab.getAttribute('data-target');
+                container.querySelector('#' + targetId).setAttribute('data-active', 'true');
+            });
+        });
+    });
+
+});
+</script>
+</body>
+
+</html>

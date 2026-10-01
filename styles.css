@@ -1,0 +1,286 @@
+            display: flex;
+            flex-direction: column;
+        }
+        .ds-nav {
+            display: none; /* hidden on mobile by default, or converted to drawer */
+        }
+        .ds-main-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        @media (min-width: 1024px) {
+            .ds-layout {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .ds-nav {
+                display: block;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow: auto;
+                padding: 2rem 1.5rem;
+                border-right: 0.5px solid var(--divider);
+                font-family: 'Manrope', sans-serif;
+                width: 250px;
+                flex-shrink: 0;
+            }
+        }
+        
+        .ds-nav a {
+            display: block;
+            padding: 0.4rem 0;
+            color: var(--neutral-grey);
+            text-decoration: none;
+            font-size:0.85rem;
+            transition: color 0.2s;
+        }
+        .ds-nav a[aria-current="true"] {
+            color: var(--text-copper-aaa);
+            font-weight: 700;
+        }
+        .ds-nav a:hover, .ds-nav a:focus-visible {
+            color: var(--text-copper-aaa);
+        }
+        .ds-nav-group {
+            margin: 1.5rem 0 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-copper-aaa);
+        }
+        section[id] {
+            scroll-margin-top: 2rem;
+        }
+
+
+        
+        /* MENU DEMO CLASSES */
+        .ds-menu-light a {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--neutral-grey);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+        .ds-menu-light a.active {
+            color: var(--obsidian-black);
+        }
+        .ds-menu-light a:hover, .ds-menu-light a:focus-visible {
+            color: var(--text-copper-aaa);
+        }
+
+        .ds-menu-dark a {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+        .ds-menu-dark a.active {
+            color: #FFFFFF;
+        }
+        .ds-menu-dark a:hover, .ds-menu-dark a:focus-visible {
+            color: var(--highlight-peach);
+        }
+
+        
+        /* === ACRE&KEY MOTION PHYSICS === */
+        
+        /* 1. Cinematic Reveal */
+        @keyframes akRevealUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .demo-reveal:hover .ak-reveal-up {
+            animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* 2. Data Cascade */
+        .demo-cascade:hover .ak-stagger-1 { animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.0s forwards; }
+        .demo-cascade:hover .ak-stagger-2 { animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards; }
+        .demo-cascade:hover .ak-stagger-3 { animation: akRevealUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards; }
+        .ak-reveal-up, .ak-stagger-1, .ak-stagger-2, .ak-stagger-3 { opacity: 0; }
+
+        /* 3. Architectural Pan */
+        .ak-pan-container {
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .ak-image-pan {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ak-pan-container:hover .ak-image-pan {
+            transform: scale(1.03);
+        }
+
+        /* 4. Focus Blur (Modal Backdrop Demo) */
+        .demo-blur-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 11, 0);
+            backdrop-filter: blur(0px);
+            transition: all 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .demo-blur-modal {
+            background: #FFF;
+            padding: 2rem;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            
+        }
+        .demo-blur-container:hover .demo-blur-backdrop {
+            background: rgba(10, 10, 11, 0.75);
+            backdrop-filter: blur(8px);
+        }
+        .demo-blur-container:hover .demo-blur-modal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+        /* === INTERACTIVE COMPONENTS CSS === */
+        .ds-top-tab {
+            font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding-bottom:1rem; border-bottom:2px solid transparent; margin-bottom:-1px; cursor:pointer; transition:color 0.2s, border-color 0.2s;
+        }
+        .ds-top-tab[aria-selected="true"] {
+            color:var(--text-copper-aaa); border-bottom:2px solid var(--text-copper-aaa);
+        }
+        
+        .ds-side-tab {
+            font-family:'Manrope',sans-serif; font-size:0.85rem; font-weight:700; color:var(--neutral-grey); text-transform:uppercase; letter-spacing:0.05em; padding:1rem 1.5rem; border-right:2px solid transparent; cursor:pointer; transition:color 0.2s, border-color 0.2s; margin-right:-1px;
+        }
+        .ds-side-tab[aria-selected="true"] {
+            color:var(--text-copper-aaa); border-right:2px solid var(--text-copper-aaa);
+        }
+        
+        .ds-tab-panel {
+            display: none;
+            opacity: 0;
+        }
+        .ds-tab-panel[data-active="true"] {
+            display: flex;
+            animation: akRevealUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        
+        .ds-accordion-trigger {
+            width:100%; background:none; border:none; padding: 1.5rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align:left;
+        }
+        .ds-accordion-content {
+            display: none; padding-bottom: 2rem;
+            animation: akRevealUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .ds-accordion-trigger[aria-expanded="true"] + .ds-accordion-content {
+            display: block;
+        }
+
+        
+        /* === ASSET CARD & CALCULATOR CSS === */
+        .ak-btn-ghost {
+            display: block; text-align: center; padding: 1rem; border: 0.5px solid var(--text-copper-aaa); border-radius: 4px; font-family: 'Manrope', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-copper-aaa); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.4s ease; background: transparent; cursor: pointer;
+        }
+        .ak-btn-ghost:hover, .ak-btn-ghost:focus-visible {
+            background: var(--text-copper-aaa); color: #FFF;
+        }
+        
+        .ak-range-slider {
+            -webkit-appearance: none; width: 100%; height: 2px; background: rgba(85, 85, 90, 0.2); outline: none; border-radius: 2px; margin: 1rem 0;
+        }
+        .ak-range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 4px; background: var(--text-copper-aaa); cursor: pointer; transition: transform 0.2s ease;
+        }
+        .ak-range-slider::-moz-range-thumb {
+            width: 16px; height: 16px; border-radius: 4px; background: var(--text-copper-aaa); cursor: pointer; border: none; transition: transform 0.2s ease;
+        }
+        .ak-range-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .ak-range-slider::-moz-range-thumb:hover { transform: scale(1.2); }
+
+        /* STATES & ACCESSIBILITY GLOBALS */
+        :focus-visible {
+            outline: 2px solid var(--text-copper-aaa);
+            outline-offset: 2px;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--text-copper-aaa) !important;
+        }
+        .ds-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, rgba(85, 85, 90,0.05) 4%, rgba(85, 85, 90,0.12) 25%, rgba(85, 85, 90,0.05) 36%);
+            background-size: 800px 100%;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        /* INLINE LINK FALLBACK */
+        .ds-inline-link {
+            color: var(--text-copper-aaa);
+            text-decoration: underline;
+            text-decoration-color: rgba(128,69,38,0.3);
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px;
+            transition: all 0.4s ease;
+        }
+        .ds-inline-link:hover, .ds-inline-link:focus-visible {
+            text-decoration-color: rgba(128,69,38,1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y proximity;
+        }
+        body {
+            background-color: var(--titanium-frost);
+            color: var(--obsidian-black);
+            margin: 0;
+            padding: 0;
+        }
+
+        .ds-bible-header {
+            background-color: var(--obsidian-black);
+            color: var(--titanium-frost);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .ds-bible-header h1 {
+            font-family: 'Marcellus', serif;
+            font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+            font-weight: 400;
+            margin: 0 0 1rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .ds-bible-header p {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.15rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) { .ds-container { padding: 2rem 1.5rem 4rem !important; } }
+        .ds-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem 8rem;
+        }
+
