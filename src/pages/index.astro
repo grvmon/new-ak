@@ -1,17 +1,196 @@
 ---
-
+import '../styles/global.css';
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acre&Key | Home Buyer Concierge</title>
+</head>
+<body class="bg-[#1C1C1E] text-[#FAFAFA] antialiased selection:bg-[#BE7555] selection:text-white overflow-x-hidden font-sans">
+
+    <!-- GLOBAL NAV -->
+    <nav class="w-full bg-[#1C1C1E]/90 backdrop-blur-md border-b-[0.5px] border-white/10 h-16 flex items-center justify-between px-6 lg:px-12 fixed top-0 z-50">
+        <div class="font-logo text-[1.15rem] font-semibold tracking-[-0.02em] text-[#FAFAFA]"><span class="font-logo lowercase">acre&amp;key</span></div>
+        <div class="hidden md:flex items-center gap-8 text-[0.8rem] font-bold tracking-[0.1em] uppercase text-[#FAFAFA]/70">
+            <a class="hover:text-[#FAFAFA] transition-colors" href="#">Properties</a>
+            <a class="hover:text-[#FAFAFA] transition-colors" href="#">Advisory</a>
+            <a class="hover:text-[#FAFAFA] transition-colors" href="#">Intelligence</a>
+        </div>
+        <button class="bg-[#BE7555] text-white px-5 py-2.5 rounded-sm font-sans text-[0.75rem] font-bold uppercase tracking-[0.1em] hover:bg-[#9F5334] transition-colors shadow-sm">
+            Book Advisory
+        </button>
+    </nav>
+
+    <main class="pt-16 bg-[#FAFAFA]">
+        
+        <!-- 1. HERO ARCHITECTURE -->
+        <section class="relative w-full min-h-[90vh] md:min-h-[85vh] overflow-hidden flex flex-col justify-center border-b-[0.5px] border-[#1C1C1E]">
+            <div class="absolute inset-0 bg-[url('/new-ak/assets/evergreen/prestige_evergreen_hero_skyline_night_aerial.webp')] bg-cover bg-center"></div>
+            <!-- Gradient contrast zone -->
+            <div class="absolute inset-0 bg-gradient-to-r from-[#1C1C1E] via-[#1C1C1E]/90 to-transparent w-[90%] md:w-[75%]"></div>
+            
+            <div class="relative z-10 p-8 md:p-16 lg:px-24 max-w-4xl flex flex-col gap-6 my-8">
+                <div class="font-sans text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#FAFAFA]/70">Home Buyer Concierge</div>
+                <h1 class="font-serif text-[3rem] md:text-[4rem] text-[#FAFAFA] leading-[1.1]">
+                    Anyone can give options.<br/>
+                    We help you buy <span class="text-[#BE7555]">the right home.</span>
+                </h1>
+                <p class="font-sans text-[1rem] md:text-[1.15rem] text-[#FAFAFA]/80 leading-relaxed max-w-lg mt-2">
+                    Independent home buying advisory to evaluate the opportunity, uncover the risks, and negotiate on your behalf.
+                </p>
+                
+                <div class="flex gap-12 mt-6 border-t-[0.5px] border-white/20 pt-8">
+                    <div>
+                        <div class="font-sans text-[1.75rem] text-[#FAFAFA] mb-1">69</div>
+                        <div class="font-sans text-[0.8rem] text-[#FAFAFA]/60">Due Diligence Checks</div>
+                    </div>
+                    <div>
+                        <div class="font-sans text-[1.75rem] text-[#FAFAFA] mb-1">₹0</div>
+                        <div class="font-sans text-[0.8rem] text-[#FAFAFA]/60">Buyer Advisory Fee</div>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <button class="bg-[#BE7555] hover:bg-[#9F5334] text-white px-8 py-4 rounded-sm font-sans text-[0.9rem] font-semibold transition-colors flex items-center gap-3 w-fit">
+                        Schedule Advisory Call 
+                        <svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-linecap="square" stroke-width="2" viewBox="0 0 24 24" width="14"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. THE CORE PHILOSOPHY -->
+        <section class="py-24 px-8 md:px-16 lg:px-24 bg-[#FAFAFA] text-[#1C1C1E]">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="font-serif text-[2.5rem] leading-[1.2] max-w-md">The right home<br/>starts with you.</h2>
+                </div>
+                <div>
+                    <ul class="flex flex-col gap-8">
+                        <li class="flex gap-6 items-start border-b-[0.5px] border-[#55555a26] pb-8">
+                            <div class="w-2 h-2 mt-2 bg-[#BE7555] shrink-0"></div>
+                            <div>
+                                <h3 class="font-serif text-[1.5rem] mb-2">Does it fit your life?</h3>
+                                <p class="text-[#55555A] text-[0.95rem] leading-relaxed">Beyond floorplans, we evaluate commute corridors, schooling infrastructure, and lifestyle alignment.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-6 items-start border-b-[0.5px] border-[#55555a26] pb-8">
+                            <div class="w-2 h-2 mt-2 bg-[#1C1C1E] shrink-0"></div>
+                            <div>
+                                <h3 class="font-serif text-[1.5rem] mb-2">Is the premium justified?</h3>
+                                <p class="text-[#55555A] text-[0.95rem] leading-relaxed">We strip away marketing fluff to analyze actual carpet area efficiency, loading factors, and secondary market pricing data.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-6 items-start">
+                            <div class="w-2 h-2 mt-2 bg-[#BE7555] shrink-0"></div>
+                            <div>
+                                <h3 class="font-serif text-[1.5rem] mb-2">Can the developer deliver?</h3>
+                                <p class="text-[#55555A] text-[0.95rem] leading-relaxed">We audit the developer's execution track record, financial leverage, and RERA compliance history.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. BUYER ARCHETYPES -->
+        <section class="py-24 px-8 md:px-16 lg:px-24 bg-[#1C1C1E] text-[#FAFAFA]">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="font-serif text-[2.5rem] leading-[1.2] max-w-2xl mb-16">For buyers who expect<br/>more from their search.</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="relative w-full h-[550px] rounded-sm overflow-hidden flex flex-col justify-end group shadow-xl border-[0.5px] border-white/10">
+                        <div class="absolute inset-0 bg-[url('/new-ak/assets/evergreen/prestige_evergreen_hero_tower_facade_day.webp')] bg-cover bg-center contrast-[1.05] group-hover:scale-105 transition-transform duration-[800ms] ease-out"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] from-40% via-[#1C1C1E]/80 via-75% to-transparent h-[85%] mt-auto"></div>
+                        <div class="relative z-10 p-8 flex flex-col gap-4">
+                            <div class="font-sans text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#BE7555]">01. The Time-Poor Executive</div>
+                            <div class="font-serif text-[1.75rem] text-[#FAFAFA] leading-[1.2]">You know what you want. You just don't have the time to find it.</div>
+                            <p class="font-sans text-[0.95rem] text-[#FAFAFA]/90 leading-relaxed">We filter the noise and curate only the top 1% of assets that strictly match your mandates.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="relative w-full h-[550px] rounded-sm overflow-hidden flex flex-col justify-end group shadow-xl border-[0.5px] border-white/10">
+                        <div class="absolute inset-0 bg-[url('/new-ak/assets/evergreen/prestige_evergreen_hero_pool_evening.webp')] bg-cover bg-center contrast-[1.05] group-hover:scale-105 transition-transform duration-[800ms] ease-out"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] from-40% via-[#1C1C1E]/80 via-75% to-transparent h-[85%] mt-auto"></div>
+                        <div class="relative z-10 p-8 flex flex-col gap-4">
+                            <div class="font-sans text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#BE7555]">02. The Thoughtful Buyer</div>
+                            <div class="font-serif text-[1.75rem] text-[#FAFAFA] leading-[1.2]">You want an honest opinion, not another sales pitch.</div>
+                            <p class="font-sans text-[0.95rem] text-[#FAFAFA]/90 leading-relaxed">For buyers who want to understand the numbers, plans, and trade-offs before committing significant capital.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="relative w-full h-[550px] rounded-sm overflow-hidden flex flex-col justify-end group shadow-xl border-[0.5px] border-white/10">
+                        <div class="absolute inset-0 bg-[url('/new-ak/assets/sobha_oneworld/sobha_oneworld_hero_elevation_night.webp')] bg-cover bg-center contrast-[1.05] group-hover:scale-105 transition-transform duration-[800ms] ease-out"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C1E] from-40% via-[#1C1C1E]/80 via-75% to-transparent h-[85%] mt-auto"></div>
+                        <div class="relative z-10 p-8 flex flex-col gap-4">
+                            <div class="font-sans text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#BE7555]">03. The Remote NRI</div>
+                            <div class="font-serif text-[1.75rem] text-[#FAFAFA] leading-[1.2]">Buying from afar, with someone you can trust on the ground.</div>
+                            <p class="font-sans text-[0.95rem] text-[#FAFAFA]/90 leading-relaxed">End-to-end management from virtual site-tours to compliance execution and ultimate handover.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 9. GLOBAL FOOTER -->
+    <footer class="bg-[#1C1C1E] text-[#FAFAFA] py-16 px-8 md:px-16 lg:px-24">
+        <div class="max-w-7xl mx-auto border-[0.5px] border-white/10 p-12 rounded-sm bg-black/20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+                <!-- Col 1 -->
+                <div class="lg:col-span-2 flex flex-col justify-between">
+                    <div>
+                        <div class="font-logo text-[1.5rem] font-semibold tracking-[-0.02em] text-[#FAFAFA] mb-4"><span class="font-logo lowercase">acre&amp;key</span></div>
+                        <p class="font-sans text-[0.85rem] text-[#FAFAFA]/70 leading-relaxed max-w-sm">
+                            Institutional-grade real estate advisory. <br/>Evaluating risk and structure before capital.
+                        </p>
+                    </div>
+                </div>
+                <!-- Col 2 -->
+                <div>
+                    <div class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#BE7555] mb-6">Properties</div>
+                    <ul class="flex flex-col gap-4 font-sans text-[0.85rem]">
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">North Bengaluru</a></li>
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">Whitefield</a></li>
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">South Bengaluru</a></li>
+                    </ul>
+                </div>
+                <!-- Col 3 -->
+                <div>
+                    <div class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#BE7555] mb-6">Intelligence</div>
+                    <ul class="flex flex-col gap-4 font-sans text-[0.85rem]">
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">Macro Reports</a></li>
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">Risk Assessment</a></li>
+                    </ul>
+                </div>
+                <!-- Col 4 -->
+                <div>
+                    <div class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#BE7555] mb-6">Corporate</div>
+                    <ul class="flex flex-col gap-4 font-sans text-[0.85rem]">
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">About Us</a></li>
+                        <li><a class="text-[#FAFAFA]/70 hover:text-white transition-colors" href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t-[0.5px] border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-[0.75rem] text-[#FAFAFA]/50">&copy; 2026 Acre&Key. All rights reserved. RERA: PRM/KA/RERA/1251/446/AG/230811/003822</div>
+                <div class="flex gap-6 text-[0.75rem]">
+                    <a class="text-[#FAFAFA]/50 hover:text-[#FAFAFA]/80 transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-[#FAFAFA]/50 hover:text-[#FAFAFA]/80 transition-colors" href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>
