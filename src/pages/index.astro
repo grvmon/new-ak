@@ -11,14 +11,60 @@ import '../styles/global.css';
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Acre&amp;Key Master Design System</title>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;family=Marcellus&amp;display=swap" rel="stylesheet"/>
+
+<style>
+  .ds-nav a[aria-current="true"] {
+    color: #804526 !important;
+    font-weight: 700 !important;
+    border-left: 2px solid #804526 !important;
+    padding-left: 0.5rem !important;
+  }
+</style>
 </head>
 <body>
-<header class="bg-[#1C1C1E] text-[#FAFAFA] py-24 px-8 text-center">
+<header id="top" class="bg-[#1C1C1E] text-[#FAFAFA] py-24 px-8 text-center">
 <div aria-level="1" class="font-serif text-3xl md:text-5xl font-normal mb-4 tracking-[-0.02em]" role="heading">The Master Design System</div>
 <p>Institutional-Grade Design System. Uncompromising architecture for <span class="font-logo lowercase">acre&amp;key</span>.</p>
 </header>
 <div class="flex flex-col lg:flex-row min-h-screen bg-[#FAFAFA] text-[#1C1C1E]">
-<nav aria-label="Design system" class="hidden lg:block w-[250px] shrink-0 border-r-[0.5px] border-[#55555a26] h-screen sticky top-0 p-8 overflow-y-auto bg-white font-sans"><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Brand</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#00-governance">00. Governance</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#01-brand">01. Brand Foundation</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Language</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#02-verbal">02. Verbal Identity</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Visual Identity</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#03-logo">03. Logo &amp; Identity</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#04-color">04. Color</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#05-typography">05. Typography</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Layout</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#06-grid">06. Grid &amp; Layout</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#07-responsive">07. Responsive System</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Visual Assets</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#08-photography">08. Photography &amp; Art Direction</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#09-graphic">09. Graphic Language</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#10-iconography">10. Iconography</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Interaction</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#11-motion">11. Motion</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Components</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#12-components">12. Component Library</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#13-forms">13. Forms &amp; Advisory UX</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Business/Product</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#14-property">14. Digital Property Pages</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#15-data">15. Data Visualization</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#16-maps">16. Maps &amp; Location</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Content</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#17-social">17. Social Media</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#18-paid">18. Paid Advertising</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#19-video">19. Video Identity</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#20-editorial">20. Editorial System</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#21-reports">21. Print &amp; PDF Intelligence Reports</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Technical</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#22-seo">22. SEO Design System</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#23-accessibility">23. Accessibility Architecture</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#24-trust">24. Trust &amp; Compliance</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#25-tokens">25. Developer Design Tokens</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#26-nextjs">26. Next.js / Frontend Architecture</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#27-cms">27. CMS Architecture</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Templates</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#28-templates">28. Page Templates</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">QA</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#29-qa">29. QA &amp; Governance</a></nav>
+<!-- Mobile Sticky Section Jump Navigation -->
+<div class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b-[0.5px] border-[#55555a26] px-6 py-3 flex items-center justify-between font-sans shadow-xs">
+  <span class="text-[0.72rem] font-bold uppercase tracking-wider text-[#804526]">Section:</span>
+  <select class="text-[0.8rem] border-[0.5px] border-[#55555a26] rounded-xs py-1.5 px-3 bg-[#FAFAFA] text-[#1C1C1E] focus:outline-none focus:ring-1 focus:ring-[#804526]" onchange="if(this.value) window.location.hash = this.value;">
+    <option value="">Jump to Section...</option>
+    <option value="#00-governance">00. Governance</option>
+    <option value="#01-brand">01. Brand Foundation</option>
+    <option value="#02-verbal">02. Verbal Identity</option>
+    <option value="#03-logo">03. Logo &amp; Identity</option>
+    <option value="#04-color">04. Color</option>
+    <option value="#05-typography">05. Typography</option>
+    <option value="#06-grid">06. Grid &amp; Layout</option>
+    <option value="#07-responsive">07. Responsive System</option>
+    <option value="#08-photography">08. Photography</option>
+    <option value="#09-graphic">09. Graphic Language</option>
+    <option value="#10-iconography">10. Iconography</option>
+    <option value="#11-motion">11. Motion</option>
+    <option value="#12-components">12. Component Library</option>
+    <option value="#13-forms">13. Forms &amp; Advisory UX</option>
+    <option value="#14-property">14. Digital Property Pages</option>
+    <option value="#15-data">15. Data Visualization</option>
+    <option value="#16-maps">16. Maps &amp; Location</option>
+    <option value="#17-social">17. Social Media</option>
+    <option value="#18-paid">18. Paid Advertising</option>
+    <option value="#19-video">19. Video Identity</option>
+    <option value="#20-editorial">20. Editorial System</option>
+    <option value="#21-reports">21. Print &amp; PDF Reports</option>
+    <option value="#22-seo">22. SEO Design System</option>
+    <option value="#23-accessibility">23. Accessibility</option>
+    <option value="#24-trust">24. Trust &amp; Compliance</option>
+    <option value="#25-tokens">25. Design Tokens</option>
+    <option value="#26-nextjs">26. Frontend Architecture</option>
+    <option value="#27-cms">27. CMS Architecture</option>
+    <option value="#28-templates">28. Page Templates</option>
+    <option value="#29-qa">29. QA &amp; Governance</option>
+  </select>
+</div>
+<nav aria-label="Design system" class="ds-nav hidden lg:block w-[250px] shrink-0 border-r-[0.5px] border-[#55555a26] h-screen sticky top-0 p-8 overflow-y-auto bg-white font-sans"><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Brand</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#00-governance">00. Governance</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#01-brand">01. Brand Foundation</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Language</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#02-verbal">02. Verbal Identity</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Visual Identity</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#03-logo">03. Logo &amp; Identity</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#04-color">04. Color</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#05-typography">05. Typography</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Layout</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#06-grid">06. Grid &amp; Layout</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#07-responsive">07. Responsive System</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Visual Assets</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#08-photography">08. Photography &amp; Art Direction</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#09-graphic">09. Graphic Language</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#10-iconography">10. Iconography</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Interaction</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#11-motion">11. Motion</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Components</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#12-components">12. Component Library</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#13-forms">13. Forms &amp; Advisory UX</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Business/Product</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#14-property">14. Digital Property Pages</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#15-data">15. Data Visualization</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#16-maps">16. Maps &amp; Location</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Content</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#17-social">17. Social Media</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#18-paid">18. Paid Advertising</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#19-video">19. Video Identity</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#20-editorial">20. Editorial System</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#21-reports">21. Print &amp; PDF Intelligence Reports</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Technical</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#22-seo">22. SEO Design System</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#23-accessibility">23. Accessibility Architecture</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#24-trust">24. Trust &amp; Compliance</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#25-tokens">25. Developer Design Tokens</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#26-nextjs">26. Next.js / Frontend Architecture</a><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#27-cms">27. CMS Architecture</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">Templates</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#28-templates">28. Page Templates</a><div class="mt-8 first:mt-2 mb-3 text-[0.7rem] font-bold tracking-[0.15em] uppercase text-[#804526] border-b-[0.5px] border-[#55555a26] pb-2">QA</div><a class="block py-1.5 text-[0.8rem] text-[#55555A] hover:text-[#804526] transition-colors truncate" href="#29-qa">29. QA &amp; Governance</a></nav>
 <div class="flex-1 min-w-0">
 <div class="max-w-[1280px] mx-auto px-8 py-16 pb-32">
 <!-- GOVERNANCE & VERSIONING -->
@@ -2339,9 +2385,9 @@ import '../styles/global.css';
 <div>
 <div class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-[#55555A] mb-8">Breadcrumb Path</div>
 <div class="flex items-center gap-3 text-[0.85rem] font-sans">
-<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#">Home</a>
+<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#top">Home</a>
 <span class="text-[#55555a26]">/</span>
-<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#">Advisory</a>
+<a class="text-[#55555A] hover:text-[#1C1C1E] transition-colors" href="#13-forms">Advisory</a>
 <span class="text-[#55555a26]">/</span>
 <span class="text-[#1C1C1E] font-bold">Prestige Evergreen</span>
 </div>
@@ -2612,9 +2658,9 @@ import '../styles/global.css';
 <nav class="w-full max-w-4xl bg-white border-[0.5px] border-[#55555a26] h-16 flex items-center justify-between px-6 shadow-sm rounded-sm">
 <div class="font-logo text-[1.15rem] font-semibold tracking-[-0.02em] text-[#1C1C1E]"><span class="font-logo lowercase">acre&amp;key</span></div>
 <div class="hidden md:flex items-center gap-8 text-[0.8rem] font-bold tracking-[0.1em] uppercase text-[#55555A]">
-<a class="hover:text-[#1C1C1E] transition-colors" href="#">Properties</a>
-<a class="hover:text-[#1C1C1E] transition-colors" href="#">Advisory</a>
-<a class="hover:text-[#1C1C1E] transition-colors" href="#">Intelligence</a>
+<a class="hover:text-[#1C1C1E] transition-colors" href="#14-property">Properties</a>
+<a class="hover:text-[#1C1C1E] transition-colors" href="#13-forms">Advisory</a>
+<a class="hover:text-[#1C1C1E] transition-colors" href="#15-data">Intelligence</a>
 </div>
 <button class="bg-[#1C1C1E] text-white px-5 py-2.5 rounded-sm font-sans text-[0.75rem] font-bold uppercase tracking-[0.1em] hover:bg-black transition-colors">
                                 Book Advisory
@@ -2630,9 +2676,9 @@ import '../styles/global.css';
 <nav class="w-full max-w-4xl bg-[#1C1C1E]/90 backdrop-blur-md border-b-[0.5px] border-white/10 h-16 flex items-center justify-between px-6 rounded-sm">
 <div class="font-logo text-[1.15rem] font-semibold tracking-[-0.02em] text-[#FAFAFA]"><span class="font-logo lowercase">acre&amp;key</span></div>
 <div class="hidden md:flex items-center gap-8 text-[0.8rem] font-bold tracking-[0.1em] uppercase text-[#FAFAFA]/70">
-<a class="hover:text-[#FAFAFA] transition-colors" href="#">Properties</a>
-<a class="hover:text-[#FAFAFA] transition-colors" href="#">Advisory</a>
-<a class="hover:text-[#FAFAFA] transition-colors" href="#">Intelligence</a>
+<a class="hover:text-[#FAFAFA] transition-colors" href="#14-property">Properties</a>
+<a class="hover:text-[#FAFAFA] transition-colors" href="#13-forms">Advisory</a>
+<a class="hover:text-[#FAFAFA] transition-colors" href="#15-data">Intelligence</a>
 </div>
 <button class="bg-[#BE7555] text-white px-5 py-2.5 rounded-sm font-sans text-[0.75rem] font-bold uppercase tracking-[0.1em] hover:bg-[#9F5334] transition-colors shadow-sm">
                                 Book Advisory
@@ -4031,7 +4077,7 @@ import '../styles/global.css';
 <div class="text-[0.75rem] font-bold tracking-[0.1em] uppercase text-[#1C1C1E] mb-4">Responsive State Rules</div>
 <ul class="text-[0.85rem] text-[#55555A] space-y-3">
 <li><strong class="text-[#1C1C1E]">Mobile-First:</strong> Write the baseline mobile Tailwind classes first, then apply <code class="bg-black/5 px-1 rounded-sm">md:</code> and <code class="bg-black/5 px-1 rounded-sm">lg:</code> mutations.</li>
-<li><strong class="text-[#1C1C1E]">Information Parity:</strong> Never use <code class="bg-black/5 px-1 rounded-sm">hidden md:block</code>. Refer to Section 07 for strict responsive data parity rules.</li>
+<li><strong class="text-[#1C1C1E]">Information Parity:</strong> Never use <code class="bg-black/5 px-1 rounded-sm">hidden md:block</code>. Refer to <a href="#07-responsive" class="text-[#804526] underline underline-offset-4 hover:text-[#1C1C1E] font-medium">Section 07</a> for strict responsive data parity rules.</li>
 </ul>
 </div>
 <div class="bg-white border-[0.5px] border-[#55555a26] p-6 rounded-sm">
@@ -4270,6 +4316,13 @@ import '../styles/global.css';
 <div class="border-t-[0.5px] border-white/10 pt-6 text-center">
 <span class="font-bold text-[1.1rem] text-[#BE7555] font-sans">On Obsidian, typography creates hierarchy. Copper creates emphasis.</span>
 </div>
+</div>
+
+<div class="mt-16 pt-8 border-t-[0.5px] border-[#55555a26] flex items-center justify-between text-[0.85rem] font-sans text-[#55555A]">
+  <div><span class="font-logo lowercase">acre&amp;key</span> Master Design System v2.0</div>
+  <a href="#top" class="inline-flex items-center gap-2 text-[#804526] hover:text-[#1C1C1E] font-bold uppercase tracking-wider text-[0.75rem] transition-colors">
+    Back to Top ↑
+  </a>
 </div>
 </div>
 </div>
